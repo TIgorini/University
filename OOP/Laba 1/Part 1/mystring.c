@@ -3,10 +3,9 @@
 int substr(const char *string1, const char *string2)
 {
 	char *res = strstr( string1, string2 );
-	return ( res ? ( res - string1 + 1 ) : 0 ); 
+	return ( res ? ( res - string1 ) : -1); 
 }
 
-/* numbering starts at 1; 0 means that str2 is not included in str1 */
 int subseq(const char *string1, const char *string2)
 {
 	int maxlen = 0;
