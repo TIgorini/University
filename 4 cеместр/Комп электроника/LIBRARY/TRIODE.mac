@@ -1,0 +1,896 @@
+[Main]
+FileType=CIR
+Version=7.00
+Program=Micro-Cap
+Screen=800,600
+MCAPVersion=7.0.0.0
+Key ID=493 834 421
+NLCnt=15
+TXCnt=16
+
+[shapedef]
+Name=Capacitor
+Line=0,0,22,0
+Line=22,-8,22,8
+Line=26,-8,26,8
+Line=26,0,48,0
+Current=32,12,16,12
+
+[shapedef]
+Name=NFI
+Root="Isource.Root",-12,0,0
+Root="TextN.Root",-26,20,0
+Root="TextF.Root",-18,20,0
+
+[shapedef]
+Name=TextF.Root
+Line=0,0,5,0
+Line=0,0,0,8
+Line=2,4,0,4
+
+[shapedef]
+Name=Isource.Root
+Ellipse=-12,12,12,36
+Line=0,0,0,24
+PolyClosed=3 ,Solid
+PolyLine=-4,24
+PolyLine=4,24
+PolyLine=0,32
+Line=0,32,0,48
+Current=16,16,16,32
+
+[shapedef]
+Name=TextN.Root
+Line=0,8,0,0
+Line=0,0,5,8
+Line=5,8,5,0
+
+[compdef]
+Name=NFI
+Definition=NFI
+Shape=NFI
+Mask=4096
+Label Offset=15,12,-29,13
+PinCnt=2
+Pin="Plus",0,0,7,12
+Pin="Minus",0,6,7,3
+
+[compdef]
+Name=Capacitor
+Definition=Capacitor
+Shape=Capacitor
+Mask=7681
+Label Offset=19,8,12,12
+PinCnt=2
+Pin="Plus",6,0,-3,-5
+Pin="Minus",0,0,-14,-5
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-16,FStyle=0,Color=1,Name=Arial
+Object Default=Height=-16,FStyle=0,Color=11,Name=Arial
+Component Color=12
+Attribute Text=Height=-16,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=5
+Pin Color=13
+Select Box Color=0
+Node Number=Height=-12,FStyle=0,Color=9,Name=Arial
+Node Voltage Color=12
+Current=Height=-13,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-13,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-19,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 44,44,686,390
+Window Placement in Analysis=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Block Select Color=41
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+Title_Block_Border=False
+Title_Block=False
+
+[Wire]
+Grids=39,26,46,26
+
+[Comp]
+Name=NFI
+Grid=46,32
+Rot=4
+
+[Attr]
+ONV=18,-30,PART,Tr
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-243,18,VALUE,-K*pow((V(PLATE)-(1+MU)*V(CATH)+MU*V(GRID)),1.5)
+Style=8192
+Color=9
+
+[Comp]
+Name=Capacitor
+Grid=54,26
+Rot=1
+
+[Attr]
+ONV=14,10,PART,C1
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=11,28,VALUE,CPC
+Style=8192
+Height=-12
+Color=9
+
+[Comp]
+Name=Capacitor
+Grid=39,26
+Rot=6
+
+[Attr]
+ONV=-33,-25,PART,C2
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-35,11,VALUE,CGP
+Style=8192
+Height=-12
+Color=9
+
+[Wire]
+Grids=27,32,46,32
+
+[Comp]
+Name=Capacitor
+Grid=27,26
+Rot=1
+
+[Attr]
+ONV=11,10,PART,C3
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=10,26,VALUE,CGC
+Style=8192
+Height=-12
+Color=9
+
+[Wire]
+Grids=16,32,27,32
+
+[Wire]
+Grids=15,32,16,32
+
+[Wire]
+Grids=15,26,16,26
+
+[Wire]
+Grids=16,26,27,26
+
+[Wire]
+Grids=27,26,33,26
+
+[Wire]
+Grids=54,26,58,26
+
+[Wire]
+Grids=49,26,54,26
+
+[Wire]
+Grids=46,32,54,32
+
+[Wire]
+Grids=46,26,49,26
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=.HELP K "Tube constant k"
+Grid=17,43
+
+[Grid Text]
+Text=Plate
+Grid=49,26
+Height=-12
+Color=9
+
+[Grid Text]
+Text=Grid
+Grid=16,26
+Height=-12
+Color=9
+
+[Grid Text]
+Text=Cath
+Grid=16,32
+Height=-12
+Color=9
+
+[Grid Text]
+Text=The Triode macro is implemented with a 3/2 power function
+Grid=10,13
+Height=-12
+Color=9
+
+[Grid Text]
+Text=.PARAMETERS (K=5M,MU=.05,CGP=10P,CGC=10P,CPC=10P)
+Grid=17,40
+Color=5
+
+[Grid Text]
+Text=source. The model uses a voltage-controlled current source.
+Grid=10,15
+Height=-12
+Color=9
+
+[Grid Text]
+Text=The k, Mu, Cgp, Cgc, and Cpc values are passed as parameters
+Grid=10,17
+Height=-12
+Color=9
+
+[Grid Text]
+Text=when the macro is used in a circuit.  For example, a typical
+Grid=10,19
+Height=-12
+Color=9
+
+[Grid Text]
+Text=macro parameter call would be Triode(1E-5,20,1nf,2nf,.1nf).
+Grid=10,21
+Height=-12
+Color=9
+
+[Grid Text]
+Text=TRIODE MACRO
+Grid=27,6
+Height=-19
+Color=13
+
+[Grid Text]
+Text=Called by other circuits.  Not intended for stand alone analysis.
+Grid=10,10
+Height=-19
+Color=9
+
+[Grid Text]
+Text=.HELP MU "Tube constant mu"
+Grid=17,46
+
+[Grid Text]
+Text=.HELP CGP "Grid to plate capacitance "
+Grid=17,49
+
+[Grid Text]
+Text=.HELP CGC "Grid to cathode capacitance"
+Grid=17,52
+
+[Grid Text]
+Text=.HELP CPC "Plate to cathode capacitance"
+Grid=17,55
+
+[Schematic]
+Page 0=0
+TabSize 0=320
+Page 1=0
+TabSize 1=320
+Page 2=0
+TabSize 2=320
+Page 3=0
+TabSize 3=320
+Splitter.xs=0
+Splitter.ys=0
+TextQuad=4099
+Scale=0.6666666666666666
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=No
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+CROSS=No
+GRID=Yes
+BORDER=No
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=No
+FIND=Yes
+REPEAT=No
+MODEL=Yes
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=No
+TOBACK=No
+PAGEADD=No
+PAGEDEL=No
+ZOOMIN=Yes
+ZOOMOUT=Yes
+GOTOFLAG=No
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+Scale 0=0.6666666666666666
+Scale 1=1
+Scale 2=1
+Scale 3=1
+Grid=70,53
+
+[Text Area]
+Font=Height=-12,FStyle=0,Color=9,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=0
+
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[TRANSIENT]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[AC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[DC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[Analysis]
+Window Placement=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+Analysis Text=Height=-12,FStyle=0,Color=4,Name=Arial
+Analysis Grid Color=7
+Analysis Graph Background=7
+Object Default=Height=-16,FStyle=0,Color=0,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-12,FStyle=0,Color=9,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Cursor Select Color Primary=7
+Cursor Select Color Secondary=9
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+Tracker Foreground=Height=-19,FStyle=0,Color=0,Name=Arial
+Tracker Background=11
+Data Point Labels Color Fore=Height=-19,FStyle=0,Color=0,Name=Arial
+Data Point Labels Color Back=11
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=No
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=1
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=No
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=No
+DATAPTS=Yes
+TOKENS=Yes
+RULER=No
+PLUS=No
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=No
+BASELINE=No
+HORIZCUR=No
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+GOTOBRNC=Yes
+NEXT=Yes
+NEXTIN=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+BOTTOM=Yes
+TOP=Yes
+AOUTPUT=Yes
+ZOOMIN=No
+ZOOMOUT=No
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Limits]
+Analysis=Transient
+TRange=5ms
+TStep=0.0001
+NPts=50
+Temp=27
+OPT=88
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=Plate
+XRng=5ms
+YRng=300,250
+Range Grid X=0.001
+Range Grid Y=10
+VFmtX=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=Grid
+XRng=5ms
+YRng=-11,-9
+Range Grid X=0.001
+Range Grid Y=0.4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=6
+Text Color=6
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=7
+Text Color=7
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=8
+Text Color=8
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=AC
+FRange=1E8,1
+NPts=50
+Temp=27
+MaxChng=5
+NInput=grid
+NOutput=Plate
+OPT=88
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=1
+XExp=f
+YExp=db(mag(v(Plate)/v(grid)))
+XRng=1E8,1
+YRng=40,-60
+Range Grid Y=20
+VFmtX=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=2
+XExp=f
+YExp=inoise
+XRng=1E8,1
+YRng=0,-400
+Range Grid Y=80
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=1
+XExp=f
+YExp=re(v(Plate)/v(grid))
+XRng=1E8,1
+YRng=1.0,-1.0
+Range Grid Y=0.4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=1
+XExp=f
+YExp=im(v(Plate)/v(grid))
+XRng=1E8,1
+YRng=1.0,-1.0
+Range Grid Y=0.4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=2
+XExp=f
+YExp=ph(v(Plate)/v(grid))
+XRng=1E8,1
+YRng=90,-360
+Range Grid Y=90
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=3
+XExp=f
+YExp=gd(v(Plate)/v(grid))
+XRng=1E8,1
+YRng=1E-4,1E-9
+Range Grid Y=1.99998e-5
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=6
+Text Color=6
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=7
+Text Color=7
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=8
+Text Color=8
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=DC
+I2Range=0,-18,2
+I2=Grid
+I1Range=500,0
+I1=VEE
+NPts=5
+Temp=27
+MaxChng=2
+OPT=24
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=Linear
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=VEE
+YExp=VEE,PLate,I
+XRng=500,0,5
+YRng=50ma
+Range Grid X=100
+Range Grid Y=0.01
+VFmtX=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[Stepping]
+Analysis=Transient
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=AC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=DC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Optimize]
+Format=3
+
+[Optimize]
+Analysis=Transient
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=AC
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=DC
+Method=Stepping_Powel
+
+[Watch]
+Format=3
+
+[Watch]
+Analysis=Transient
+ExprPercentWidth=80
+
+[Watch]
+Analysis=AC
+ExprPercentWidth=80
+
+[Watch]
+Analysis=DC
+ExprPercentWidth=80
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

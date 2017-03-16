@@ -1,0 +1,21 @@
+Queue with elements from 0-th to 9-th has been created !!!
+Producer thread1: element 10 CREATED;
+Consumer thread4: actions for element 0 DONE;
+Consumer thread2: actions for element 1 DONE;
+Consumer thread2: actions for element 2 DONE;
+Consumer thread4: actions for element 3 DONE;
+Consumer thread4: actions for element 4 DONE;
+Consumer thread2: actions for element 5 DONE;
+Consumer thread3: actions for element 6 DONE;
+Consumer thread4: actions for element 7 DONE;
+Producer thread1: element 11 CREATED;
+Consumer thread3: actions for element 9 DONE;
+Consumer thread2: actions for element 8 DONE;
+Consumer thread4: actions for element 10 DONE;
+Consumer thread4: actions for element 11 DONE;
+Consumer thread2  stopped !!!
+Consumer thread4  stopped !!!
+Consumer thread3  stopped !!!
+Producer thread1  stopped !!!
+All threads stopped !!!
+

@@ -1,0 +1,1248 @@
+[Main]
+FileType=CIR
+Version=7.00
+Program=Micro-Cap
+Screen=800,600
+MCAPVersion=7.0.0.0
+Key ID=493 834 421
+NLCnt=61
+TXCnt=25
+
+[shapedef]
+Name=Resistor
+PolyOpen=12 
+PolyLine=0,0
+PolyLine=0,0
+PolyLine=12,0
+PolyLine=14,-4
+PolyLine=18,4
+PolyLine=22,-4
+PolyLine=26,4
+PolyLine=30,-4
+PolyLine=34,4
+PolyLine=36,0
+PolyLine=48,0
+PolyLine=48,0
+Current=32,8,16,8
+
+[shapedef]
+Name=Capacitor
+Line=0,0,22,0
+Line=22,-8,22,8
+Line=26,-8,26,8
+Line=26,0,48,0
+Current=32,12,16,12
+
+[shapedef]
+Name=Diode
+Root="Diode.root",0,-8,0
+
+[shapedef]
+Name=NFV
+Root="Vsource.root",0,-12,0
+Root="TextNv.Root",20,-6,0
+Root="TextFv.Root",20,1,0
+
+[shapedef]
+Name=Ground
+Line=0,0,12,0
+Line=12,-8,12,8
+Line=18,-4,18,4
+Line=24,0,24,0
+
+[shapedef]
+Name=Diode.root
+Line=0,0,20,0
+Line=28,0,48,0
+Rectangle=18,-8,20,8,SOLID
+PolyClosed=3 ,Solid
+PolyLine=20,0
+PolyLine=28,-8
+PolyLine=28,8
+Current=32,16,16,16
+
+[shapedef]
+Name=Vsource.root
+Line=0,0,12,0
+Line=36,0,48,0
+Ellipse=12,-12,36,12
+Line=7,5,7,9
+Root="Plus.root",39,5,0
+Current=32,16,16,16
+
+[shapedef]
+Name=Plus.root
+Line=-2,0,2,0
+Line=0,-2,0,2
+
+[shapedef]
+Name=TextNv.Root
+Line=0,0,8,0
+Line=8,0,0,5
+Line=0,5,8,5
+
+[shapedef]
+Name=TextFv.Root
+Line=0,0,8,0
+Line=4,0,4,2
+Line=8,0,8,5
+
+[compdef]
+Name=NFV
+Definition=NFV
+Shape=NFV
+Mask=4864
+Label Offset=18,12,16,13
+PinCnt=2
+Pin="Plus",6,0,-8,-4
+Pin="Minus",0,0,-21,-6
+
+[compdef]
+Name=Ground
+Definition=Ground
+Shape=Ground
+Mask=4865
+Label Offset=0,0,0,0
+PinCnt=1
+Pin="PinA",0,0,-3,-7
+
+[compdef]
+Name=Resistor
+Definition=Resistor
+Shape=Resistor
+Mask=7681
+Label Offset=18,6,8,11
+PinCnt=2
+Pin="Plus",6,0,-10,-4
+Pin="Minus",0,0,-14,-4
+
+[compdef]
+Name=Capacitor
+Definition=Capacitor
+Shape=Capacitor
+Mask=7681
+Label Offset=19,8,12,12
+PinCnt=2
+Pin="Plus",6,0,-3,-5
+Pin="Minus",0,0,-14,-5
+
+[compdef]
+Name=Diode
+Definition=Diode
+Shape=Diode
+Mask=5889
+Label Offset=17,10,12,12
+PinCnt=2
+Pin="Anode",6,0,-9,-8
+Pin="Cathode",0,0,-20,-8
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-16,FStyle=0,Color=1,Name=Arial
+Object Default=Height=-16,FStyle=0,Color=4,Name=Arial
+Component Color=4
+Attribute Text=Height=-16,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=6
+Pin Color=9
+Select Box Color=4
+Node Number=Height=-12,FStyle=0,Color=9,Name=Arial
+Node Voltage Color=12
+Current=Height=-13,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-13,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-19,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 66,66,708,412
+Window Placement in Analysis=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Block Select Color=41
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+Title_Block_Border=False
+Title_Block=False
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=39,20,39,27
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=39,27,44,27
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=44,27,44,20
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=44,20,39,20
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=34,32,51,32
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=34,32,34,16
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=16,27,16,20
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=21,27,16,27
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=21,20,21,27
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=16,20,21,20
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=11,32,11,16
+
+[Object]
+Object=Line
+EndPoint=ArrowF
+Grids=11,32,26,32
+
+[Comp]
+Name=NFV
+Grid=25,52
+Rot=3
+
+[Attr]
+ONV=-31,-28,PART,E1
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-323,-43,VALUE,.5E7*(X1+X2)-1E7*(V(P)-V(M))+1E7*V(A)*(X2-X1)/(Y2-Y1)
+Height=-12
+Color=9
+
+[Comp]
+Name=Ground
+Grid=25,52
+Rot=1
+
+[Comp]
+Name=Resistor
+Grid=27,40
+
+[Attr]
+ONV=18,6,PART,R1
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=15,21,VALUE,1E9
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,32,MODEL,
+Height=-12
+Color=9
+
+[Comp]
+Name=Capacitor
+Grid=35,46
+Rot=7
+
+[Attr]
+ONV=-28,12,PART,C1
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-33,29,VALUE,10F
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,32,MODEL,
+Height=-12
+Color=9
+
+[Wire]
+Grids=25,52,35,52
+
+[Comp]
+Name=Diode
+Grid=42,46
+Rot=3
+
+[Attr]
+ONV=-27,-32,PART,D1
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,16,VALUE,
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,32,MODEL,D1
+Height=-12
+Color=9
+
+[Comp]
+Name=Diode
+Grid=50,40
+Rot=7
+
+[Attr]
+ONV=-30,16,PART,D2
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,16,VALUE,
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,32,MODEL,D2
+Height=-12
+Color=9
+
+[Wire]
+Grids=42,52,50,52
+
+[Wire]
+Grids=25,40,25,46
+
+[Wire]
+Grids=25,40,27,40
+
+[Wire]
+Grids=35,40,39,40
+
+[Wire]
+Grids=33,40,35,40
+
+[Wire]
+Grids=35,40,35,46
+
+[Comp]
+Name=NFV
+Grid=62,49
+Rot=3
+
+[Attr]
+ONV=-31,-28,PART,E2
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-134,-43,VALUE,.5*(Y1+Y2)-V(A)*SIGN
+Height=-12
+Color=9
+
+[Wire]
+Grids=6,52,15,52
+
+[Wire]
+Grids=6,46,15,46
+
+[Wire]
+Grids=62,52,72,52
+
+[Comp]
+Name=Resistor
+Grid=64,40
+
+[Attr]
+ONV=18,6,PART,R2
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=18,21,VALUE,ROUT
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=0,32,MODEL,
+Height=-12
+Color=9
+
+[Wire]
+Grids=62,40,64,40
+
+[Wire]
+Grids=70,40,72,40
+
+[Comp]
+Name=NFV
+Grid=42,52
+Rot=3
+
+[Attr]
+ONV=-31,-31,PART,E3
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-71,-43,VALUE,.5*(Y2-Y1)
+Height=-12
+Color=9
+
+[Comp]
+Name=NFV
+Grid=50,52
+Rot=3
+
+[Attr]
+ONV=-30,-28,PART,E4
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=-75,-43,VALUE,-.5*(Y2-Y1)
+Height=-12
+Color=9
+
+[Wire]
+Grids=62,49,62,52
+
+[Wire]
+Grids=62,40,62,43
+
+[Wire]
+Grids=13,20,16,20
+
+[Wire]
+Grids=44,20,46,20
+
+[Wire]
+Grids=36,27,39,27
+
+[Wire]
+Grids=11,27,12,27
+
+[Wire]
+Grids=13,27,14,27
+
+[Wire]
+Grids=15,27,16,27
+
+[Wire]
+Grids=11,20,12,20
+
+[Wire]
+Grids=16,28,16,29
+
+[Wire]
+Grids=16,30,16,31
+
+[Wire]
+Grids=21,28,21,29
+
+[Wire]
+Grids=21,30,21,31
+
+[Wire]
+Grids=34,27,35,27
+
+[Wire]
+Grids=34,20,35,20
+
+[Wire]
+Grids=36,20,37,20
+
+[Wire]
+Grids=39,28,39,29
+
+[Wire]
+Grids=39,30,39,31
+
+[Wire]
+Grids=44,28,44,29
+
+[Wire]
+Grids=44,30,44,31
+
+[Wire]
+Grids=38,20,39,20
+
+[Comp]
+Name=Ground
+Grid=6,52
+Rot=7
+
+[Comp]
+Name=Ground
+Grid=62,52
+Rot=7
+
+[Wire]
+Grids=35,52,42,52
+
+[Wire]
+Grids=35,46,35,47
+
+[Wire]
+Grids=42,40,50,40
+
+[Wire]
+Grids=39,40,42,40
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=.HELP X1 "Lower limit of input state change voltage"
+Grid=57,20
+
+[Grid Text]
+Text=CAT
+Grid=62,40
+Height=-12
+Color=9
+
+[Grid Text]
+Text=.Parameters(X1=1,X2=2,Y1=1,Y2=2,Rout=1,Sign=-1)
+Grid=57,17
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=PinA
+Grid=6,46
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=PinB
+Grid=72,40
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=A
+Grid=39,40
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=P
+Grid=15,46
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=M
+Grid=15,52
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=X1
+Grid=15,34
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=X2
+Grid=20,34
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Y2
+Grid=8,20
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Y1
+Grid=8,27
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Inverting Versionþ     (Sign=-1)
+Grid=11,14
+Height=-15
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Non-inverting Versionþ   (Sign=1)
+Grid=32,14
+Height=-15
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=X1
+Grid=38,34
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=X2
+Grid=43,34
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Y1
+Grid=31,27
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=Y2
+Grid=31,20
+Color=5
+Font=Courier New
+
+[Grid Text]
+Text=SCHMITT TRIGGER MACRO
+Grid=22,4
+Height=-19
+Color=13
+
+[Grid Text]
+Text=Called by other circuits.  Not intended for stand alone analysis.
+Grid=9,8
+Height=-19
+Color=9
+
+[Grid Text]
+Text=.HELP X2 "Upper limit of input state change voltage"
+Grid=57,23
+
+[Grid Text]
+Text=.HELP Y1 "Lower limit of output voltage"
+Grid=57,26
+
+[Grid Text]
+Text=.HELP Y2 "Upper limit of output voltage"
+Grid=57,29
+
+[Grid Text]
+Text=.HELP ROUT "Output resistance of circuit"
+Grid=57,32
+
+[Grid Text]
+Text=.HELP SIGN "-1 for inverting version, 1 for non-inverting version"
+Grid=57,34
+
+[Schematic]
+Page 0=0
+TabSize 0=320
+Page 1=0
+TabSize 1=320
+Page 2=0
+TabSize 2=320
+Page 3=0
+TabSize 3=320
+Splitter.xs=0
+Splitter.ys=0
+TextQuad=4097
+Scale=1.333333333333333
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=No
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+CROSS=No
+GRID=Yes
+BORDER=No
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=No
+FIND=Yes
+REPEAT=No
+MODEL=Yes
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=No
+TOBACK=No
+PAGEADD=No
+PAGEDEL=No
+ZOOMIN=Yes
+ZOOMOUT=Yes
+GOTOFLAG=No
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+Scale 0=0.6666666666666666
+Scale 1=1
+Scale 2=1
+Scale 3=1.333333333333333
+Grid=28,63
+
+[Text Area]
+Font=Height=-16,FStyle=0,Color=9,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=190
+
+*define E1 .5E7*(X1+X2)-1E7*(V(P)-V(M))+1E7*V(A)*(X2-X1)/(Y2-Y1)
+*define V1 .5*(Y2-Y1)
+*define V2 -.5*(Y2-Y1)
+.MODEL D1 D (N=.001)
+.MODEL D2 D (N=.001)
+*define E2 .5*(Y1+Y2)-V(A)*sign
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[TRANSIENT]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[AC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[DC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[Analysis]
+Window Placement=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+Analysis Text=Height=-16,FStyle=0,Color=4,Name=Arial
+Analysis Grid Color=8
+Analysis Graph Background=6
+Object Default=Height=-16,FStyle=0,Color=0,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-16,FStyle=0,Color=9,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Cursor Select Color Primary=7
+Cursor Select Color Secondary=9
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+Tracker Foreground=Height=-19,FStyle=0,Color=0,Name=Arial
+Tracker Background=11
+Data Point Labels Color Fore=Height=-19,FStyle=0,Color=0,Name=Arial
+Data Point Labels Color Back=11
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=No
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=1
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=No
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=No
+DATAPTS=Yes
+TOKENS=Yes
+RULER=No
+PLUS=No
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=No
+BASELINE=No
+HORIZCUR=No
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+GOTOBRNC=Yes
+NEXT=Yes
+NEXTIN=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+BOTTOM=Yes
+TOP=Yes
+AOUTPUT=Yes
+ZOOMIN=No
+ZOOMOUT=No
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Limits]
+Analysis=Transient
+TRange=2u
+TStep=2n
+NPts=51
+Temp=27
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=v(8,7)
+XRng=2u
+YRng=10,-10
+Range Grid X=4e-7
+Range Grid Y=4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=v(2)
+XRng=2u
+YRng=10,-10
+Range Grid X=4e-7
+Range Grid Y=4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=v(6)
+XRng=2u
+YRng=10,-10
+Range Grid X=4e-7
+Range Grid Y=4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=2
+XExp=V(8,7)
+YExp=V(2)
+XRng=10,-10
+YRng=10,-10
+Range Grid X=4
+Range Grid Y=4
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=13
+Text Color=13
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=13
+Text Color=13
+
+[Limits]
+Analysis=AC
+OPT=64
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=13
+Text Color=13
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=13
+Text Color=13
+
+[Limits]
+Analysis=DC
+OPT=0
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=None
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=13
+Text Color=13
+
+[Stepping]
+Analysis=Transient
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=AC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=DC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Optimize]
+Format=3
+
+[Optimize]
+Analysis=Transient
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=AC
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=DC
+Method=Stepping_Powel
+
+[Watch]
+Format=3
+
+[Watch]
+Analysis=Transient
+ExprPercentWidth=80
+
+[Watch]
+Analysis=AC
+ExprPercentWidth=80
+
+[Watch]
+Analysis=DC
+ExprPercentWidth=80
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

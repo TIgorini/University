@@ -1,0 +1,216 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+#include <semaphore.h>
+#include <pthread.h>
+
+
+/* Потокові змінні */
+pthread_t thread1;
+pthread_t thread2;
+pthread_t thread3;
+pthread_t thread4;
+
+/* максимально допустима довжина черги, що використовується в якості буфера */
+int max_queue_length = 100;
+
+struct job {
+/* Посилання на наступний елемент черги (стеку)  */
+	struct job* next;
+/* Поля для описання необхідного завдання */
+	int number;
+};
+
+/* Список завдань.   */
+struct job* job_queue;
+struct job* job_queue_end;
+
+/* Мютекс для job_queue. */
+pthread_mutex_t job_queue_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+/* Семафор для підрахунку кількості завдань у черзі */
+sem_t job_queue_count;
+
+/* Початкова ініціалізація черги */
+void initialize_job_queue ()
+{
+/* У початковому стані черга порожня  */
+    job_queue = NULL;
+    job_queue_end = NULL;
+    
+/* Встановлюємо початкове значення лічильника семафору рівним нулю */
+    sem_init (&job_queue_count, 0, 0);
+}
+
+process_job(struct job* current_job)
+{
+int count_value;
+/* Повідомляємо про виконання чергового завдання */
+//          fprintf(stderr,"job %d DONE\n",current_job->number);
+	sem_getvalue(&job_queue_count,&count_value);
+	printf("Job %d DONE; Queue length=%d;\n",current_job->number,count_value);
+}
+
+/* Додавання нового елементу до черги(стеку) */
+void enqueue_job ()
+{
+/*Створення нового елементу черги(стеку)*/
+        struct job* new_job=(struct job*)malloc(sizeof(struct job));
+	new_job->next = NULL; 
+
+/* Захоплення мютекса черги(стеку) для додавання нового елементу */
+        pthread_mutex_lock (&job_queue_mutex);
+
+	if (job_queue == NULL) {
+	    new_job->number = 0;
+	    job_queue = new_job;
+	}
+	else {
+	    new_job->number = job_queue_end->number+1;
+	    job_queue_end->next = new_job;
+	}
+	job_queue_end = new_job;
+
+/* Повідомляємо про те, що в черзі з'явилося нове завдання.
+ * Якщо потоки заблоковані в очікуванні семафору, то один з
+ * них буде розблоковано для обробки нового завдання. */
+        sem_post (&job_queue_count);
+
+/* Звільнення мютекса черги(стеку) */
+        pthread_mutex_unlock (&job_queue_mutex);
+}
+
+/* Функція для створення черги заданої кількості елементів */
+void* queue_creation(int max)
+{
+        int i;
+        for(i=0;i<max;i++) enqueue_job();
+        return NULL;
+}
+
+/* Потокова функція для додавання елементу до черги */
+void* thread_producer(void* arg)
+{
+int num = *(int*)arg;
+
+int count_value;
+
+/* Встановлення дозволу відміняти цей потік у будь-який момент (асинхронно) */
+    pthread_setcanceltype (PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+
+    while (1) {
+        if (job_queue == NULL) 
+    		break;
+
+/* Додаємо новий елемент до черги тільки у випадку,
+ * якщо масимально допустима довжина черги не перевищена */
+	sem_getvalue(&job_queue_count,&count_value);
+	if (count_value < max_queue_length) {
+            enqueue_job ();
+//	    fprintf(stderr,"Producer thread%d;  Job %d CREATED; Queue length=%d; \n",
+//		   *(int*)arg,job_queue_end->number,count_value);
+	    printf("Producer thread%d;  Job %d CREATED; Queue length=%d; \n",
+		   num,job_queue_end->number,count_value);
+	}
+/* Зупинка потоку на задану кількість мікросекунд */
+	usleep(2);
+    }
+
+/* Відміна всіх інших потоків, оскільки завдання вичерпались
+ * і постачальник припинив роботу */
+    pthread_cancel(thread2);
+    pthread_cancel(thread3);
+    pthread_cancel(thread4);
+
+    printf("Producer thread%d  stopped\n",num);
+
+    return NULL;
+}
+
+/* Обробка завдань виконується доки елементи в черзі (стеку) не закінчаться. */
+void* thread_consumer (void* arg)
+{
+int num = *(int*)arg;
+
+/* Змінна для зберігання вказівника на наступне для обробки завдання */
+        struct job* next_job;
+
+/* Встановлення дозволу відміняти цей потік у будь-який момент (асинхронно) */
+	pthread_setcanceltype (PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+
+        while (1) {
+
+/* Чекаємо доки семафор буде готовим. Якщо його значення більше 0,
+ * то це означає, що черга не пуста, зменшуємо лічильник на 1. */
+
+/* !!! Якщо черга пуста, то семафор є заблокованим і sem_trywait повертає значення -1 
+ * !!! для того, щоб можна було проаналізуівати це значення і виконати тим часом іншу роботу */
+/* !!! */    if ( sem_trywait (&job_queue_count) == 0 ) {
+
+/* Захоплення мютекса черги (стеку) */
+                pthread_mutex_lock (&job_queue_mutex);
+		
+/* Точно відомо, що черга не пуста. Отримуємо 
+ * наступне завдання без додаткової перевірки */
+		next_job = job_queue;
+	
+/* Видаляємо поточне завдання зі списку */
+		job_queue = job_queue->next;
+		
+/* Звільнення мютекса черги(стеку), бо робота з чергою(стеком) поки що завершена */
+                pthread_mutex_unlock (&job_queue_mutex);
+		
+/* Виконуємо завдання  */
+//                fprintf(stderr,"Consumer thread%d;  ",*(int*)arg);
+                printf("Consumer thread%d;  ",num);
+                process_job (next_job);
+/* Видаляємо відпрацьоване завдання (Чистимо пам’ять). */
+                free (next_job);
+
+/* Зупинка потоку на задану кількість мікросекунд */
+		usleep(1);
+/* !!! */    }
+/* !!! */    else {
+/* !!! Доки семафор заблокований, потік виконує іншу корину роботу */
+/* !!! */	        printf("Consumer thread%d does some useful work\n",num);
+/* !!! */    }
+        }
+
+	return NULL;
+}
+
+
+int main()
+{
+/* Виконуємо початкову ініціалізацію черги */
+	initialize_job_queue();
+
+/* Створення черги заданої кількості елементів */
+        int max_for_start=10;
+	queue_creation(max_for_start);
+
+
+/* Оголошення змінних для нумерації потоків */
+        int thread1_number=1;
+        int thread2_number=2;
+        int thread3_number=3;
+        int thread4_number=4;
+
+/* Кожному потоку передається вказівник на його номер, приведений до типу void*  */
+        pthread_create (&thread1,NULL,&thread_producer,(void*)&thread1_number);
+        pthread_create (&thread2,NULL,&thread_consumer,(void*)&thread2_number);
+        pthread_create (&thread3,NULL,&thread_consumer,(void*)&thread3_number);
+        pthread_create (&thread4,NULL,&thread_consumer,(void*)&thread4_number);
+
+/* Очікуємо завершення всіх потоків */
+        pthread_join(thread1,NULL);
+        pthread_join(thread2,NULL);
+        pthread_join(thread3,NULL);
+        pthread_join(thread4,NULL);
+
+
+//        fprintf(stderr,"All threads stopped !!!");
+        printf("All threads stopped !!!\n");
+
+        return 0;
+}

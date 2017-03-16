@@ -1,0 +1,260 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+//#include <semaphore.h>
+#include <pthread.h>
+
+
+/* Потокові змінні */
+pthread_t thread1;
+pthread_t thread2;
+pthread_t thread3;
+pthread_t thread4;
+
+/****************************************************************************************/
+/* Опис структур даних для синхронізації доступу до спільного ресурсу (черги job_queue) */
+/****************************************************************************************/
+
+/* Дві спільні змінні, що контролюють довжину черги job_queue, що використовується в якості буфера */
+int max_queue_length;       /* максимально допустима довжина черги */
+int curr_queue_length =  0; /* поточна довжина черги */
+
+/* Мютекс для контролю за чергою job_queue. */
+pthread_mutex_t 	job_queue_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+/* Дві сигнальні (умовні) змінні сигналізування про непорожність та пеповноту черги job_queue. */
+pthread_cond_t  	job_queue_not_empty = PTHREAD_COND_INITIALIZER;
+pthread_cond_t  	job_queue_not_full  = PTHREAD_COND_INITIALIZER;
+
+/* Функція is_full повертає 1, якщо черга є повною */
+int is_full()
+{
+	return curr_queue_length >= max_queue_length;
+}
+
+/* Функція is_empty повертає 1, якщо черга є пустою */
+int is_empty()
+{
+	return curr_queue_length <= 0;
+}
+
+/****************************************************************************/
+/* Опис структур даних реалізації спільного буфера (в даному випадку черги) */
+/****************************************************************************/
+
+struct job {
+/* Посилання на наступний елемент черги */
+	struct job* next;
+/* Поля для описання необхідного завдання */
+	int number;
+};
+
+/* Черга завдань */
+struct job* job_queue;
+struct job* job_queue_end;
+
+
+/**********************************************************************/
+/* Реалізація роботи з чергою завдань job_queue                       */
+/**********************************************************************/
+
+/* Початкова ініціалізація черги */
+void initialize_job_queue (int max)
+{
+/* У початковому стані черга порожня  */
+    job_queue = NULL;
+    job_queue_end = NULL;
+    
+/* Встановлюємо значення максимально допустимої довжини черги */
+    max_queue_length = max;
+}
+
+/* Функція для створення черги заданої кількості елементів */
+void* queue_creation(int length)
+{
+        int i;
+        for(i=0;i<length;i++) write_job_queue();
+        return NULL;
+}
+
+/* Функція додавання нового елементу до черги */
+void write_job_queue (int value)
+{
+/*Створення нового елементу черги */
+        struct job* new_job=(struct job*)malloc(sizeof(struct job));
+	new_job->next   = NULL; 
+	new_job->number = value;
+
+	if (job_queue == NULL)
+	    job_queue = new_job;
+	else
+	    job_queue_end->next = new_job;
+
+	job_queue_end = new_job;
+}
+
+/* Функція обробки одного конкретного завдання                   */
+void process_job(int num, struct job* current_job)
+{
+/* Виконуємо поточне завдання з черги */
+	printf("Consumer thread%d;  Job %d DONE; Queue length=%d; \n",
+		   num, current_job->number,curr_queue_length);
+}
+
+/* Функція читання чергового завдання з черги та його обробки */
+struct job* read_job_queue ()
+{
+/* Беремо поточне завдання з черги */
+struct job* next = job_queue;
+	
+/* Видаляємо поточне завдання з черги */
+	job_queue = job_queue->next;
+
+	return next;
+}
+
+
+/**********************************************************************/
+/* Потокова функція-постачальник для додавання елементу до черги      */
+/**********************************************************************/
+
+void* thread_producer(void* arg)
+{
+int num = *(int*)arg;
+
+int new_queue_value = 0;
+
+/* Встановлення дозволу відміняти цей потік у будь-який момент (асинхронно) */
+//    pthread_setcanceltype (PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+
+    while (1) {
+        if (job_queue == NULL) 
+    		break;
+
+/* Беремо нове значення для занесення до черги */
+	new_queue_value++;
+
+/* Захоплення мютекса черги для додавання до неї нового завдання */
+	pthread_mutex_lock (&job_queue_mutex);
+
+/* Чекаємо доки поточний розмір черги дозволить додати ще одне завдання */
+	while (is_full()) {
+//	if (is_full()) {
+		pthread_cond_wait (&job_queue_not_full, &job_queue_mutex);
+	}
+
+/* Додаємо новий елемент до черги тільки у випадку,
+ * якщо масимально допустима довжина черги не перевищена */
+        write_job_queue(new_queue_value);
+	curr_queue_length++;
+
+/* Повідомляємо про те, що в черзі з'явилося нове завдання.
+ * Якщо потоки-споживачі заблоковані в очікуванні цього сигналу,
+ * то один з них буде розблоковано для обробки нового завдання. */
+	pthread_cond_broadcast (&job_queue_not_empty);
+
+	printf("Producer thread%d;  Job %d CREATED; Queue length=%d; \n",
+		num,job_queue_end->number,curr_queue_length);
+
+/* Звільнення мютекса черги */
+	pthread_mutex_unlock (&job_queue_mutex);
+
+/* Затримка потоку на задану кількість мікросекунд */
+	usleep(2);
+    }
+
+/* Відміна всіх інших потоків, оскільки завдання вичерпались
+ * і постачальник припинив роботу */
+    pthread_cancel(thread2);
+    pthread_cancel(thread3);
+    pthread_cancel(thread4);
+
+    printf("Producer thread%d  stopped\n",num);
+
+    return NULL;
+}
+
+/********************************************************************************/
+/* Потокова функція-споживач. Виконується доки завдання в черзі не закінчаться. */
+/********************************************************************************/
+
+void* thread_consumer (void* arg)
+{
+int num = *(int*)arg;
+
+/* Змінна для зберігання вказівника на наступне для обробки завдання */
+        struct job* next_job;
+
+/* Встановлення дозволу відміняти цей потік у будь-який момент (асинхронно) */
+//	pthread_setcanceltype (PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
+
+        while (1) {
+
+/* Захоплення мютекса черги для взяття з неї чергового завдання */
+		pthread_mutex_lock (&job_queue_mutex);
+
+/* Чекаємо доки в черзі не з'явиться хоч одне завдання */
+		while (is_empty()) {
+//		if (is_empty()) {
+			pthread_cond_wait (&job_queue_not_empty, &job_queue_mutex);
+		}
+
+/* Точно відомо, що черга не пуста.
+ * Беремо з черги поточне завдання тільки у випадку, якщо у ній є хоч одне завдання */
+		next_job = read_job_queue ();
+		curr_queue_length--;
+
+/* Повідомляємо про те, що до черги можна додати хоча б одне нове завдання.
+ * Якщо потоки-постачальники заблоковані в очікуванні сигналу,
+ * то один з них буде розблоковано для додавання нового завдання. */
+		pthread_cond_broadcast (&job_queue_not_empty);
+
+/* Звільнення мютекса черги */
+		pthread_mutex_unlock (&job_queue_mutex);
+
+/* Виконуємо завдання  */
+                process_job (num, next_job);
+
+/* Видаляємо відпрацьоване завдання (чистимо пам’ять). */
+                free (next_job);
+
+/* Затримка потоку на задану кількість мікросекунд */
+		usleep(1);
+        }
+
+	return NULL;
+}
+
+/******************************************************************************/
+/*                    Головна програма                                        */
+/******************************************************************************/
+
+int main()
+{
+/* Виконуємо початкову ініціалізацію черги */
+	int buffer_max_size = 100;
+	initialize_job_queue(buffer_max_size);
+
+/* Оголошення змінних для нумерації потоків */
+        int thread1_number=1;
+        int thread2_number=2;
+        int thread3_number=3;
+        int thread4_number=4;
+
+/* Кожному потоку передається вказівник на його номер, приведений до типу void*  */
+        pthread_create (&thread1,NULL,&thread_producer,(void*)&thread1_number);
+        pthread_create (&thread2,NULL,&thread_consumer,(void*)&thread2_number);
+        pthread_create (&thread3,NULL,&thread_consumer,(void*)&thread3_number);
+        pthread_create (&thread4,NULL,&thread_consumer,(void*)&thread4_number);
+
+/* Очікуємо завершення всіх потоків */
+        pthread_join(thread1,NULL);
+        pthread_join(thread2,NULL);
+        pthread_join(thread3,NULL);
+        pthread_join(thread4,NULL);
+
+
+        printf("All threads stopped !!!");
+
+        return 0;
+}

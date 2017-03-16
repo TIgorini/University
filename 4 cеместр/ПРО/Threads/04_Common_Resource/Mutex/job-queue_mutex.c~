@@ -1,0 +1,173 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+#include <pthread.h>
+
+pthread_t thread1;
+pthread_t thread2;
+pthread_t thread3;
+pthread_t thread4;
+
+
+struct job {
+	/* Посилання на наступний елемент черги (стеку)  */
+	struct job* next;
+	/* поля для описання необхідного завдання */
+	int number;
+};
+
+	/* Список завдань.   */
+struct job* job_queue=NULL;
+struct job* job_queue_end=NULL;
+
+	/* Мютекс для job_queue. */
+pthread_mutex_t job_queue_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+process_job(struct job* current_job)
+{
+/* Повідомляємо про виконання чергового завдання */
+          printf("job %d DONE\n",current_job->number);
+}
+
+/* Додавання нового елементу до черги(стеку) */
+void enqueue_job ()
+{
+/*Створення нового елементу черги(стеку)*/
+        struct job* new_job=(struct job*)malloc(sizeof(struct job));
+
+/* Захоплення мютекса черги(стеку) для додавання нового елементу */
+        pthread_mutex_lock (&job_queue_mutex);
+
+	if (job_queue == NULL) {
+	    new_job->number = 0;
+	    new_job->next = NULL; 
+	    job_queue = new_job;
+	}
+	else {
+	    new_job->number = job_queue_end->number+1;
+	    job_queue_end->next = new_job;
+	}
+	job_queue_end = new_job;
+
+/* Звільнення мютекса черги(стеку) */
+        pthread_mutex_unlock (&job_queue_mutex);
+}
+
+/* Функція для створення черги заданої кількості елементів */
+void* queue_creation(int max)
+{
+        int i;
+        for(i=0;i<max;i++) enqueue_job();
+        return NULL;
+}
+
+/* потокова Функція для додавання елементу до черги */
+void* thread_producer(void* arg)
+{
+//int num = *(int*)arg;
+
+    while (1) {
+        if (job_queue == NULL) 
+    		break;
+
+        enqueue_job ();
+        printf("Producer thread%d;  job %d CREATED;\n",*(int*)arg,job_queue_end->number);
+
+//	usleep(1);
+    }
+
+    pthread_cancel(thread2);
+    pthread_cancel(thread3);
+    pthread_cancel(thread4);
+
+    printf("Producer thread%d  stopped\n",*(int*)arg);
+
+    return NULL;
+}
+
+/* Обробка завдань виконується доки елементи в черзі (стеку) не закінчаться.  */
+void* thread_consumer (void* arg)
+{
+//int num = *(int*)arg;
+
+        while (1) {
+                struct job* next_job;
+/* Захоплення мютекса черги (стеку) */
+                pthread_mutex_lock (&job_queue_mutex);
+		
+/* Тепер можна безпечно перевірити чи є елементи в черзі(стеку). */
+                if (job_queue == NULL)
+                        next_job = NULL;
+                else {
+/* Отримуємо наступне завдання. */
+                        next_job = job_queue;
+/*Видаляємо це завдання із черги (стеку). */
+                        job_queue = job_queue->next;
+                }
+
+/* Звільнення мютекса черги(стеку), бо робота з чергою(стеком) поки що завершена */
+                pthread_mutex_unlock (&job_queue_mutex);
+		
+/* Чи була черга порожня(був стек порожнім)? Якщо так, закінчуємо роботу потоку */
+                if (next_job == NULL)
+                        break;
+		
+/* Виконуємо завдання  */
+                printf("Consumer thread%d;  ",*(int*)arg);
+                process_job (next_job);
+/* Видаляємо відпрацьоване завдання (Чистимо пам’ять). */
+                free (next_job);
+        }
+
+        printf("Thread %u  stopped !!!",(unsigned long)pthread_self());
+
+        return NULL;
+}
+
+
+int main()
+{
+/* створення черги заданої кількості елементів */
+        int max_for_start=10;
+	queue_creation(max_for_start);
+
+        int thread1_number=1;
+        int thread2_number=2;
+        int thread3_number=3;
+        int thread4_number=4;
+
+/* Кожному потоку передається вказівник на його номер, приведений до типу void*  */
+        pthread_create (&thread1,NULL,&thread_producer,(void*)&thread1_number);
+        pthread_create (&thread2,NULL,&thread_consumer,(void*)&thread2_number);
+        pthread_create (&thread3,NULL,&thread_consumer,(void*)&thread3_number);
+        pthread_create (&thread4,NULL,&thread_consumer,(void*)&thread4_number);
+
+/* Очікуємо завершення всіх потоків */
+        pthread_join(thread1,NULL);
+        pthread_join(thread2,NULL);
+        pthread_join(thread3,NULL);
+        pthread_join(thread4,NULL);
+
+
+        printf("All threads stopped !!!");
+
+/* Видаляємо не відпрацьовані завдання */
+        while(job_queue)
+        {
+          struct job* j;
+/* Захоплення мютекса черги (стеку) */
+          pthread_mutex_lock (&job_queue_mutex);
+
+/* Переміщуємо початок черги(вершину стеку) на наступний елемент, зберігши вказівник на поточний(поточну) */
+          j=job_queue;
+          job_queue=job_queue->next;
+
+/* Звільнення мютекса черги(стеку) */
+          pthread_mutex_unlock (&job_queue_mutex);
+	  
+/* Виводимо повідомлення  про видалення необробленого завдання та видаляємо його з черги(стеку) */
+          printf("job%d is deleted\n",j->number);
+          free (j);
+        }
+        return 0;
+}

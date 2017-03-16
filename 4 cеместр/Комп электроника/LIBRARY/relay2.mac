@@ -1,0 +1,1074 @@
+[Main]
+FileType=CIR
+Version=6.00
+Program=Micro-Cap
+Screen=1600,1200
+MCAPVersion=6.1.4.0
+NLCnt=42
+TXCnt=23
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-12,FStyle=0,Color=1,Name=Arial
+Object Default=Height=-15,FStyle=0,Color=4,Name=Arial
+Component Color=12
+Attribute Text=Height=-12,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=9
+Pin Color=9
+Select Box Color=4
+Node Number=Height=-11,FStyle=0,Color=13,Name=Arial
+Node Voltage Color=0
+Current=Height=-11,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-11,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-15,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 18,22,1326,748
+Window Placement in Analysis=2,3, -1,-1, -6,-25, 162,198,1020,646
+Window Placement in Probe=0,1, -1,-1, -6,-25, 638,0,1274,902
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+
+[Wire]
+Grids=83,38,83,44
+
+[Wire]
+Grids=83,38,91,38
+
+[Wire]
+Grids=83,50,83,54
+
+[Comp]
+Name=NTVofV
+Grid=66,30
+
+[Attr]
+ONV=63,12,PART,E2
+Style=8192
+
+[Attr]
+ONV=58,36,TABLE,PWL1
+Style=12288
+
+[Wire]
+Grids=62,44,77,44
+
+[Comp]
+Name=Ground
+Grid=66,36
+Rot=7
+
+[Comp]
+Name=Ground
+Grid=72,36
+Rot=7
+
+[Wire]
+Grids=39,44,40,44
+
+[Wire]
+Grids=11,44,18,44
+
+[Wire]
+Grids=40,44,51,44
+
+[Comp]
+Name=NFV
+Grid=11,50
+Rot=3
+
+[Attr]
+ONV=-31,-28,PART,E3
+Style=8192
+
+[Attr]
+ONV=-66,26,VALUE,KFORCE*( KFLUX*(V(FLUX))^2/AREA - V(FSTOP)  - KSTOP*V(VELOCITY)*V(FSTOP) - (KSPRING*V(POSITION)) )
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=11,50
+Rot=7
+
+[Wire]
+Grids=20,25,20,27
+
+[Wire]
+Grids=49,25,58,25
+
+[Comp]
+Name=Int
+Grid=39,25
+
+[Attr]
+ONV=60,3,PART,X6
+Style=8192
+
+[Attr]
+ONV=27,28,VALUE,Int(1,0)
+Style=8192
+
+[Comp]
+Name=Int
+Grid=51,44
+
+[Attr]
+ONV=60,3,PART,X8
+Style=8192
+
+[Attr]
+ONV=29,28,VALUE,Int(1,0)
+Style=8192
+
+[Comp]
+Name=Int
+Grid=18,44
+
+[Attr]
+ONV=30,-10,PART,X9
+Style=8192
+
+[Attr]
+ONV=-3,31,VALUE,Int(1/M,0)
+Style=8192
+
+[Comp]
+Name=S (V-Switch)
+Grid=77,44
+
+[Attr]
+ONV=56,9,PART,S2
+Style=8192
+
+[Attr]
+ONV=56,24,MODEL,SR
+
+[Wire]
+Grids=20,25,29,25
+
+[Wire]
+Grids=35,25,39,25
+
+[Comp]
+Name=Ground
+Grid=77,50
+Rot=7
+
+[Comp]
+Name=Resistor
+Grid=17,25
+Rot=2
+
+[Attr]
+ONV=-34,-21,PART,RC
+Style=8192
+
+[Attr]
+ONV=-41,8,VALUE,RCOIL
+Style=8192
+
+[Attr]
+ONV=-39,-66,SLIDER_MAX,50
+
+[Comp]
+Name=Capacitor
+Grid=91,49
+Rot=5
+
+[Attr]
+ONV=12,-27,PART,C1
+Style=8192
+
+[Attr]
+ONV=12,-42,VALUE,1n
+Style=8192
+
+[Wire]
+Grids=91,38,91,43
+
+[Wire]
+Grids=91,49,91,54
+
+[Wire]
+Grids=35,31,35,34
+
+[Comp]
+Name=VofV
+Grid=29,25
+
+[Attr]
+ONV=62,11,PART,E5
+Style=8192
+
+[Attr]
+ONV=62,26,VALUE,1
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=35,34
+Rot=7
+
+[Wire]
+Grids=6,25,11,25
+
+[Comp]
+Name=NFI
+Grid=20,27
+Rot=6
+
+[Attr]
+ONV=14,-1,PART,COIL
+Style=8192
+
+[Attr]
+ONV=-126,84,VALUE,(1/(LCOIL))*(V(FLUX))*(1+1.1-V(POSITION) + (1.1-V(POSITION))^2)
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=29,31
+Rot=7
+
+[Wire]
+Grids=72,30,79,30
+
+[Wire]
+Grids=79,30,83,30
+
+[Wire]
+Grids=61,44,62,44
+
+[Wire]
+Grids=62,30,66,30
+
+[Wire]
+Grids=83,54,91,54
+
+[Wire]
+Grids=17,25,20,25
+
+[Wire]
+Grids=20,33,20,34
+
+[Comp]
+Name=NFV
+Grid=39,50
+Rot=3
+
+[Attr]
+ONV=27,-38,PART,E15
+Style=8192
+
+[Attr]
+ONV=18,-13,VALUE,v(f1)*(v(flux)>1u)
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=39,50
+Rot=7
+
+[Wire]
+Grids=62,30,62,44
+
+[Wire]
+Grids=6,34,20,34
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=.PARAMETERS(RCOIL,LCOIL,RON,ROFF)
+Grid=3,60
+Color=5
+
+[Grid Text]
+Text=IN-
+Grid=6,34
+
+[Grid Text]
+Text=f1
+Grid=28,44
+
+[Grid Text]
+Text=RELAY MODEL WITH MECHANICAL MODEL FOR SWITCH BOUNCEþSET MAXIMUM TIME STEP TO 5U-50U FOR BEST RESULTS.
+Grid=6,20
+Height=-16
+Color=12
+
+[Grid Text]
+Text=IN+
+Grid=6,25
+
+[Grid Text]
+Text=FSTOP
+Grid=79,30
+
+[Grid Text]
+Text=FORCE
+Grid=11,44
+
+[Grid Text]
+Text=FLUX
+Grid=58,25
+
+[Grid Text]
+Text=VELOCITY
+Grid=40,44
+
+[Grid Text]
+Text=POSITION
+Grid=62,44
+
+[Grid Text]
+Text=OUT2
+Grid=91,54
+
+[Grid Text]
+Text=OUT1
+Grid=91,38
+
+[Grid Text]
+Text=.DEFINE PWL1 (0,0) (1, 0) (1.1,1e8) (1.2,2e8)
+Grid=3,58
+Color=5
+Fill Pattern=Horizontal
+
+[Grid Text]
+Text=.define KSTOP 1e-4
+Grid=55,62
+Color=5
+
+[Grid Text]
+Text=N8
+Grid=35,25
+
+[Grid Text]
+Text=.define AREA 3
+Grid=55,58
+Color=5
+
+[Grid Text]
+Text=.define KSPRING 100
+Grid=55,60
+Color=5
+
+[Grid Text]
+Text=.define KFLUX 3E7
+Grid=39,62
+Color=5
+
+[Grid Text]
+Text=.define M .01
+Grid=39,60
+Color=5
+
+[Grid Text]
+Text=.define KFORCE .01
+Grid=39,58
+Color=5
+
+[Grid Text]
+Text=Called by other circuits.  Not intended for stand alone analysis.
+Grid=4,10
+Height=-19
+Color=9
+
+[Grid Text]
+Text=RELAY2 MACRO
+Grid=20,7
+Height=-19
+Color=13
+
+[Grid Text]
+Text=Summary of State EquationsþM = Mass of plungerþX = FLUXþB = B FieldþF = Magnetizing ForceþI = Coil CurrentþV = Coil VoltageþL = Coil InductanceþV = LdI/dTþI = (1/L)*INTEGRAL(V dt)þL = N*X / IþX = (L/N)*(1/L)*INTEGRAL(V) dt = (1/N)*INTEGRAL (V) dtþFMAG = B*B*AþB = X/AþF = (X/A)*(X/A)*A = X*X/AþFT = FMAG - FSTOP - FFRICTION - FSPRINGþVELOCITY= 1/M *INTEGRAL(FT) dtþPOSITION = INTEGRAL(VELOCITY) dt
+Grid=87,35
+Color=0
+
+[Schematic]
+Page 0=0
+TabSize 0=320
+Page 1=0
+TabSize 1=320
+Page 2=0
+TabSize 2=320
+Page 3=0
+TabSize 3=276
+Splitter.xs=0
+Splitter.ys=0
+TextQuad=4099
+Scale=1
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=Yes
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+COMMAND=Yes
+CROSS=Yes
+GRID=Yes
+BORDER=Yes
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=Yes
+FIND=Yes
+REPEAT=No
+MODEL=Yes
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=Yes
+TOBACK=Yes
+PAGEADD=Yes
+PAGEDEL=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+T.PrintPreview=On,0,0,1,0.5
+Grid=78,71
+
+[Text Area]
+Font=Height=-18,FStyle=0,Color=4,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=2314
+
+//KFLUX*( KF*(V(FLUX))^2/AREA - V(FSTOP)  - KSTOP*V(VELOCITY)*V(FSTOP) - (KSPRING*V(POSITION)) )
+
+
+MODEL SR VSWITCH RON=10M ROFF=10G VT=3K VH=1K
+.MODEL SR VSWITCH (RON=RON ROFF=ROFF VON=.9 VOFF=.91)
+1  12  19 23  {KStop=.0001 Parea=3E4}
+*Connections  Ctrl+ Ctrl-  Out+ Out-  
+* Other connections:  17 9 13 3 4 18 20 7 8 14 15
+*                CoilCur |  | | |  |  | | |  |  |
+*      Sum Magnetic Forces  | | |  |  | | |  |  |
+*                    Velocity | |  |  | | |  |  |
+*                Magnetic Force |  |  | | |  |  |
+*                        Friction  |  | | |  |  |
+*                        Contact Gap  | | |  |  |
+*                 Output Switch Control | |  |  |
+*                               Coil Flux |  |  |
+*                              Coil Voltage  |  |
+*                             Plunger Position  |
+*                                   Force at Stop
+* Parameters: Kstop - scaling factor for non elastic plunger stop ex. .0001
+*             Parea - Plunger face surface area in mm^2.
+V1 2 12
+S1 19 23 20 0 SW1
+MODEL SW1 SW RON=10M ROFF=10G VT=3K VH=1K
+B13 20 0 V=ABS(V(19) / (V(18)))
+B5 8 0 V=V(1) - V(12)
+A1 8 7 S_001
+MODEL S_001 s_xfer(in_offset=0 gain=1.0 
++ num_coeff=[1.0] den_coeff=[1.0 0] denorm_freq=1.0)
+A2 9 13 S_002
+MODEL S_002 s_xfer(in_offset=0 gain=1.0 
++ num_coeff=[1.0] den_coeff=[1.0 0] out_ic=0 denorm_freq=1.0)
+A3 13 14 S_003
+MODEL S_003 s_xfer(in_offset=0 gain=1.0 
++ num_coeff=[1.0] den_coeff=[1.0 0] out_ic=0 denorm_freq=1.0)
+A4 14 15 PWL_001
+MODEL PWL_001 Pwl(xy_array=[0 0  1.0 0  1.1 100.0Meg  1.2 200.0Meg] input_domain=10.0M fraction=TRUE)
+A5 13 4 LIM_002
+MODEL LIM_002 Limit(in_offset=0 gain=1.0K 
++ out_lower_limit=-10.0 out_upper_limit=10.0 limit_range=1.0U 
++ fraction=FALSE)
+A6 14  18 LIM_001
+MODEL LIM_001 Limit(in_offset=-800.0M gain=1.0 
++ out_lower_limit=-10.0K out_upper_limit=-1.0U 
++ limit_range=1.0U fraction=FALSE)
+B7 1 2 I=V(17)
+B8 17 5 I=V(7)
+V2 5 0
+B12 17 16 V=.1 * I(V2)
+RB4 16 0 R = (1.1-V(14)) + (1.1-V(14))^2 ; nonlinear air gap with fringing increases
+B10 9 0 V=V(3) - V(4) - V(13) * V(15) * {KStop}
+B11 3 0 V=(I(V2) * {Parea})^2 - V(15)
+ENDS
+
+
+*** E:\MC6\DATA\UTILITY.LBR
+*** 5V Pulse Source
+.MODEL PULSE PUL (VONE=12 P1=1M P2=1.01M P3=150M P4=151M P5=.5)
+.MODEL 2N2222 NPN ( )
+
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[Analysis]
+Window Placement=2,3, -1,-1, -6,-25, 162,198,1020,646
+Window Placement in Probe=0,1, -1,-1, -6,-25, 0,0,638,902
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+AutoTitle=Yes
+Analysis Text=Height=-15,FStyle=0,Color=12,Name=Arial
+Analysis Grid Color=8
+Analysis Graph Background=15
+Object Default=Height=-15,FStyle=0,Color=4,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-15,FStyle=0,Color=4,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=False
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=Yes
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=10
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+T.PrintPreview=On,0,0.5,1,1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=Yes
+DATAPTS=Yes
+RULER=Yes
+TOKENS=Yes
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=Yes
+BASELINE=Yes
+HORIZCUR=Yes
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+NEXT=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+AOUTPUT=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Limits]
+Analysis=Transient
+TRange=1
+TStep=5U
+NPts=51
+Temp=27
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=1
+XExp=T
+YExp=V(FLUX)
+XRng=1
+YRng=0.25
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=1
+XExp=T
+YExp=I(COIL)
+XRng=1
+YRng=0.25
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=2
+XExp=T
+YExp=V(FORCE)
+XRng=1
+YRng=1e+004
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=3
+XExp=T
+YExp=V(velocity)
+XRng=1
+YRng=600,-400
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=4
+XExp=T
+YExp=V(position)
+XRng=1
+YRng=1,-1
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=5
+XExp=T
+YExp=V(Out1)
+XRng=1
+YRng=80
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=5
+XExp=T
+YExp=V(IN)
+XRng=1
+YRng=80
+VFmtX=6
+VFmtY=6
+SFmtX=6
+SFmtY=6
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[Limits]
+Analysis=AC
+FRange=1E8,1Meg
+NPts=51
+Temp=27
+MaxChng=5
+NInput=NONE
+NOutput=2
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Plt=1
+XExp=F
+YExp=db(v(POSITION))
+XRng=Auto
+YRng=Auto
+VFmtX=2
+VFmtY=2
+SFmtX=2
+SFmtY=2
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Plt=2
+XExp=F
+YExp=ph(v(POSITION))
+XRng=Auto
+YRng=Auto
+VFmtX=2
+VFmtY=2
+SFmtX=2
+SFmtY=2
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Rainbow=False
+Line Color=2
+Text Color=2
+
+[Limits]
+Analysis=DC
+OPT=0
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=None
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Plt=1
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Rainbow=False
+Line Color=2
+Text Color=2
+
+[Stepping]
+Analysis=Transient
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

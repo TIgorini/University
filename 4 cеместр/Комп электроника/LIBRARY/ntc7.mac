@@ -1,0 +1,943 @@
+[Main]
+FileType=CIR
+Version=6.00
+Program=Micro-Cap
+Screen=800,600
+MCAPVersion=6.0.0.0
+NLCnt=41
+TXCnt=3
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-12,FStyle=0,Color=1,Name=Arial
+Object Default=Height=-15,FStyle=0,Color=4,Name=Arial
+Component Color=12
+Attribute Text=Height=-12,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=9
+Pin Color=9
+Select Box Color=4
+Node Number=Height=-11,FStyle=0,Color=13,Name=Arial
+Node Voltage Color=0
+Current=Height=-11,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-11,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-15,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 66,66,701,411
+Window Placement in Analysis=2,3, -1,-1, -6,-25, 66,66,701,411
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+
+[Comp]
+Name=Pulse Source
+Grid=11,8
+Rot=3
+
+[Attr]
+ONV=-71,-31,PART,V_HSync
+Style=8192
+
+[Attr]
+ONV=-64,-39,MODEL,V_HSync
+
+[Comp]
+Name=Ground
+Grid=11,8
+Rot=7
+
+[Comp]
+Name=Sine Source
+Grid=21,8
+Rot=3
+
+[Attr]
+ONV=-29,-27,PART,V_CB
+
+[Attr]
+ONV=-49,-32,MODEL,V_CB
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=21,8
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=35,8
+Rot=3
+
+[Attr]
+ONV=-79,-31,PART,V_CB_Gate
+Style=8192
+
+[Attr]
+ONV=-79,-39,MODEL,V_CB_Gate
+
+[Comp]
+Name=Ground
+Grid=35,8
+Rot=7
+
+[Comp]
+Name=NFV
+Grid=47,8
+Rot=3
+
+[Attr]
+ONV=16,-36,PART,E_CB
+Style=8192
+
+[Attr]
+ONV=18,-22,VALUE,V(V_HSync)+(V(V_CB)*V(V_CB_Gate))
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=47,8
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=11,19
+Rot=3
+
+[Attr]
+ONV=-58,-31,PART,V_WB2
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_WB2
+
+[Comp]
+Name=Ground
+Grid=11,19
+Rot=7
+
+[Comp]
+Name=Sine Source
+Grid=23,19
+Rot=3
+
+[Attr]
+ONV=-29,-27,PART,V_2TGEN
+
+[Attr]
+ONV=-67,-32,MODEL,V_2TGEN
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=23,19
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=34,19
+Rot=3
+
+[Attr]
+ONV=-66,-31,PART,V_2TGAT
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_2TGAT
+
+[Comp]
+Name=Ground
+Grid=34,19
+Rot=7
+
+[Comp]
+Name=NFV
+Grid=41,19
+Rot=3
+
+[Attr]
+ONV=16,-36,PART,E_2TGTE
+Style=8192
+
+[Attr]
+ONV=18,-22,VALUE,(V(V_2TGEN)**2)*V(V_2TGAT)
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=41,19
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=11,30
+Rot=3
+
+[Attr]
+ONV=-51,-31,PART,V_SC1
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_SC1
+
+[Comp]
+Name=Ground
+Grid=11,30
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=21,30
+Rot=3
+
+[Attr]
+ONV=-52,-32,PART,V_SC2
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_SC2
+
+[Comp]
+Name=Pulse Source
+Grid=31,30
+Rot=3
+
+[Attr]
+ONV=-52,-32,PART,V_SC3
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_SC3
+
+[Comp]
+Name=Ground
+Grid=31,30
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=41,30
+Rot=3
+
+[Attr]
+ONV=-52,-32,PART,V_SC4
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_SC4
+
+[Comp]
+Name=Ground
+Grid=41,30
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=51,30
+Rot=3
+
+[Attr]
+ONV=-52,-32,PART,V_SC5
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_SC5
+
+[Comp]
+Name=Ground
+Grid=51,30
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=64,30
+Rot=3
+
+[Attr]
+ONV=-76,-32,PART,V_CB_STC
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_CB_STC
+
+[Comp]
+Name=Ground
+Grid=64,30
+Rot=7
+
+[Comp]
+Name=NFV
+Grid=72,30
+Rot=3
+
+[Attr]
+ONV=19,-38,PART,E_CB_STC
+Style=8192
+
+[Attr]
+ONV=18,-22,VALUE,V(V_CB)*V(V_CB_STC)
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=72,30
+Rot=7
+
+[Comp]
+Name=NFV
+Grid=11,52
+Rot=3
+
+[Attr]
+ONV=19,-38,PART,E_COMP
+Style=8192
+
+[Attr]
+ONV=18,-22,VALUE,V(E_CB)+V(V_WB2)+V(E_2TGTE)+V(E_CB_STC)+V(V_SC1)+V(V_SC2)+V(V_SC3)+V(V_SC4)+V(V_SC5)+V(E_12TGN)
+Style=8192
+
+[Comp]
+Name=Sine Source
+Grid=11,41
+Rot=3
+
+[Attr]
+ONV=-29,-27,PART,V_12TGEN
+
+[Attr]
+ONV=-74,-32,MODEL,V_12TGEN
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=11,41
+Rot=7
+
+[Comp]
+Name=NFV
+Grid=45,41
+Rot=3
+
+[Attr]
+ONV=16,-36,PART,E_12TGN
+Style=8192
+
+[Attr]
+ONV=18,-22,VALUE,(V(V_12TGEN)**2)*V(V_12TCHR)*V(V_12TGAT)
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=45,41
+Rot=7
+
+[Comp]
+Name=Sine Source
+Grid=24,41
+Rot=3
+
+[Attr]
+ONV=-29,-27,PART,V_12TCHR
+
+[Attr]
+ONV=-77,-32,MODEL,V_12TCHR
+Style=8192
+
+[Comp]
+Name=Ground
+Grid=24,41
+Rot=7
+
+[Comp]
+Name=Ground
+Grid=21,30
+Rot=7
+
+[Comp]
+Name=Pulse Source
+Grid=37,41
+Rot=3
+
+[Attr]
+ONV=-73,-32,PART,V_12TGAT
+Style=8192
+
+[Attr]
+ONV=-55,-39,MODEL,V_12TGAT
+
+[Comp]
+Name=Ground
+Grid=37,41
+Rot=7
+
+[Wire]
+Grids=3,46,11,46
+
+[Wire]
+Grids=3,52,11,52
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=This signal represents the NTC7 composite test signal andþ is designed to run over a single period of 63.56us
+Grid=53,13
+
+[Grid Text]
+Text=Outm
+Grid=3,52
+Color=9
+
+[Grid Text]
+Text=Outp
+Grid=3,46
+Color=9
+
+[Schematic]
+Page 0=0
+TabSize 0=320
+Page 1=0
+TabSize 1=320
+Page 2=0
+TabSize 2=320
+Page 3=0
+TabSize 3=320
+Splitter.xs=0
+Splitter.ys=0
+TextQuad=4099
+Scale=1
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=Yes
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+COMMAND=Yes
+CROSS=No
+GRID=Yes
+BORDER=No
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=No
+FIND=Yes
+REPEAT=No
+MODEL=No
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=No
+TOBACK=No
+PAGEADD=No
+PAGEDEL=No
+ZOOMIN=Yes
+ZOOMOUT=Yes
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+Grid=76,19
+
+[Text Area]
+Font=Height=-15,FStyle=0,Color=4,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=1033
+
+.MODEL V_HSYNC PUL (VONE=-0.4 P1=1.4u P2=1.6u P3=6.3u P4=6.5u P5=63.56u)
+.MODEL V_CB SIN (F=3579545 A=.2)
+
+.MODEL V_CB_GATE PUL (VONE=1 P1=7u P2=7.2u P3=9.8u P4=10u P5=63.56u)
+.MODEL V_WB2 PUL (VONE=1 P1=13.4u P2=13.6u P3=31.6u P4=31.8u P5=63.56u)
+.MODEL V_2TGEN SIN (F=894886 PH=3.543)
+
+.MODEL V_2TGAT PUL (VONE=1 P1=35.1255u P2=35.1265u P3=35.6835u P4=35.6845u
++ P5=63.56u)
+.MODEL V_SC1 PUL (VONE=.18 P1=47.4u P2=47.41u P3=62.41u P4=62.42u P5=63.56u)
+.MODEL V_SC2 PUL (VONE=.18 P1=50.4U P2=50.41U P3=62.41U P4=62.42U P5=63.56U)
+.MODEL V_SC3 PUL (VONE=.18 P1=53.4U P2=53.41U P3=62.41U P4=62.42U P5=63.56U)
+.MODEL V_SC4 PUL (VONE=.18 P1=56.4U P2=56.41U P3=62.41U P4=62.42U P5=63.56U)
+.MODEL V_SC5 PUL (VONE=.18 P1=59.4U P2=59.41U P3=62.41U P4=62.42U P5=63.56U)
+
+.MODEL V_CB_STC PUL (VONE=1 P1=43.4u P2=43.41u P3=62.41u P4=62.42u P5=63.56u)
+.MODEL V_12TGEN SIN (F=143182 PH=1.553343)
+.MODEL V_12TCHR SIN (F=3579545 A=.5 DC=.5)
+
+.MODEL V_12TGAT PUL (VONE=1 P1=36.654u P2=36.655u P3=40.145u P4=40.146u
++ P5=63.56u)
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[Analysis]
+Window Placement=2,3, -1,-1, -6,-25, 66,66,701,411
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+AutoTitle=Yes
+Analysis Text=Height=-15,FStyle=0,Color=12,Name=Arial
+Analysis Grid Color=8
+Analysis Graph Background=15
+Object Default=Height=-15,FStyle=0,Color=4,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-15,FStyle=0,Color=4,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=No
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=1
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=Yes
+DATAPTS=Yes
+RULER=No
+TOKENS=Yes
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=No
+BASELINE=No
+HORIZCUR=No
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+NEXT=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+AOUTPUT=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs=10
+
+[Limits]
+Analysis=Transient
+TRange=63.56u
+TStep=.001u
+NPts=51
+Temp=27
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Plt=1
+XExp=T
+YExp=v(16)
+XRng=6.356e-005
+YRng=1.2,-.5
+VFmtX=2
+VFmtY=2
+SFmtX=2
+SFmtY=2
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+XExp=T
+YExp=v(18)
+XRng=6.356e-005
+YRng=0.2,-0.3
+VFmtX=2
+VFmtY=2
+SFmtX=2
+SFmtY=2
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+Rainbow=False
+Line Color=2
+Text Color=2
+
+[Limits]
+Analysis=AC
+OPT=0
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Plt=1
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Plt=2
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+Rainbow=False
+Line Color=2
+Text Color=2
+
+[Limits]
+Analysis=DC
+OPT=0
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=None
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Plt=1
+Rainbow=False
+Line Color=12
+Text Color=12
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Rainbow=False
+Line Color=9
+Text Color=9
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+Rainbow=False
+Line Color=2
+Text Color=2
+
+[Stepping]
+Analysis=Transient
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=Transient
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=AC
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=1
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=2
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=3
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=4
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=5
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=6
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=7
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=8
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=9
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[Stepping]
+Analysis=DC
+Index=10
+Status=Off
+Method=Linear
+Parameter Type=Component
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

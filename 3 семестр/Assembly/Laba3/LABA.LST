@@ -1,0 +1,190 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/13/16 11:11:01
+                                                             Page     1-1
+
+
+				.386 
+				 
+ 0000				Data1 segment use16 
+ 0000  ??				I1	db	? 
+ 0001  ??				I2	db	? 
+ 0002  ??				I3	db	? 
+ 0003  0004[				A1	dw	4 dup (5 dup (6 dup (0)
+				)) 
+	0005[			
+	 0006[			
+	     0000		
+		       ]	
+			]	
+			 ]	
+				
+ 00F3				Data1 ends 
+				 
+ 0000				Code1 segment use16  
+					ASSUME CS:Code1, DS:Data1 
+				 
+ 0000				start: 
+ 0000  B8 ---- R			mov		ax, Data1 
+ 0003  8E D8				mov 	ds, ax 
+ 0005  C6 06 0000 R 00			mov		i1, 0 
+ 000A  C6 06 0001 R 00			mov		i2, 0 
+ 000F  C6 06 0002 R 00			mov		i3, 0 
+				 
+ 0014					_loop: 
+ 0014  33 C0					xor		ax, ax 
+ 0016  A0 0000 R				mov		al, i1	 
+ 0019  6B D8 3C					imul 	bx, al, 5*6*2 
+laba.ASM(23): warning A4057: Illegal size for operand
+ 001C  33 C0					xor		ax, ax 
+ 001E  A0 0001 R				mov		al, i2 
+ 0021  6B E8 0C					imul	bp, al, 6*2 
+laba.ASM(26): warning A4057: Illegal size for operand
+ 0024  33 F6					xor		si, si 
+ 0026  33 C0					xor		ax, ax 
+ 0028  A0 0002 R				mov		al, i3 
+ 002B  8B F0					mov		si, al 
+laba.ASM(30): warning A4031: Operand types must match
+ 002D  D1 E6					shl		si, 1 
+ 002F  8D 3A					lea		di, [bp + si]
+					 
+						 
+ 0031  33 C0					xor		ax, ax 
+ 0033  A0 0000 R				mov		al, i1 
+ 0036  02 06 0001 R				add		al, i2 
+ 003A  02 06 0002 R				add		al, i3 
+				  
+ 003E  A8 01					test	al, 1 
+ 0040  75 14					jnz		short odd 
+						 
+ 0042  F6 06 0000 R 01				test 	i1, 1 
+Microsoft (R) Macro Assembler Version 5.00                  12/13/16 11:11:01
+                                                             Page     1-2
+
+
+ 0047  75 0D					jnz		short odd 
+				 
+ 0049  F6 06 0001 R 01				test	i2, 1 
+ 004E  75 06					jnz		short odd 
+ 0050  8C 99 0003 R				mov		A1[bx + di], ds
+				 
+						 
+ 0054  EB 08					jmp		short end_if
+					  
+				 
+ 0056						odd: 
+ 0056  8D B1 0003 R					lea 	si, A1[bx + di]
+				 
+ 005A  89 B1 0003 R					mov		A1[bx +
+				 di], si 
+				 
+ 005E						end_if: 
+ 005E  FE 06 0002 R					inc 	i3 
+ 0062  80 3E 0002 R 06					cmp		i3, 6 
+ 0067  72 AB						jb		_loop  
+				 
+ 0069  C6 06 0002 R 00					mov		i3, 0 
+ 006E  FE 06 0001 R					inc		i2 
+ 0072  80 3E 0001 R 05					cmp		i2, 5 
+ 0077  72 9B						jb		_loop 
+				 
+ 0079  C6 06 0001 R 00					mov		i2, 0 
+ 007E  FE 06 0000 R					inc		i1 
+ 0082  80 3E 0000 R 04					cmp		i1, 4 
+ 0087  72 8B						jb		_loop 
+				 	 
+ 0089  EA 0000 ---- R		 	jmp far ptr _label 
+ 008E				Code1 ends 
+				 
+				 
+ 0000				Data2 segment use16	 
+ 0000  0004[				A2	dw	4 dup ( 5 dup (6 dup (0
+				))) 
+	0005[			
+	 0006[			
+	     0000		
+		       ]	
+			]	
+			 ]	
+				
+ 00F0				Data2 ends 
+				 
+				 
+ 0000				Code2 segment use16 
+ 0000					_label label far	 
+					Assume cs:Code2, ds:Data1, es:Data2 
+				 
+ 0000				start2: 
+ 0000  B8 ---- R			mov 	ax, Data2 
+Microsoft (R) Macro Assembler Version 5.00                  12/13/16 11:11:01
+                                                             Page     1-3
+
+
+ 0003  8E C0				mov 	es, ax 
+				 
+ 0005  8D 3E 0000 R			lea  	di, A2 
+ 0009  8D 36 0003 R			lea 	si, A1 
+ 000D  B9 0078				mov		cx, 4*5*6 
+ 0010  F3/ A5				rep		movsw 
+				 
+ 0012  8D 3E 0000 R			lea 	di, A2 
+ 0016  B9 0078				mov 	cx, 4*5*6 
+ 0019  8C D8				mov 	ax, ds 
+ 001B  BB FFFF				mov 	bx, -1 
+				 
+ 001E  FC				cld 
+				 
+ 001F					_loop2: 
+ 001F  F2/ AF					repne	scasw 
+ 0021  43					inc		bx 
+ 0022  83 F9 00					cmp 	cx, 0 
+ 0025  75 F8					jne 	_loop2	 
+				 
+ 0027  B8 4C00				mov ax, 4C00h 
+ 002A  CD 21			  	int 21h 
+ 002C				Code2 ends	 
+				 
+				end start 
+Microsoft (R) Macro Assembler Version 5.00                  12/13/16 11:11:01
+                                                             Symbols-1
+
+
+
+
+                N a m e         	Size	Length	 Align	Combine Class
+
+CODE1  . . . . . . . . . . . . .  	16 Bit	008E	PARA	NONE	
+CODE2  . . . . . . . . . . . . .  	16 Bit	002C	PARA	NONE	
+DATA1  . . . . . . . . . . . . .  	16 Bit	00F3	PARA	NONE	
+DATA2  . . . . . . . . . . . . .  	16 Bit	00F0	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+A1 . . . . . . . . . . . . . . .  	L WORD	0003	DATA1	Length = 0004
+A2 . . . . . . . . . . . . . . .  	L WORD	0000	DATA2	Length = 0004
+
+END_IF . . . . . . . . . . . . .  	L NEAR	005E	CODE1
+
+I1 . . . . . . . . . . . . . . .  	L BYTE	0000	DATA1
+I2 . . . . . . . . . . . . . . .  	L BYTE	0001	DATA1
+I3 . . . . . . . . . . . . . . .  	L BYTE	0002	DATA1
+
+ODD  . . . . . . . . . . . . . .  	L NEAR	0056	CODE1
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE1
+START2 . . . . . . . . . . . . .  	L NEAR	0000	CODE2
+
+@FILENAME  . . . . . . . . . . .  	TEXT  laba		
+_LABEL . . . . . . . . . . . . .  	L FAR 	0000	CODE2
+_LOOP  . . . . . . . . . . . . .  	L NEAR	0014	CODE1
+_LOOP2 . . . . . . . . . . . . .  	L NEAR	001F	CODE2
+
+
+    109 Source  Lines
+    109 Total   Lines
+     18 Symbols
+
+  49640 + 450552 Bytes symbol space free
+
+      3 Warning Errors
+      0 Severe  Errors

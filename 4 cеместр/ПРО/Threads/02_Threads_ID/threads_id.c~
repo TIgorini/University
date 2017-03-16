@@ -1,0 +1,25 @@
+#include <pthread.h>
+#include <stdio.h>
+
+void* thread_1 (void* unused)
+{
+printf("This is thread_1. Its identifier is %ul\n", (unsigned long) pthread_self());
+while (1) continue;
+
+return NULL;
+}
+
+int main()
+{
+  pthread_t thread_1_id;
+
+//  pthread_create (&thread_1_id, NULL, &thread_1, NULL);
+
+printf("This is main. Its process ID is %d\n", (int) getpid());
+printf("This is main. Its thread identifier is %ul\n", (unsigned long) pthread_self());
+//printf("This is main. Identifier of the thread_1 is %ul\n", (unsigned long) thread_1_id);
+
+while (1) continue;
+
+return 0;
+}

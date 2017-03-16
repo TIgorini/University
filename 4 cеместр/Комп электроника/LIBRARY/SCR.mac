@@ -1,0 +1,1149 @@
+[Main]
+FileType=CIR
+Version=7.00
+Program=Micro-Cap
+Screen=800,600
+MCAPVersion=7.0.0.0
+Key ID=493 834 421
+NLCnt=23
+TXCnt=35
+
+[shapedef]
+Name=Resistor
+PolyOpen=12 
+PolyLine=0,0
+PolyLine=0,0
+PolyLine=12,0
+PolyLine=14,-4
+PolyLine=18,4
+PolyLine=22,-4
+PolyLine=26,4
+PolyLine=30,-4
+PolyLine=34,4
+PolyLine=36,0
+PolyLine=48,0
+PolyLine=48,0
+Current=32,8,16,8
+
+[shapedef]
+Name=Diode
+Root="Diode.root",0,-8,0
+
+[shapedef]
+Name=NPN
+Root="Bjt.root",0,-24,0
+PolyClosed=3 ,Solid
+PolyLine=20,12
+PolyLine=24,12
+PolyLine=24,8
+
+[shapedef]
+Name=PNP
+Root="Bjt.root",0,-24,0
+PolyClosed=3 ,Solid
+PolyLine=16,-4
+PolyLine=20,-4
+PolyLine=16,-8
+Line=16,-4,14,-2
+Line=16,4,14,2
+
+[shapedef]
+Name=Diode.root
+Line=0,0,20,0
+Line=28,0,48,0
+Rectangle=18,-8,20,8,SOLID
+PolyClosed=3 ,Solid
+PolyLine=20,0
+PolyLine=28,-8
+PolyLine=28,8
+Current=32,16,16,16
+
+[shapedef]
+Name=Bjt.root
+Line=0,0,13,0
+Rectangle=13,-12,15,12,SOLID
+Line=24,-24,24,-12
+Line=24,-12,14,-2
+Line=24,24,24,12
+Line=24,12,14,2
+Current=32,-24,32,-16
+Current=32,24,32,16
+Current=0,-8,8,-8
+
+[compdef]
+Name=PNP
+Definition=PNP
+Shape=PNP
+Mask=4097
+Label Offset=28,-13,-6,24
+PinCnt=3
+Pin="Collector",3,3,6,3
+Pin="Base",0,0,-19,-3
+Pin="Emitter",3,-3,6,15
+
+[compdef]
+Name=NPN
+Definition=NPN
+Shape=NPN
+Mask=4097
+Label Offset=28,-13,-5,23
+PinCnt=3
+Pin="Collector",3,-3,4,14
+Pin="Base",0,0,-18,-3
+Pin="Emitter",3,3,5,1
+
+[compdef]
+Name=Resistor
+Definition=Resistor
+Shape=Resistor
+Mask=7681
+Label Offset=18,6,8,11
+PinCnt=2
+Pin="Plus",6,0,-10,-4
+Pin="Minus",0,0,-14,-4
+
+[compdef]
+Name=Diode
+Definition=Diode
+Shape=Diode
+Mask=5889
+Label Offset=17,10,12,12
+PinCnt=2
+Pin="Anode",6,0,-9,-8
+Pin="Cathode",0,0,-20,-8
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-12,FStyle=0,Color=9,Name=Arial
+Object Default=Height=-16,FStyle=0,Color=11,Name=Arial
+Component Color=12
+Attribute Text=Height=-12,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=0
+Pin Color=0
+Select Box Color=0
+Node Number=Height=-12,FStyle=0,Color=9,Name=Arial
+Node Voltage Color=12
+Current=Height=-11,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-11,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-16,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 22,22,664,368
+Window Placement in Analysis=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Block Select Color=41
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+Title_Block_Border=False
+Title_Block=False
+
+[Comp]
+Name=PNP
+Grid=57,25
+Rot=6
+
+[Attr]
+ONV=-37,-11,PART,Q1
+Style=8192
+Color=0
+
+[Attr]
+ONV=10,14,VALUE,OFF
+Color=0
+
+[Attr]
+ONV=-37,1,MODEL,QP
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,56,COST,
+Color=0
+
+[Attr]
+ONV=0,70,POWER,
+Color=0
+
+[Comp]
+Name=NPN
+Grid=74,31
+
+[Attr]
+ONV=27,-12,PART,Q2
+Style=8192
+Color=0
+
+[Attr]
+ONV=10,14,VALUE,OFF
+Color=0
+
+[Attr]
+ONV=27,-1,MODEL,QN
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,56,COST,
+Color=0
+
+[Attr]
+ONV=0,70,POWER,
+Color=0
+
+[Comp]
+Name=Resistor
+Grid=62,37
+Rot=3
+
+[Attr]
+ONV=-31,-35,PART,RGK
+Style=8192
+Color=0
+
+[Attr]
+ONV=-31,-21,VALUE,RGK
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,28,FREQ,
+Color=0
+
+[Attr]
+ONV=0,42,MODEL,
+Color=0
+
+[Attr]
+ONV=0,98,COST,
+Color=0
+
+[Attr]
+ONV=0,112,POWER,
+Color=0
+
+[Wire]
+Grids=57,25,69,25
+
+[Wire]
+Grids=77,25,77,28
+
+[Wire]
+Grids=62,37,69,37
+
+[Wire]
+Grids=77,34,77,37
+
+[Wire]
+Grids=69,31,74,31
+
+[Wire]
+Grids=54,19,54,22
+
+[Wire]
+Grids=54,19,69,19
+
+[Wire]
+Grids=69,13,69,19
+
+[Wire]
+Grids=69,37,69,44
+
+[Wire]
+Grids=54,28,54,31
+
+[Wire]
+Grids=54,31,62,31
+
+[Wire]
+Grids=39,28,46,28
+
+[Wire]
+Grids=62,31,69,31
+
+[Comp]
+Name=Diode
+Grid=69,25
+Rot=7
+
+[Attr]
+ONV=13,12,PART,D2
+Style=8192
+Color=0
+
+[Attr]
+ONV=10,14,VALUE,
+Style=8192
+Color=0
+
+[Attr]
+ONV=13,25,MODEL,DFOR
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,56,COST,
+Color=0
+
+[Attr]
+ONV=0,70,POWER,
+Color=0
+
+[Comp]
+Name=Diode
+Grid=69,25
+Rot=5
+
+[Attr]
+ONV=13,-33,PART,D1
+Style=8192
+Color=0
+
+[Attr]
+ONV=10,14,VALUE,
+Style=8192
+Color=0
+
+[Attr]
+ONV=13,-22,MODEL,DJ2
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,56,COST,
+Color=0
+
+[Attr]
+ONV=0,70,POWER,
+Color=0
+
+[Comp]
+Name=Diode
+Grid=69,37
+Rot=5
+
+[Attr]
+ONV=13,-34,PART,D3
+Style=8192
+Color=0
+
+[Attr]
+ONV=10,14,VALUE,
+Style=8192
+Color=0
+
+[Attr]
+ONV=13,-22,MODEL,DJ1
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,56,COST,
+Color=0
+
+[Attr]
+ONV=0,70,POWER,
+Color=0
+
+[Wire]
+Grids=69,37,77,37
+
+[Wire]
+Grids=69,25,77,25
+
+[Comp]
+Name=Resistor
+Grid=46,28
+Rot=4
+
+[Attr]
+ONV=18,-21,PART,R1
+Style=8192
+Color=0
+
+[Attr]
+ONV=18,-36,VALUE,1
+Style=8192
+Color=0
+
+[Attr]
+ONV=0,28,FREQ,
+Color=0
+
+[Attr]
+ONV=0,42,MODEL,
+Color=0
+
+[Attr]
+ONV=0,98,COST,
+Color=0
+
+[Attr]
+ONV=0,112,POWER,
+Color=0
+
+[Wire]
+Grids=52,28,54,28
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=.HELP IH "DC Holding Current"
+Grid=83,14
+Color=0
+
+[Grid Text]
+Text=.define AFT ((AF1*((AF1>.5) AND (AF1<=.9)))þ+(.9*(AF1>.9))+(.5*(AF1<=.5)))
+Grid=3,32
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define IS1 (POW(10,(-(VTMIN+.74)/.11)))
+Grid=3,24
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.model QP PNP (BF=BF1 IS=IS1 RE=RE1 CJE=CJE1 BR=BF1 TF=TF1 TR=TR1)
+Grid=4,49
+Color=0
+
+[Grid Text]
+Text=.model DFOR D (BV=VDRM )
+Grid=4,57
+Color=0
+
+[Grid Text]
+Text=.model DJ1 D (is=.001*IS1 BV=5)
+Grid=4,53
+Color=0
+
+[Grid Text]
+Text=.model DJ2 D (IS=.001*(IS1) BV=VDRM)
+Grid=4,55
+Color=0
+
+[Grid Text]
+Text=CATHODE
+Grid=69,44
+Color=0
+
+[Grid Text]
+Text=GATE
+Grid=39,28
+Color=0
+
+[Grid Text]
+Text=ANODE
+Grid=69,13
+Color=0
+
+[Grid Text]
+Text=.model QN NPN (BF=BF2 IS=IS2 CJC=CJC2)
+Grid=4,51
+Color=0
+
+[Grid Text]
+Text=----- MODEL STATEMENTS -----
+Grid=5,47
+Color=0
+
+[Grid Text]
+Text=.PARAMETERS(IH=50mA, IGT=40mA,TON=1uS, VTMIN=1V, VDRM=50V, DVDT=50Meg,TQ=20Us,K1=1, K2=1)
+Grid=4,10
+
+[Grid Text]
+Text=.define RGK ((IGT/IH)>.36)*(.75/IGT)+((IGT/IH)<=.36)*(.75/(.36*IH))
+Grid=3,16
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define TF1 (BF1*BF2-1)*Trise/(1.8*BF1)
+Grid=3,18
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define AF1 .1+(IGT/(.9*IH))
+Grid=3,20
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define BF2 9
+Grid=3,22
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define IS2 IS1
+Grid=3,26
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define CJC2 IH*.21/K1*sqrt(TON/DVDT)
+Grid=3,28
+Height=-14
+Color=0
+
+[Grid Text]
+Text=---- TRANSISTOR PARAMETERS ----
+Grid=3,34
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define RE1 1e-4
+Grid=3,36
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define TR1 1.25*K2*TQ
+Grid=3,38
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define BF1 (AFT)/(1-(AFT))
+Grid=3,40
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define Trise 2*TON/3
+Grid=3,42
+Height=-14
+Color=0
+
+[Grid Text]
+Text=.define CJE1 (CJC2)*.75
+Grid=3,44
+Height=-14
+Color=0
+
+[Grid Text]
+Text=SCR MACRO
+Grid=28,4
+Height=-19
+
+[Grid Text]
+Text=Called by other circuits.  Not intended for stand alone analysis.
+Grid=6,7
+Height=-19
+
+[Grid Text]
+Text=.HELP IGT "Gate Trigger Current"
+Grid=83,17
+Color=0
+
+[Grid Text]
+Text=.HELP TON "Turn on time "
+Grid=83,20
+Color=0
+
+[Grid Text]
+Text=.HELP VTMIN  "Minimum anode to cathode on state voltage"
+Grid=83,23
+Color=0
+
+[Grid Text]
+Text=.HELP VDRM "Maximum repetitive peak off-state voltage"
+Grid=83,26
+Color=0
+
+[Grid Text]
+Text=.HELP DVDT "Critical rate of rise of off-state voltage"
+Grid=83,29
+Color=0
+
+[Grid Text]
+Text=.HELP TQ "Turn of time"
+Grid=83,32
+Color=0
+
+[Grid Text]
+Text=.HELP K1 " DVDT adjustment (set to 1 unless otherwise specified)"
+Grid=83,35
+Color=0
+
+[Grid Text]
+Text=.HELP K2 "TQ adjustment (set to 1 unless otherwise specified)"
+Grid=83,38
+Color=0
+
+[Schematic]
+Page 0=0
+TabSize 0=160
+Page 1=0
+TabSize 1=160
+Page 2=0
+TabSize 2=160
+Page 3=0
+TabSize 3=160
+Splitter.xs=3192
+Splitter.ys=1076
+TextQuad=4097
+Scale=1.333333333333333
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=No
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+CROSS=No
+GRID=Yes
+BORDER=No
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=No
+FIND=Yes
+REPEAT=No
+MODEL=Yes
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=No
+TOBACK=No
+PAGEADD=No
+PAGEDEL=No
+ZOOMIN=Yes
+ZOOMOUT=Yes
+GOTOFLAG=No
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+Scale 0=1
+Scale 1=1.333333333333333
+Scale 2=1
+Scale 3=1
+Grid=47,55
+
+[Text Area]
+Font=Height=-13,FStyle=0,Color=0,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=2061
+12/22/97
+Limited AF1 to above .5 to ensure that the SCR stayed on when IGT/IH was low.
+Added 1 ohm gate resistor - arbitrary value.
+RGK limited also when AF1 drops below .5 so the holding current wouldn't be
+affected.
+Added OFF to VALUE attributes of the transistors.
+Previous .defines
+*.define RGK .75/IGT
+*.define AFT ((AF1*(AF1<=.9))+(.9*(AF1>.9)))
+
+******************************************************************
+*  Passed parameters follow the format:                          *
+*    SCR(IH,IGT,TON,VTMIN,VDRM,DVDT,TQ,K1,K2)                    *
+*                                                                *
+*    SCR - refers to the macro circuit SCR.CIR                   *
+*    IH - DC Holding Current                                     *
+*    IGT - Gate Trigger Current                                  *
+*    TON - Turn on time                                          *
+*    VTMIN - Minimum anode to cathode on state voltage           *
+*    VDRM - Maximum repetitive peak off-state voltage            *
+*    DVDT - Critical rate of rise of off-state voltage           *
+*    TQ - Turn of time                                           *
+*    K1 - DVDT adjustment (set to 1 unless otherwise specified)  *
+*    K2 - TQ adjustment (set to 1 unless otherwise specified)    *
+*                                                                *
+*    To use these parts, select the SCR macro from the Macro     *
+*    section of the Component Menu and place it in your circuit. *
+*    For the parameter enter one of the part names below, such   *
+*    as 2N3870. Then either include a .LIB statement in your    *
+*    circuit to access this library or enter a .define statement *
+*    on the schematic that defines the parameters for the SCR.   *
+*    For example:                                                *
+*        .define 2N3870 SCR(14m,9m,1u,1.5,100,50MEG,25u,.8,1)   *
+*                                                                *
+******************************************************************
+
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[TRANSIENT]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[AC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[DC]
+AutoTitle=Yes
+Grid Weight=1
+Grid Pattern=Dot
+
+[Analysis]
+Window Placement=0,0, 0,0, 0,0, 0,0,0,0
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+Analysis Text=Height=-12,FStyle=0,Color=12,Name=Arial
+Analysis Grid Color=7
+Analysis Graph Background=15
+Object Default=Height=-16,FStyle=0,Color=0,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-12,FStyle=0,Color=9,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Cursor Select Color Primary=7
+Cursor Select Color Secondary=9
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+Tracker Foreground=Height=-19,FStyle=0,Color=0,Name=Arial
+Tracker Background=11
+Data Point Labels Color Fore=Height=-19,FStyle=0,Color=0,Name=Arial
+Data Point Labels Color Back=11
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=No
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=1
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=No
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=No
+DATAPTS=Yes
+TOKENS=Yes
+RULER=No
+PLUS=No
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=No
+BASELINE=No
+HORIZCUR=No
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+GOTOBRNC=Yes
+NEXT=Yes
+NEXTIN=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+BOTTOM=Yes
+TOP=Yes
+AOUTPUT=Yes
+ZOOMIN=No
+ZOOMOUT=No
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Limits]
+Analysis=Transient
+TRange=1u
+TStep=0
+NPts=51
+Temp=27
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+XExp=T
+YExp=R(bf1)
+XRng=1e-006,0
+YRng=1
+VFmtX=3
+VFmtY=3
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+XExp=T
+YExp=R(CJC2)
+XRng=1e-006,0
+YRng=600p
+VFmtX=3
+VFmtY=3
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+XExp=T
+YExp=R(IS3)
+XRng=1e-006,0
+YRng=1e-18
+VFmtX=3
+VFmtY=3
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+XExp=T
+YExp=R(TF2)
+XRng=1e-006,0
+YRng=.5u
+VFmtX=3
+VFmtY=3
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+XExp=T
+YExp=R(TR2)
+XRng=1e-006,0
+YRng=20u
+VFmtX=3
+VFmtY=3
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=6
+Text Color=6
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=7
+Text Color=7
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=8
+Text Color=8
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=AC
+OPT=64
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+Plt=1
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=4
+Text Color=4
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=5
+Text Color=5
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=6
+Text Color=6
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=7
+Text Color=7
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=8
+Text Color=8
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=DC
+OPT=0
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=None
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+Plt=1
+SFmtX=2
+SFmtY=2
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=1
+Text Color=1
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=2
+Text Color=2
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[Optimize]
+Format=3
+
+[Optimize]
+Analysis=Transient
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=AC
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=DC
+Method=Stepping_Powel
+
+[Watch]
+Format=3
+
+[Watch]
+Analysis=Transient
+ExprPercentWidth=80
+
+[Watch]
+Analysis=AC
+ExprPercentWidth=80
+
+[Watch]
+Analysis=DC
+ExprPercentWidth=80
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

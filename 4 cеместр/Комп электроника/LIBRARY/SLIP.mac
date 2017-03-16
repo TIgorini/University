@@ -1,0 +1,571 @@
+[Main]
+FileType=CIR
+Version=7.00
+Program=Micro-Cap
+Screen=1600,1200
+MCAPVersion=7.0.0.0
+Key ID=493 834 421
+NLCnt=7
+TXCnt=13
+
+[shapedef]
+Name=NTVOFV
+Root="VOFV.Root",-2,-2,0
+Root="TextN.Root",41,20,0
+Root="TextT.Root",48,20,0
+
+[shapedef]
+Name=Ground
+Line=0,0,12,0
+Line=12,-8,12,8
+Line=18,-4,18,4
+Line=24,0,24,0
+
+[shapedef]
+Name=Minus.root
+Line=-2,0,2,0
+
+[shapedef]
+Name=Plus.root
+Line=-2,0,2,0
+Line=0,-2,0,2
+
+[shapedef]
+Name=Vsrc.root
+Root="Plus.root",41,6,0
+Root="Minus.root",41,40,0
+Line=48,0,48,12
+Line=48,36,48,48
+Ellipse=36,12,61,36
+Current=64,16,64,32
+
+[shapedef]
+Name=OFV.Root
+Root="Plus.root",6,6,0
+Ellipse=-2,-2,2,2
+Ellipse=-2,46,2,50
+
+[shapedef]
+Name=VOFV.Root
+Line=0,0,0,0
+Line=0,48,0,48
+Root="Vsrc.root",36,0,0
+Root="OFV.Root",-2,-2,0
+Current=64,16,64,32
+
+[shapedef]
+Name=TextN.Root
+Line=0,8,0,0
+Line=0,0,5,8
+Line=5,8,5,0
+
+[shapedef]
+Name=TextT.Root
+Line=0,0,5,0
+Line=2,0,2,8
+
+[compdef]
+Name=Ground
+Definition=Ground
+Shape=Ground
+Mask=4865
+Label Offset=0,0,0,0
+PinCnt=1
+Pin="PinA",0,0,-3,-7
+
+[compdef]
+Name=NTVofV
+Definition=NTVofV
+Shape=NTVOFV
+Mask=4096
+Label Offset=63,12,-29,59
+PinCnt=4
+Pin="Plus Output",6,0,-15,-3
+Pin="Minus Output",6,6,-12,17
+Pin="Plus Input",0,0,-29,-3
+Pin="Minus Input",0,6,-33,17
+
+[Circuit]
+WinBackGround Color=15
+Grid Text Color=Height=-16,FStyle=0,Color=1,Name=Arial
+Object Default=Height=-16,FStyle=0,Color=11,Name=Arial
+Component Color=12
+Attribute Text=Height=-16,FStyle=0,Color=2,Name=Arial
+Wire Color=2
+Select Color=5
+Pin Color=13
+Select Box Color=0
+Node Number=Height=-12,FStyle=0,Color=9,Name=Arial
+Node Voltage Color=12
+Current=Height=-13,FStyle=0,Color=12,Name=Arial
+Power/Condition=Height=-13,FStyle=0,Color=9,Name=Arial
+Digital Path Color=9
+Title Block=Height=-19,FStyle=0,Color=0,Name=Arial
+Digital 0 Color=0
+Digital R Color=11
+Digital F Color=11
+Digital 1 Color=9
+Digital X Color=7
+Digital Z Color=8
+Window Placement=2,3, -1,-1, -6,-25, 198,198,1442,926
+Window Placement in Analysis=2,3, -1,-1, -5,-24, 115,115,754,437
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Block Select Color=41
+TitleBlock Field_1=$name
+TitleBlock Field_2=$user $company
+TitleBlock Field_3
+TitleBlock Field_4=$date
+TitleBlock Field_5=Page $page of $maxpage
+TitleBlock One Title=True
+Title_Block_Border=False
+Title_Block=False
+
+[Wire]
+Grids=29,35,30,35
+
+[Wire]
+Grids=30,35,36,35
+
+[Comp]
+Name=Ground
+Grid=29,41
+Rot=1
+
+[Comp]
+Name=NTVofV
+Grid=23,35
+
+[Attr]
+ONV=73,10,PART,TABLE
+Style=8192
+Height=-12
+Color=9
+
+[Attr]
+ONV=68,28,TABLE,(-MAX,-MAX) (-DX,0) (DX,0) (MAX,MAX)
+Style=8192
+Height=-12
+Color=9
+
+[Wire]
+Grids=23,41,29,41
+
+[Wire]
+Grids=19,41,23,41
+
+[Wire]
+Grids=19,35,23,35
+
+[Node Offsets]
+
+[Condition Offsets]
+
+[Grid Text]
+Text=.HELP MAX "Maximum output value"
+Grid=19,50
+
+[Grid Text]
+Text=PINB
+Grid=30,35
+Height=-12
+Color=9
+
+[Grid Text]
+Text=PINA
+Grid=19,35
+Height=-12
+Color=9
+
+[Grid Text]
+Text=.PARAMETERS(MAX=10,DX=.1)
+Grid=20,47
+Height=-12
+Color=9
+
+[Grid Text]
+Text=THE SLIP MACRO MODELS HYSTERESIS OR BACKLASH IN A SYSTEM. THE
+Grid=11,21
+Height=-12
+Color=9
+
+[Grid Text]
+Text=OUTPUT IS DIRECTLY PROPORTIONAL TO THE INPUT EXCEPT IN THE DEAD
+Grid=11,23
+Height=-12
+Color=9
+
+[Grid Text]
+Text=ZONE, +- DX, WHERE IT IS ZERO. THE OUTPUT IS ALSO CLIPPED AT +- MAX.
+Grid=11,25
+Height=-12
+Color=9
+
+[Grid Text]
+Text=THE MACRO USES A NTVOFV FUNCTION TABLE SOURCE TO IMPLEMENT
+Grid=11,27
+Height=-12
+Color=9
+
+[Grid Text]
+Text=THE TRANSFER FUNCTION.  THE VALUES OF MAX AND DX ARE PASSED
+Grid=11,29
+Height=-12
+Color=9
+
+[Grid Text]
+Text=AS PARAMETERS TO THE MACRO BY THE CALLING CIRCUIT.
+Grid=11,31
+Height=-12
+Color=9
+
+[Grid Text]
+Text=SLIP MACRO
+Grid=33,13
+Height=-19
+Color=13
+
+[Grid Text]
+Text=Called by other circuits.  Not intended for stand alone analysis.
+Grid=10,17
+Height=-19
+Color=9
+
+[Grid Text]
+Text=.HELP DX "Slip value"
+Grid=19,53
+
+[Schematic]
+Page 0=0
+TabSize 0=320
+Page 1=0
+TabSize 1=320
+Page 2=0
+TabSize 2=320
+Page 3=0
+TabSize 3=320
+Splitter.xs=0
+Splitter.ys=0
+TextQuad=1
+Scale=0.6666666666666666
+PrinterScale=1
+View=304
+
+[Tools]
+Pos=Top
+SELECT=Yes
+COMP=Yes
+TEXT=Yes
+WIRE=Yes
+WIRED=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+FLAG=Yes
+META=No
+INFO=Yes
+HELP=Yes
+DIGTRC=No
+DIGTRC2=No
+DIGALL=No
+GRIDTEXT=Yes
+COMPTEXT=Yes
+NODE=Yes
+NODEV=Yes
+CURRENT=Yes
+POWER=Yes
+CONDITIN=Yes
+PIN=Yes
+CROSS=Yes
+GRID=Yes
+BORDER=Yes
+TITLE=Yes
+RUBBER=Yes
+PROPERTY=Yes
+STEP=Yes
+MIRROR=Yes
+ROTATE=Yes
+FLIPY=Yes
+FILPX=Yes
+FINDCOMP=Yes
+FIND=Yes
+REPEAT=No
+MODEL=Yes
+CIR2CKT=No
+ATTDISP=No
+TOFRONT=Yes
+TOBACK=Yes
+PAGEADD=Yes
+PAGEDEL=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+GOTOFLAG=Yes
+COLOR=Yes
+FONT=Yes
+
+[Page]
+Index=0
+Name=Page 1
+Scale 0=1
+Scale 1=1
+Scale 2=1
+Scale 3=0.6666666666666666
+Grid=40,52
+
+[Text Area]
+Font=Height=-12,FStyle=0,Color=9,Name=Courier New
+Comment Color=8
+Background Color=15
+Len=0
+
+
+[Printer]
+T.AutoTile=No
+T.BlackBorder=No
+A.AutoTile=No
+A.BlackBorder=No
+D.AutoTile=No
+D.BlackBorder=No
+
+[TRANSIENT]
+AutoTitle=Yes
+Grid Options=MaxX=10,MaxY=10,BoldX=0,BoldY=0,Weight=1,Pattern=Dot
+
+[AC]
+AutoTitle=Yes
+Grid Options=MaxX=10,MaxY=10,BoldX=0,BoldY=0,Weight=1,Pattern=Dot
+
+[DC]
+AutoTitle=Yes
+Grid Options=MaxX=10,MaxY=10,BoldX=0,BoldY=0,Weight=1,Pattern=Dot
+
+[Analysis]
+Window Placement=2,3, -1,-1, -5,-24, 115,115,754,437
+Window Placement in Probe=0,0, 0,0, 0,0, 0,0,0,0
+Num Out Header Left
+Num Out Header Center=$MC\n$user\n$company\n$Analysis of $name\n
+Num Out Header Right
+Num Out Delimiter=32
+Analysis Text=Height=-12,FStyle=0,Color=4,Name=Arial
+Analysis Grid Color=7
+Analysis Graph Background=7
+Object Default=Height=-16,FStyle=0,Color=0,Name=Arial
+Analysis Window Background=15
+NumOut=Height=-12,FStyle=0,Color=9,Name=Courier New
+ScaleColor=On
+Select Color=9
+Select Box Color=4
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+AnimateWait=0
+AnimateWaitTime=500
+Same Y Scales=Yes
+T.Save_For_Future=No
+A.Save_For_Future=No
+D.Save_For_Future=No
+T.Reduce_Display=1
+T.Reduce_Save=1
+A.Reduce_Display=1
+A.Reduce_Save=1
+D.Reduce_Display=1
+D.Reduce_Save=1
+
+[Tools]
+Pos=Top
+SELECT=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+POLYCLOS=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=Yes
+DATAPTS=Yes
+TOKENS=Yes
+RULER=Yes
+PLUS=Yes
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=Yes
+BASELINE=Yes
+HORIZCUR=Yes
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+GOTOBRNC=Yes
+NEXT=Yes
+NEXTIN=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+MINYATX=Yes
+MAXYATX=Yes
+AOUTPUT=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+COLOR=Yes
+FONT=Yes
+
+[Monte Carlo Options]
+Analysis=Transient
+Status=Off
+Distribution=Normal
+Number of Runs=1
+
+[Monte Carlo Options]
+Analysis=AC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Monte Carlo Options]
+Analysis=DC
+Status=Off
+Distribution=Normal
+Number of Runs
+
+[Limits]
+Analysis=Transient
+TRange=20ms
+TStep=0.0004
+NPts=20
+Temp=27
+OPT=88
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=Transient
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=AC
+FRange=1E8,1Meg
+NPts=50
+Temp=27
+MaxChng=5
+NInput=1
+NOutput=2
+OPT=120
+Horizontal Cursor=False
+Temperature Type=Linear
+
+[WaveForm]
+Analysis=AC
+Options=LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=9
+Text Color=9
+
+[Limits]
+Analysis=DC
+I2Range=NONE
+I2=NONE
+I1Range=10,0
+I1=1
+NPts=0.5
+Temp=27
+MaxChng=5
+OPT=24
+Horizontal Cursor=False
+Temperature Type=Linear
+Sweep1 type=Auto
+Sweep2 type=None
+
+[WaveForm]
+Analysis=DC
+Options=LINEARX,LINEARY
+AliasID=-1
+VFmtX=3
+SFmtX=2
+SFmtY=2
+Line Color=3
+Text Color=3
+
+[Stepping]
+Analysis=Transient
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=AC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Stepping]
+Analysis=DC
+Index=1
+Parameter Type=Component
+Param=Value
+
+[Optimize]
+Format=3
+
+[Optimize]
+Analysis=Transient
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=AC
+Method=Stepping_Powel
+
+[Optimize]
+Analysis=DC
+Method=Stepping_Powel
+
+[Watch]
+Format=3
+
+[Watch]
+Analysis=Transient
+ExprPercentWidth=80
+
+[Watch]
+Analysis=AC
+ExprPercentWidth=80
+
+[Watch]
+Analysis=DC
+ExprPercentWidth=80
+
+[DSP]
+T.Status=Off
+A.Status=Off
+
+[TF]
+Input Source
+Place Text=False
+
+[SENS]
+Multiple=False
+Parameter Type=Component

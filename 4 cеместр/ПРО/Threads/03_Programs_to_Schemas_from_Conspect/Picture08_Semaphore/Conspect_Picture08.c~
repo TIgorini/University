@@ -1,0 +1,92 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <semaphore.h>
+
+/* Оголошення семафору. */
+sem_t thread_sem;
+int n = 0;
+int s = 0;
+
+/* Функція ініціалізації семафору. */
+void init_sem ()
+{
+  sem_init (&thread_sem, 0, 1);
+}
+
+/* Потокова функція, що рахує суму непарних чисел від 1 до заданого натурального n. */
+void* thread_function1 (void* thread_arg)
+{
+  int i = 1;
+
+  while(1)
+  {
+    /* Закривається семафор. */
+    sem_wait (&thread_sem);
+
+    /* Використовується значення змінної s, що спільно використовується двома потоками. */
+    s = s + i;
+
+    /* Відкривається семафор. */
+    sem_post (&thread_sem);
+
+    printf("s=%d, n=%d\n", s, i);
+    i = i + 2;
+
+    if (i > n)
+	break;
+  }
+
+  return NULL;
+}
+
+/* Потокова функція, що рахує суму парних чисел від 2 до заданого натурального n. */
+void* thread_function2 (void* thread_arg)
+{
+  int i = 2;
+
+  while(1)
+  {
+    /* Закривається семафор. */
+    sem_wait (&thread_sem);
+
+    /* Використовується значення змінної s, що спільно використовується двома потоками. */
+    s = s + i;
+
+    /* Відкривається семафор. */
+    sem_post (&thread_sem);
+
+    printf("s=%d, n=%d\n", s, i);
+    i = i + 2;
+
+    if (i > n)
+	break;
+  }
+
+  return NULL;
+}
+
+int main()
+{
+  /* Оголошуються потокові змінні. */
+  pthread_t thread1;
+  pthread_t thread2;
+
+  /*Ініціалізується семафор. */
+  init_sem();
+
+  printf("Enter n: ");
+  scanf("%d", &n);
+
+  /* Створюються потоки. */
+  pthread_create (&thread1, NULL, &thread_function1, NULL);
+  pthread_create (&thread2, NULL, &thread_function2, NULL);
+
+  /* Очікується завершення потоків. */
+  pthread_join (thread1, NULL);
+  pthread_join (thread2, NULL);
+
+  /*Завершення програми. */
+  printf("Resulting Sum = %d;  n = %d\n", s, n);
+
+  return 0;
+}
