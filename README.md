@@ -1,2 +1,2 @@
 # KPI-Labs
-Repository with my own labs 
+Repository with my good for nothing labs 
