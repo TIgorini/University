@@ -4,9 +4,10 @@ import java.util.regex.*;
 import java.io.*;
 
 /**
- * Created by tigorini on 21.03.17.
+ * My compiler for KPI
+ * Created by Igor Tymoshenko on 21.03.17.
  */
-public class Main {
+public class Asmc {
 
     public static void main(String[] argz) throws IOException{
 
@@ -16,7 +17,7 @@ public class Main {
             List<LinkedList<Lexeme>> lexicalTable = new ArrayList<>();
             LinkedList<Lexeme> rowLexemes = new LinkedList<>();
             Lexeme lexeme = new Lexeme();
-            Pattern p = Pattern.compile("\\w+|\\p{Punct}|\".*\"|'.*'");
+            Pattern p = Pattern.compile("\\w+|\".*\"|'.*'|\\p{Punct}");
             Matcher m;
             String mstr, buf;
 
@@ -37,14 +38,14 @@ public class Main {
                         lexeme.addToList(rowLexemes, buf, "16-bit");
                     else if (buf.matches("[C-GS]S"))
                         lexeme.addToList(rowLexemes, buf, "segment register");
+                    else if (buf.matches("\".*\"|'.*'"))
+                        lexeme.addToList(rowLexemes, buf.substring(1, buf.length()-1), "string");
                     else if (buf.matches("[,:\\[\\]+]"))
                         lexeme.addToList(rowLexemes, buf, "single");
                     else if (buf.matches("\\d+|\\d+D$"))
                         lexeme.addToList(rowLexemes, buf, "decimal");
-                    else if (buf.matches("[0-9][0-9A-F]*H$|^0[A-F][0-9A-F]*H$"))
-                        lexeme.addToList(rowLexemes, buf, "hex");
-                    else if (buf.matches("\".*\"|'.*'"))
-                        lexeme.addToList(rowLexemes, buf, "string");
+                    else if (buf.matches("[01]+B$"))
+                        lexeme.addToList(rowLexemes, buf, "binary");
                     else if (buf.matches(".*[a-z]+.*|^[0-9]\\w+|\\w{4,}"))
                         lexeme.addToList(rowLexemes, buf, "deprecated");
                     else if (buf.matches("\\w+"))
