@@ -8,7 +8,10 @@
 
 int main(){
 
-	StringList sl();
+	StringList sl;
+	sl.addHead("Igor");
+	printf("%d %d\n",sl.getSize(), sl.isEmpty());
+
 	return 0;	
 } 
 
