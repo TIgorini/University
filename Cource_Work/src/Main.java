@@ -7,7 +7,7 @@ import java.io.*;
  * My compiler for KPI
  * Created by Igor Tymoshenko on 21.03.17.
  */
-public class Asmc {
+public class Main {
 
     public static void main(String[] argz) throws IOException{
 
