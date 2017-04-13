@@ -25,7 +25,7 @@ public:
 	ListNode* getHead() const;
 	ListNode* getTail() const; 
 	
-		//Operations 
+		//Operations
 	void addHead(const char *);
 	void addHead(const StringList *);
 	void addTail(const char *);
@@ -33,37 +33,39 @@ public:
 	void removeAll();
 	void removeHead();
 	void removeTail();
-//	void appendExclusively(const StringList *);
-//	void splice(POSITION where, StringList *sl, POSITION first, POSITION last);
-//	void unique();
+	void appendExclusively(const StringList *);
+	void splice(POSITION where, StringList* sl, POSITION first, POSITION last);
+	void unique();
 
 		//Iteration 
-//	POSITION GetNext();
-//	POSITION ListNode* GetPrev();
+	POSITION getNext();
+	POSITION getPrev();
 	
 		//Retrieval/Modification
-//	POSITION ListNode* GetHeadPosition();
+	POSITION getHeadPosition();
 
-//	const char* GetAt(int )const;
-//	void RemoveAt(int );
-//	void SetAt(char *, int );
+	const char* getAt(int )const;
+	void removeAt(int );
+	void setAt(char *, int );
 
 		//Insertion 
-//	void InsertAfter(char *, int);
-//	void InsertBefore(char *, int);
+	void insertAfter(char *, int);
+	void insertBefore(char *, int);
 
 		//Searching 
-//	const ListNode* Find(char *);
-//	int FindIndex(char *)const;
+	const ListNode* find(char *);
+	int findIndex(char *)const;
 
 		//Status 
 	int getSize()const;
 	bool isEmpty()const;
 
 	void printNode( const ListNode *p);
+	void printList();
 
 private:
 	ListNode* head;
 	ListNode* tail;
+	POSITION iterator;
 	int size;
 };
