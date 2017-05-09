@@ -25,7 +25,7 @@ bool Database::loadFromFile(const char* file){
 
 	int buf;	
 	while (!feof(f)){
-
+		//reading line from file
 		fscanf(f,"%d;%d;", &e_m, &id); 
 		while ( (buf = fgetc(f)) != ';') 
 			f_name.append(1, buf);
@@ -59,11 +59,9 @@ bool Database::loadFromFile(const char* file){
 void Database::arrangeSubordinates(){
 
 	for (vector<Person*>::iterator it = employees.begin(); it != employees.end(); it++){
-
 		if (typeid(**it) == typeid(Manager)){
 			string dept = dynamic_cast<Manager*>(*it)->getDepartment();
 			for (vector<Person*>::iterator it_two = employees.begin(); it_two != employees.end(); it_two++)
-
 				if ((typeid(**it_two) == typeid(Employee)) && (dept == dynamic_cast<Employee*>(*it_two)->getDepartment()))
 					dynamic_cast<Manager*>(*it)->addSubordinate(*it_two);
 		}

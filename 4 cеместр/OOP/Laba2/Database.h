@@ -24,8 +24,6 @@ public:
     bool fireEmployee(int id);
     void displayAll();
 
-    
-
 private:
     vector<Person*> employees;
 };
