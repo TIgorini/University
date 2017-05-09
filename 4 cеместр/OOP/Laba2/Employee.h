@@ -19,8 +19,8 @@ class Person{
 public:
 	Person(){};
 	Person(string _f_name, string _l_name, int _age) : age(_age),
- 		f_name(_f_name), l_name(_l_name){	}
-	virtual void Display(bool) = 0;
+ 		f_name(_f_name), l_name(_l_name){};
+	virtual void display() = 0;
 
 protected:
 	string f_name;
@@ -35,14 +35,16 @@ public:
 		Person(_f_name, _l_name, _age), id(_id){};
 	Employee(const Employee &e);
 	Employee& operator=(const Employee &e);
-	void SetSalary(int s);
-	void SetDepartment(string dept);
-	void SetId(int n);
-	int GetId();
-	string GetDepartment();
-	virtual void Display();
-	
-	//Add here whatever you need
+	void setSalary(int s);
+	void setDepartment(string dept);
+	void setId(int n);
+	int getId();
+	string getDepartment();
+	string getFirstName();
+	string getLastName();
+	int getAge();
+	int getSalary();
+	virtual void display();
 
 protected:
 	string department;

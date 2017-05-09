@@ -8,6 +8,7 @@
 #pragma once
 #include "Employee.h"
 #include <list>
+#include <typeinfo>
 
 class Manager : public Employee {
 public:
@@ -16,12 +17,11 @@ public:
 		Employee(_f_name, _l_name, _age, _id){};
 	Manager(const Manager &m);
 	Manager& operator=(const Manager &m);
-	virtual void Display(bool);
+	virtual void display();
 	//add an employee to the subordinates list
-	Person* AddSubordinate(Person *p);
-	void DisplaySubordinates();
-	
-	//Add here whatever you need
+	Person* addSubordinate(Person *p);
+	void freeSubordinates();
+	void displaySubordinates();
 
 private:
 	list<Person*> subordinates;//список подчиненных	

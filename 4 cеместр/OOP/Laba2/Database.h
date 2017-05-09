@@ -11,19 +11,20 @@
 
 class Database{
 public:
-    Database(){};
+    Database();
     //creates “flat” database
-    bool LoadFromFile(const char *file);
+    bool loadFromFile(const char *file);
     //arranges "flat" database after loading from the file
-    void ArrangeSubordinates();
+    void arrangeSubordinates();
+    void clearSubordinates();
     //hire a new employee
-    Person* HireEmployee(Person *p);
-    void DisplayDepartmentEmployees(string _department);    
+    Person* hireEmployee(Person *p);
+    void displayDepartmentEmployees(string _department);    
     //fire the employee
-    bool FireEmployee(int id);
-    void DisplayAll();
+    bool fireEmployee(int id);
+    void displayAll();
 
-    //Add here whatever you need
+    
 
 private:
     vector<Person*> employees;
