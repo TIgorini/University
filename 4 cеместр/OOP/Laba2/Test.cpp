@@ -12,11 +12,12 @@ int main(){
 	Database db;
 	if ( !db.loadFromFile("employees.csv"))
 		cout << "File input error" << endl;
-	//db.displayAll();
-	//cout << endl;
+	db.displayAll();
+	cout << "ArrangeSubordinates:" << endl;
 	db.arrangeSubordinates();
 	db.displayAll();
-	//db.displayDepartmentEmployees("IT");
+	cout << "IT depatment" << endl;
+	db.displayDepartmentEmployees("IT");
 	
 	cout << endl << "New employee added" << endl << endl;
 	Manager man("Igor","Tymoshenko",19,7);
