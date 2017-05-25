@@ -2,10 +2,10 @@
 ;======================================================
 ;		МОДЕЛЬ МУЛЬТИПРОГРАМНОЇ СИСТЕМИ
 ;======================================================
-  
-max_prg			equ	 	10			;максимальна кількість "одночасно"
+
+max_prg			equ	 	8   		;максимальна кількість "одночасно"
                         	;виконуваних  задач
-time_slice	equ		65535 	;кількість мікросекунд, виділених на один
+time_slice	equ		40000   	;кількість мікросекунд, виділених на один
  					        				;квант часу (максимальне значення 65535)
 
 _ST	SEGMENT		WORD STACK 'stack' use16
@@ -113,7 +113,7 @@ setint8  PROC
     mov     int8set, 0ffh 	; заборона повторних входжень
   zero_8:
             ret
-	int8ptr	  dw 	  2 dup (?)
+int8ptr	  dw 	  2 dup (?)
 
 setint8  ENDP
 
@@ -190,7 +190,7 @@ setint9    ENDP
 ;--------------------------------------------------------------------------
 retint9       PROC
 ;--------------------------------------------------------------------------
-    push 	ds
+    push    	ds
     push     	dx
     mov     	dx,cs:int9ptr	    ; ds:dx - покажчик на початкову (системну)
     mov     	ds,cs:int9ptr+2	  ; процедуру обробки переривання від
@@ -204,7 +204,7 @@ retint9       PROC
     pop       ds
     mov      	int9set,0h        ; дозвіл наступних "перехоплень"
     ret
-  retint9       ENDP
+retint9       ENDP
 
 
 ;-----------------------------------------------------------------------------------------------
@@ -214,7 +214,18 @@ retint9       PROC
 ;------------------------------------------------------------------------------------------------
 userint9  proc    far
 ;----------------------------------------------------------------------------
-    esc_key    equ   01h     ; скан-код клавіші esc
+    esc_key   equ   01h     ; скан-код клавіші esc
+    key_1     equ   02h
+    key_2     equ   03h
+    key_3     equ   04h
+    key_4     equ   05h
+    key_5     equ   06h
+    key_6     equ   07h
+    key_7     equ   08h
+    key_8     equ   09h
+    key_9     equ   0ah
+    key_0     equ   0bh
+
     pusha
     push   	  es
     in        al,60h     ; ввести скан-код - розряди 0-6
@@ -228,7 +239,36 @@ userint9  proc    far
 
     cmp    	  al,esc_key
     je        ui9010
-
+    mov       cx,0
+    cmp       al,key_0
+    je        key
+    mov       cx,1
+    cmp       al,key_1
+    je        key
+    mov       cl,2
+    cmp       al,key_2
+    je        key
+    mov       cx,3
+    cmp       al,key_3
+    je        key
+    mov       cx,4
+    cmp       al,key_4
+    je        key
+    mov       cx,5
+    cmp       al,key_5
+    je        key
+    mov       cx,6
+    cmp       al,key_6
+    je        key
+    mov       cx,7
+    cmp       al,key_7
+    je        key
+    mov       cx,8
+    cmp       al,key_8
+    je        key
+    mov       cx,9
+    cmp       al,key_9
+    je        key
 ; (варіант 2)
     pop    	es
     popa
@@ -245,8 +285,7 @@ userint9  proc    far
     in        al,61h    ; біт 7 порта 61h призначений для введення
 	                 			; підтверджуючого імпульсу в клавіатуру ПЕОМ.
                       	; Клавіатура блокується поки не надійде
-                      	; підтверджуючий імпульс
-            
+                      	; підтверджуючий імпульс 
     mov     	ah,al
     or        al,80h	  ;					                 |
     out       61h,al    ; виведення на клавіатуру	 └───┐     
@@ -265,7 +304,6 @@ userint9  proc    far
                        	; чи від відтискання клавіші клавіатури
     je       	ui9040
                       	;відтискання клавіші
-
   ui9020:
     push	    es
     les		    bx, @ms_dos_busy	  ; es:bx - адреса ознаки 
@@ -282,9 +320,41 @@ userint9  proc    far
 
     call     	retint8
     call    	retint9
-    mov   	 ax,4c00h
+    mov   	  ax,4c00h
     int      	21h 		  ; ЗАКІНЧИТИ РОБОТУ
                         ; БАГАТОПРОГРАМНОЇ МОДЕЛІ
+
+  key:
+    mov       bx,ax
+    in        al,61h    
+    mov       ah,al
+    or        al,80h
+    out       61h,al        
+    jmp       $+2      
+    mov       al,ah    
+    out       61h,al    
+
+    mov       al,20h    
+    out       20h,al    
+
+    mov       ax,bx
+    mov       bx, cx
+    cmp       init[bx], close
+    je        ui9040
+
+    cmp       ah,al         ; перевірка події переривання - від натискання
+    je        pressed_key   ; чи від відтискання клавіші клавіатури
+      
+    ;відтискання клавіші
+    mov       bx, cx
+    mov       init[bx], hesitation
+    jmp       ui9040
+
+  pressed_key:           
+    ;натискання клавіші
+    mov       bx, cx
+    mov       init[bx], stop
+
   ui9040:
     pop      	es		; відновити стек перерваної програми
     popa
@@ -339,8 +409,8 @@ userint8    PROC    far
     cmp    	  clockt[si], 1 	; є ще не використані кванти ?
     jc        disp010
 
-    dec   	 clockt[si]  	; зменшити лічильник квантів
-    pop    	 ds
+    dec   	  clockt[si]  	; зменшити лічильник квантів
+    pop    	  ds
     popad                	; продовжити виконання перерваної задачі
     iret
 
@@ -367,9 +437,9 @@ userint8    PROC    far
   disp018:
     xor      	ebx,ebx
     mov     	bx,di
-    ;push   	bx
-    ;push   	3220
-    ;call    	show
+  ; push   	  bx
+  ; push   	  3220
+  ; call      show
                                     
                 ; сх пробігає значення max_prg,max_prg-1,...,2,1
                 ; bx пробігає значення  nprg+1,nprg+2,...,max_prg- 
@@ -395,15 +465,15 @@ userint8    PROC    far
 
   disp020:               
                             ; відновлення роботи наступної задачі
-    ;push    	bx
-    ;push   	2480
-    ;call    	show
+    push    bx
+    push   	2480
+    call    show
     mov   	  nprg, bx
     mov   	  sp, stp[ebx*2]
     mov   	  al, clock[bx]
-    mov   	  clockt[bx], al        	; встановити дозволену
+    mov   	  clockt[bx], al        ; встановити дозволену
                                    	; кількість квантів
-    mov   	  init[bx], execute		    ; стан задачі - задача виконується
+    mov   	  init[bx], execute		  ; стан задачі - задача виконується
 
     pop       ds
     popad
@@ -420,7 +490,7 @@ userint8    PROC    far
 
     push	    names[ebx*2]		      ; ім'я задачі
     push    	screen_addr[ebx*2]  	; адреса "вікна" для задачі на екрані 
-    push    	22                    ; розрядність лічильника
+    push    	18                    ; розрядність лічильника
     call      Vcount                ; запуск
 
 
@@ -474,7 +544,7 @@ Vcount proc    near
     mov  	  es, ax
 
  	  mov  	  ax, [bp+4]        ;ax = кількість розрядів лічильника
-    and   	ax, 31            ;ax=ax mod 32 (для перестраховки)
+    and   	ax, 24            ;ax=ax mod 32 (для перестраховки)
     mov  	  [bp-2], ax        ;по [bp-2] кількість розр. лічильника  
                               ;<32
     mov  	  cx, ax
@@ -601,7 +671,7 @@ begin:
 	  mov 		nprg, fon
 	  push		'FN'
     push		1800
-    push		30
+    push		24
     call  	Vcount   ; запуск фонової задачі
 					; в процедурі Vcount установлюється дозвіл
 					; на переривання і при чергових перериваннях

@@ -14,48 +14,15 @@ P3 put 3
 C1 started
 	C1 send to C2
 	C1 wait C2
-C2 started
-	C2 send to C1
-	C2 try to wait C1
-	C2 lock mutex
-C2 get 1
-	C2 unlock mutex
-	C2 send to C1
-	C2 try to wait C1
-	P1 lock mutex
-P1 put 4
-	P1 unlock mutex
+	P3 lock mutex
+P3 put 4
+	P3 unlock mutex
 	P2 lock mutex
 P2 put 5
 	P2 unlock mutex
-	P3 lock mutex
-P3 put 6
-	P3 unlock mutex
-	C1 lock mutex
-C1 get 2
-	C1 unlock mutex
-	C1 send to C2
-	C1 wait C2
-	C2 lock mutex
-C2 get 3
-	C2 unlock mutex
-	C2 send to C1
-	C2 try to wait C1
-	C1 lock mutex
-C1 get 4
-	C1 unlock mutex
-	C1 send to C2
-	C1 wait C2
-	C2 lock mutex
-C2 get 5
-	C2 unlock mutex
-	C2 send to C1
-	C1 lock mutex
-C1 get 6
-	C2 try to wait C1
-	C1 unlock mutex
-	C1 send to C2
-	C1 wait C2
+	P1 lock mutex
+P1 put 6
+	P1 unlock mutex
 	P2 lock mutex
 P2 put 7
 	P2 unlock mutex
@@ -65,6 +32,103 @@ P3 put 8
 	P1 lock mutex
 P1 put 9
 	P1 unlock mutex
+C2 started
+	C2 send to C1
+	C2 try to wait C1
+	C2 lock mutex
+C2 get 1
+	C2 unlock mutex
+	C2 send to C1
+	C2 try to wait C1
+	P2 lock mutex
+P2 put 10
+	P2 unlock mutex
+	C1 lock mutex
+C1 get 2
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C1 lock mutex
+C1 get 3
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C2 lock mutex
+C2 get 4
+	C2 unlock mutex
+	C2 send to C1
+	C2 try to wait C1
+	C2 lock mutex
+C2 get 5
+	C2 unlock mutex
+	C2 send to C1
+	C2 try to wait C1
+	P3 lock mutex
+P3 put 11
+	P3 unlock mutex
+	P2 lock mutex
+P2 put 12
+	P2 unlock mutex
+	P1 lock mutex
+P1 put 13
+	P1 unlock mutex
+	P2 lock mutex
+P2 put 14
+	P2 unlock mutex
+	C1 lock mutex
+C1 get 6
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C1 lock mutex
+C1 get 7
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C2 lock mutex
+C2 get 8
+	C2 unlock mutex
+	C2 send to C1
+	C2 try to wait C1
+	C2 lock mutex
+C2 get 9
+	C2 unlock mutex
+	C2 send to C1
+	C2 try to wait C1
+	C1 lock mutex
+C1 get 10
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C2 lock mutex
+C2 get 11
+	C2 unlock mutex
+	C2 send to C1
+	C1 lock mutex
+C1 get 12
+	C2 try to wait C1
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	C2 lock mutex
+C2 get 13
+	C2 unlock mutex
+	C1 lock mutex
+	C2 send to C1
+C1 get 14
+	C2 try to wait C1
+	C1 unlock mutex
+	C1 send to C2
+	C1 wait C2
+	P2 lock mutex
+P2 put 15
+	P2 unlock mutex
+	P1 lock mutex
+P1 put 16
+	P1 unlock mutex
+	P3 lock mutex
+P3 put 17
+	P3 unlock mutex
 P1 stoped
 P2 stoped
 P3 stoped
