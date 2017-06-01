@@ -1,0 +1,44 @@
+
+Thread_1 works BEFORE synchronization point
+a a a a a a a a a a 
+
+
+Thread_1 waits until Thread_2 reaches synchronization point
+
+Thread_2 works BEFORE synchronization point
+1 1 1 1 1 1 1 1 1 1 
+
+
+Thread_2  waits until Thread_1 reaches synchronization point
+
+
+Thread_2 works AFTER synchronization point
+
+2 2 2 2 2 2 2 2 2 2 
+
+Thread_2 works BEFORE synchronization point
+1 1 1 1 1 1 1 1 1 1 
+
+
+Thread_2  waits until Thread_1 reaches synchronization point
+
+
+Thread_1 works AFTER synchronization point
+
+b b b b b b b b b b 
+
+Thread_1 works BEFORE synchronization point
+a a a a a a a a a a 
+
+
+Thread_1 waits until Thread_2 reaches synchronization point
+
+Thread_1 works AFTER synchronization point
+
+b b b b b b b b b b 
+
+Thread_2 works AFTER synchronization point
+
+2 2 2 2 2 2 2 2 2 2 
+
+Main finished

@@ -1,0 +1,44 @@
+
+Main Started
+
+Thread_1 works BEFORE the synchronization point.
+a a a a a a a a a a 
+
+Thread_1 opens semaphore thread_sem2 for the Thread_2
+
+Thread_2 works BEFORE the synchronization point.
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+
+Thread_2 opens semaphore thread_sem1 for the Thread_1
+Semaphore thread_sem2 is opened!
+Thread_1 waits for the opening of the semaphore thread_sem1
+Semaphore thread_sem1 is opened!
+Thread_2 waits for the opening of the semaphore thread_sem2
+
+Thread_1 works AFTER synchronization point.
+b b b b b b b b b b 
+
+Thread_1 works BEFORE the synchronization point.
+a a a a a a a a a a 
+
+Thread_1 opens semaphore thread_sem2 for the Thread_2
+Semaphore thread_sem2 is opened!
+Thread_1 waits for the opening of the semaphore thread_sem1
+
+Thread_2 works AFTER semaphore thread_sem2
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Thread_2 works BEFORE the synchronization point.
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+
+Thread_2 opens semaphore thread_sem1 for the Thread_1
+Semaphore thread_sem1 is opened!
+Thread_2 waits for the opening of the semaphore thread_sem2
+
+Thread_2 works AFTER semaphore thread_sem2
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Thread_1 works AFTER synchronization point.
+b b b b b b b b b b 
+
+Main Finished
