@@ -58,7 +58,7 @@ class CyclicBuffer {
         return delta == SIZE;
     }
 
-    public boolean isEmpty(){
+    private boolean isEmpty(){
         return delta == 0;
     }
 }

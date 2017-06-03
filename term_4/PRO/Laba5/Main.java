@@ -94,6 +94,18 @@ class Producer3 implements Runnable {
     public void run(){
 
         while (true){
+            cr2.mutex.lock();
+            cr2.bool_var = cr2.random.nextBoolean();
+            cr2.int_var = cr2.random.nextInt();
+            cr2.long_var = cr2.random.nextLong();
+            cr2.doub_var = cr2.random.nextDouble();
+            System.out.println("P3 set in CR2:" +
+                                "\nbool = " + cr2.bool_var +
+                                "\nint = " + cr2.int_var +
+                                "\nlong = " + cr2.long_var +
+                                "\ndouble = " + cr2.doub_var);
+            cr2.mutex.unlock();
+
             System.out.print("\tP3 wait CB2\n");
             try {
                 cb2.await();
@@ -126,6 +138,8 @@ class Consumer1 implements Runnable {
     public void run(){
 
         while (true){
+            System.out.println("C1 get " + cr1.get() + " from CR1");
+
             System.out.print("\tC1 wait CB1\n");
             try {
                 cb1.await();
@@ -134,7 +148,17 @@ class Consumer1 implements Runnable {
             }
             System.out.print("\tC1 after CB1\n");
 
-            System.out.println("C1 get " + cr1.get() + " from CR1");
+            cr2.mutex.lock();
+            cr2.float_var = cr2.random.nextFloat();
+            cr2.int_var = cr2.random.nextInt();
+            cr2.long_var = cr2.random.nextLong();
+            cr2.bool_var = cr2.random.nextBoolean();
+            System.out.println("C1 set in CR2:" +
+                    "\nbool = " + cr2.bool_var +
+                    "\nint = " + cr2.int_var +
+                    "\nlong = " + cr2.long_var +
+                    "\nfloat = " + cr2.float_var);
+            cr2.mutex.unlock();
         }
     }
 }
@@ -157,6 +181,18 @@ class Consumer2 implements Runnable {
 
     public void run(){
         while (true){
+            cr2.mutex.lock();
+            cr2.float_var = cr2.random.nextFloat();
+            cr2.int_var = cr2.random.nextInt();
+            cr2.doub_var = cr2.random.nextDouble();
+            cr2.bool_var = cr2.random.nextBoolean();
+            System.out.println("C2 set in CR2:" +
+                    "\nbool = " + cr2.bool_var +
+                    "\nint = " + cr2.int_var +
+                    "\nfloat = " + cr2.float_var +
+                    "\ndouble = " + cr2.doub_var);
+            cr2.mutex.unlock();
+
             System.out.print("\tC2 wait CB2\n");
             try {
                 cb2.await();

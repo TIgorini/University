@@ -1,108 +1,433 @@
 Main start
 P1 start
+	P1 open sem2
 P2 start
-	P1 open sem2
-	P2 open sem1
+	P1 wait sem1
 P3 start
-	P1 wait sem1
+	P2 open sem1
 C1 start
-P1 put 1
-	P1 wait CB1
 	P2 wait sem2
-P2 put 2
+P2 put 1 to CR1
 	P2 open sem1
 	P2 wait sem2
+P1 put 2 to CR1
+	P1 wait CB1
+C1 get 1 from CR1
 	C1 wait CB1
 	P1 after CB1
 	P1 open sem2
 	P1 wait sem1
-P1 put 3
+P1 put 4 to CR1
 	P1 wait CB1
-P2 put 4
-	P2 open sem1
-	P2 wait sem2
-	C1 after CB1
-C1 get 1
-	C1 wait CB1
-	P1 after CB1
-	P1 open sem2
-	P1 wait sem1
-P1 put 5
-	P1 wait CB1
-P2 put 6
+P2 put 3 to CR1
 	P2 open sem1
 	P2 wait sem2
 	C1 after CB1
-C1 get 2
-	C1 wait CB1
-	P1 after CB1
-	P1 open sem2
-	P1 wait sem1
-P1 put 7
-	P1 wait CB1
-P2 put 8
-	P2 open sem1
-	P2 wait sem2
-	C1 after CB1
-C1 get 3
-	C1 wait CB1
-	P1 after CB1
-	P1 open sem2
-	P1 wait sem1
-P1 put 9
-	P1 wait CB1
-	C1 after CB1
-C1 get 4
-	C1 wait CB1
-	P1 after CB1
-	P1 open sem2
-	P1 wait sem1
-	C1 after CB1
-C1 get 5
-	C1 wait CB1
 C2 start
-P2 put 10
-	P2 open sem1
+P3 set in CR2:
+bool = true
+int = 1817420090
+long = -9158259629215762035
+double = 0.49390330601751076
 	P3 wait CB2
-P1 put 11
-	P1 wait CB1
+C2 set in CR2:
+bool = false
+int = 830441105
+float = 0.86062455
+double = 0.46226004688056976
+	C2 wait CB2
+	C2 after CB2
+C2 get 2 from CR1
+	P3 after CB2
+P3 put 5 to CR1
+C1 set in CR2:
+bool = true
+int = -2034929412
+long = 8449758927812477733
+float = 0.24866939
+C1 get 3 from CR1
+	C1 wait CB1
 	P1 after CB1
 	P1 open sem2
 	P1 wait sem1
-	P2 wait sem2
-P2 put 12
-	P2 open sem1
-	P2 wait sem2
-P2 put 13
+P1 put 6 to CR1
+	P1 wait CB1
+P2 put 7 to CR1
 	P2 open sem1
 	P2 wait sem2
 	C1 after CB1
-C1 get 6
-	C1 wait CB1
+C2 set in CR2:
+bool = false
+int = 112588916
+float = 0.7174444
+double = 0.9379719171183032
 	C2 wait CB2
-P1 put 14
-	P1 wait CB1
+P3 set in CR2:
+bool = false
+int = -1471533416
+long = -2098467374961189788
+double = 0.18228113230019927
+	P3 wait CB2
+	P3 after CB2
+P3 put 8 to CR1
+P3 set in CR2:
+bool = false
+int = -127287326
+long = 8406652769309294466
+double = 0.61335922323222
+	P3 wait CB2
+C1 set in CR2:
+bool = true
+int = 1355125053
+long = -1588249684803277095
+float = 0.4457811
+C1 get 4 from CR1
+	C1 wait CB1
 	C2 after CB2
+C2 get 5 from CR1
+C2 set in CR2:
+bool = true
+int = -1189867057
+float = 0.8588087
+double = 0.5544662876262316
+	C2 wait CB2
+	C2 after CB2
+C2 get 6 from CR1
+C2 set in CR2:
+bool = true
+int = -326579753
+float = 0.7875507
+double = 0.7120846444918221
+	C2 wait CB2
+	P3 after CB2
+P3 put 9 to CR1
+P3 set in CR2:
+bool = true
+int = 1791254963
+long = -6929234619445897372
+double = 0.41241191334050653
+	P3 wait CB2
+	P3 after CB2
+P3 put 10 to CR1
+P3 set in CR2:
+bool = false
+int = 1755937113
+long = -145746267074435517
+double = 0.7621438783919177
+	P3 wait CB2
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+P2 put 11 to CR1
+	P2 open sem1
+	P2 wait sem2
+	C2 after CB2
+C2 get 7 from CR1
+C2 set in CR2:
+bool = false
+int = 840327387
+float = 0.12861615
+double = 0.5447466741157388
+	C2 wait CB2
+	C2 after CB2
+C2 get 8 from CR1
+C2 set in CR2:
+bool = true
+int = 1657878360
+float = 0.47656453
+double = 0.46009066619289807
+	C2 wait CB2
+	C1 after CB1
+P1 put 12 to CR1
+	P1 wait CB1
+	P3 after CB2
+P3 put 13 to CR1
+P3 set in CR2:
+bool = false
+int = -923238303
+long = 6791286617708186344
+double = 0.4302140533076717
+	P3 wait CB2
+	P3 after CB2
+P3 put 14 to CR1
+C1 set in CR2:
+bool = false
+int = -982408188
+long = 7899293102183442159
+float = 0.59152466
+C1 get 9 from CR1
+	C1 wait CB1
+P3 set in CR2:
+bool = false
+int = 1930043189
+long = -2271221959436639869
+double = 0.8524259123945848
+	P3 wait CB2
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+P2 put 15 to CR1
+	P2 open sem1
+	P2 wait sem2
+	C2 after CB2
+C2 get 10 from CR1
+C2 set in CR2:
+bool = true
+int = 219734659
+float = 0.44587427
+double = 0.5119303317027035
+	C2 wait CB2
+	C2 after CB2
+C2 get 11 from CR1
+C2 set in CR2:
+bool = true
+int = -275271026
+float = 0.72253096
+double = 0.21160801951902208
+	C2 wait CB2
+	C1 after CB1
+P1 put 16 to CR1
+	P1 wait CB1
+	P3 after CB2
+P3 put 17 to CR1
+C1 set in CR2:
+bool = true
+int = 2089647130
+long = -4691590890600834840
+float = 0.2900098
+C1 get 12 from CR1
+	C1 wait CB1
+P3 set in CR2:
+bool = true
+int = 627493134
+long = 8648718614453732270
+double = 0.9005530326659904
+	P3 wait CB2
+	P3 after CB2
+P3 put 18 to CR1
+P3 set in CR2:
+bool = true
+int = -1508084247
+long = -8432290861680821782
+double = 0.160584600055092
+	P3 wait CB2
+	C1 after CB1
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+P2 put 19 to CR1
+	P2 open sem1
+	P2 wait sem2
+	C2 after CB2
+C2 get 13 from CR1
+C1 set in CR2:
+bool = true
+int = 1130603548
+long = -7850142274218314258
+float = 0.24059564
+P1 put 20 to CR1
+	P1 wait CB1
+C1 get 14 from CR1
+	C1 wait CB1
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+P2 put 21 to CR1
+	P2 open sem1
+	P2 wait sem2
+	C1 after CB1
+P1 put 22 to CR1
+	P1 wait CB1
+C2 set in CR2:
+bool = false
+int = 1340736373
+float = 0.096069396
+double = 0.22409789552053394
+	C2 wait CB2
+	C2 after CB2
+C2 get 15 from CR1
+C1 set in CR2:
+bool = true
+int = -1835723321
+long = -5232485825684652905
+float = 0.79355896
+C1 get 16 from CR1
+	C1 wait CB1
+	C1 after CB1
+C1 set in CR2:
+bool = true
+int = -744429075
+long = 390301707811027925
+float = 0.13395512
+C1 get 17 from CR1
+	C1 wait CB1
 	P3 after CB2
 	P1 after CB1
 	P1 open sem2
-P3 put 15
-P2 put 16
+	P1 wait sem1
+P1 put 24 to CR1
+	P1 wait CB1
+C2 set in CR2:
+bool = true
+int = 2114184861
+float = 0.8349688
+double = 0.4929922503191443
+	C2 wait CB2
+P3 put 23 to CR1
+	C1 after CB1
+P2 put 25 to CR1
 	P2 open sem1
 	P2 wait sem2
+	P1 after CB1
+	P1 open sem2
 	P1 wait sem1
-C2 get 7
-	C2 wait CB2
-	C1 after CB1
-P3 put 17
-C1 get 8
-	C1 wait CB1
-P1 put 18
+P1 put 26 to CR1
 	P1 wait CB1
+P2 put 27 to CR1
+	P2 open sem1
+	P2 wait sem2
+P3 set in CR2:
+bool = true
+int = -1985599544
+long = 5360418353577109547
+double = 0.8951619322442823
+	P3 wait CB2
+	P3 after CB2
+C1 set in CR2:
+bool = false
+int = -1560475019
+long = -763636088574963322
+float = 0.19184893
+C1 get 18 from CR1
+	C1 wait CB1
+P3 put 28 to CR1
+	C2 after CB2
 	P1 after CB1
 	P1 open sem2
 	P1 wait sem1
 	C1 after CB1
-C1 get 9
+P1 put 29 to CR1
+	P1 wait CB1
+C2 get 19 from CR1
+P3 set in CR2:
+bool = false
+int = -511949647
+long = 2296363802688252
+double = 0.5414473515094146
+	P3 wait CB2
+C1 set in CR2:
+bool = true
+int = 1370038542
+long = -1763047187873548916
+float = 0.06828523
+C1 get 20 from CR1
 	C1 wait CB1
-P3 put 19
+C2 set in CR2:
+bool = true
+int = -1508942024
+float = 0.09239185
+double = 0.3855463126863886
+	C2 wait CB2
+P2 put 30 to CR1
+	P2 open sem1
+	P2 wait sem2
+	P3 after CB2
+	C2 after CB2
+C2 get 21 from CR1
+	C1 after CB1
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+P1 put 31 to CR1
+	P1 wait CB1
+C2 set in CR2:
+bool = true
+int = 867293144
+float = 0.4439578
+double = 0.04802889313795733
+	C2 wait CB2
+C1 set in CR2:
+bool = false
+int = 2036219326
+long = -408240860145482949
+float = 0.1059953
+C1 get 22 from CR1
+	C1 wait CB1
+P3 put 32 to CR1
+P3 set in CR2:
+bool = false
+int = -1056822207
+long = 3536026245047871149
+double = 0.42398483855356817
+	P3 wait CB2
+	P3 after CB2
+	C2 after CB2
+P2 put 33 to CR1
+	P2 open sem1
+	P2 wait sem2
+C2 get 23 from CR1
+	C1 after CB1
+	P1 after CB1
+	P1 open sem2
+C2 set in CR2:
+bool = true
+int = -1664033652
+float = 0.6167702
+double = 0.1629270855555095
+	C2 wait CB2
+	P1 wait sem1
+C1 set in CR2:
+bool = false
+int = 1860541599
+long = 8098684810783363447
+float = 0.5596008
+C1 get 24 from CR1
+	C1 wait CB1
+P3 put 34 to CR1
+P3 set in CR2:
+bool = true
+int = -1950153006
+long = 8607520606025129655
+double = 0.8943982719927598
+	P3 wait CB2
+	P3 after CB2
+	C2 after CB2
+C2 get 25 from CR1
+P1 put 35 to CR1
+	P1 wait CB1
+C2 set in CR2:
+bool = true
+int = 1868668806
+float = 0.012203336
+double = 0.10072233368673322
+	P1 after CB1
+	P1 open sem2
+	P1 wait sem1
+	C2 wait CB2
+	C1 after CB1
+C1 set in CR2:
+bool = false
+int = -1845016289
+long = -8920096530476879045
+float = 0.27985686
+C1 get 26 from CR1
+	C1 wait CB1
+P3 put 36 to CR1
+P3 set in CR2:
+bool = false
+int = -1543095439
+long = 6900819084736123227
+double = 0.11473862643816046
+	P3 wait CB2
+	P3 after CB2
+	C2 after CB2
+P2 put 37 to CR1
+	P2 open sem1
+	P2 wait sem2
+C2 get 27 from CR1
+C2 set in CR2:
+bool = false
+int = -731050562
+float = 0.9058762
+double = 0.7413067650788474
+	C2 wait CB2
