@@ -1,6 +1,6 @@
 
-run: Dictionary.o BinTree.o TreeNode.o
-	g++ -o run Dictionary.o BinTree.o TreeNode.o
+laba3: Dictionary.o BinTree.o TreeNode.o
+	g++ -o laba3 Dictionary.o BinTree.o TreeNode.o
 
 Dictionary.o: Dictionary.cpp
 	g++ -c Dictionary.cpp

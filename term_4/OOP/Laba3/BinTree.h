@@ -16,6 +16,6 @@ public:
 
 private:
 	void recAdd(Node* cur, Node* elem);
-	Node* findRem(Node* cur, string eng, Node &perent);
+	Node* findRem(Node* cur, string eng, Node **perent);
 	Node* min(Node* cur, Node **parent);	
 };
