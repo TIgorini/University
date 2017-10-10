@@ -1,0 +1,53 @@
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="top_left" hgap="10"  vgap="15" >
+
+    <padding><Insets top="25" right="25" left="10" bottom="10"/></padding>
+
+    <GridPane alignment="top_left" vgap="8" hgap="20" GridPane.rowIndex="0" GridPane.columnIndex="0" >
+        <Text text="Line algorithms:" GridPane.rowIndex="0"/>
+        <Button text="DDA" onAction="#lineDDA" GridPane.rowIndex="1"/>
+        <Button text="Bresenham`s" onAction="#lineBres" GridPane.rowIndex="2"/>
+        <Button text="Wu`s" onAction="#lineWu" GridPane.rowIndex="3"/>
+        <Text fx:id="timeBres" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Text fx:id="timeDDA" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Text fx:id="timeWu" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <Label text="(" prefHeight="25"/>  <TextField fx:id="xstart" text="0" prefWidth="45"/>
+        <Label text="," prefHeight="25"/>  <TextField fx:id="ystart" text="0" prefWidth="45"/>
+        <Label text=") to (" prefHeight="25"/>  <TextField fx:id="xend" text="500" prefWidth="45"/>
+        <Label text="," prefHeight="25"/>  <TextField fx:id="yend" text="400" prefWidth="45"/>
+        <Label text=")" prefHeight="25"/>
+    </HBox>
+
+    <GridPane alignment="top_left" vgap="8" hgap="15" GridPane.rowIndex="3" GridPane.columnIndex="0">
+        <Text text="Circle algorithms:"/>
+        <Button text="Bresenham`s" onAction="#cirBres" GridPane.rowIndex="1"/>
+        <Button text="Noname" onAction="#cirNo" GridPane.rowIndex="2"/>
+        <Text fx:id="timeCirBres" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox GridPane.rowIndex="4" GridPane.columnIndex="0">
+        <Label text="(" prefHeight="25"/>  <TextField fx:id="xcenter" text="250" prefWidth="45"/>
+        <Label text="," prefHeight="25"/>  <TextField fx:id="ycenter" text="200" prefWidth="45"/>
+        <Label text=")  R = " prefHeight="25"/>
+        <TextField fx:id="radius" text="100" prefWidth="80" prefHeight="20"/>
+    </HBox>
+
+    <HBox GridPane.rowIndex="6" spacing="10">
+        <Button text="Test all" onAction="#timeTest"/>
+        <Button text="Clear" onAction="#clear"/>
+    </HBox>
+
+
+    <Canvas fx:id="canvas" width="500" height="400"
+            GridPane.columnIndex="2" GridPane.columnSpan="8"
+            GridPane.rowIndex="0" GridPane.rowSpan="8"/>
+</GridPane>
