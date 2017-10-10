@@ -211,32 +211,32 @@ public class Controller {
         try {
             x0 = Math.round(Float.parseFloat(xcenter.getText()));
             y0 = Math.round(Float.parseFloat(ycenter.getText()));
-            r = Math.round(Float.parseFloat(radius.getText()));
+            r = Float.parseFloat(radius.getText());
         }catch (Exception e){
             x0 = 0; y0 = 0;
         }
 
         int x = 0;
         int y = Math.round(r);
-        int delta = 1 - 2*y;
+        int delta = 1 - (y << 1);
         int err;
         while (y > 0){
-            pw.setArgb(x0 + x, y0 + y, 0xFF000000);
-            pw.setArgb(x0 + x, y0 - y, 0xFF000000);
-            pw.setArgb(x0 - x, y0 + y, 0xFF000000);
-            pw.setArgb(x0 - x, y0 - y, 0xFF000000);
-            err = 2*(delta + y) - 1;
+            pw.setColor(x0 + x, y0 + y, Color.color(0, 0, 0, 1.0));
+            pw.setColor(x0 + x, y0 - y, Color.color(0, 0, 0, 1.0));
+            pw.setColor(x0 - x, y0 + y, Color.color(0, 0, 0, 1.0));
+            pw.setColor(x0 - x, y0 - y, Color.color(0, 0, 0, 1.0));
+            err = ((delta + y) << 1) - 1;
             if ((delta < 0) && (err <= 0)){
-                delta += 2*(++x) + 2;
+                delta += ((++x) << 1) + 2;
                 continue;
             }
-            err = 2*(delta - x) - 1;
+            err = ((delta - x) << 1) - 1;
             if ((delta > 0) && (err > 0)){
-                delta += 1 - 2*(--y);
+                delta += 1 - ((--y) << 1);
                 continue;
             }
             x++;
-            delta += 2*(x - y);
+            delta += (x - y) << 1;
             y--;
         }
 
