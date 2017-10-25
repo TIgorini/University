@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="pane" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.111"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+
+    <GridPane alignment="top_left" hgap="20" layoutX="14.0" layoutY="25.0" vgap="8">
+        <Text text="Cornering" GridPane.rowIndex="0" />
+        <Slider fx:id="cornering" majorTickUnit="90.0" max="360.0" onMouseReleased="#lineCornering"
+                prefHeight="16.0" prefWidth="125.0" showTickLabels="true" GridPane.rowIndex="1" />
+        <Text text="Scaling" GridPane.rowIndex="3" />
+        <Slider fx:id="scaling" majorTickUnit="1.0" max="4.0" onMouseReleased="#lineScaling"
+                prefHeight="16.0" prefWidth="125.0" showTickLabels="true" value="1.0" GridPane.rowIndex="4" />
+        <Text text="Shift" GridPane.rowIndex="6" />
+        <GridPane hgap="10" vgap="5" GridPane.rowIndex="7">
+            <Text text="dx" />
+            <TextField fx:id="dx" prefWidth="60" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text text="dy" GridPane.rowIndex="1" />
+            <TextField fx:id="dy" prefWidth="60" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button onAction="#lineShift" text="Shift" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        </GridPane>
+        <Button onAction="#lineReflect" text="Reflection" GridPane.rowIndex="10" />
+
+        <HBox spacing="17" GridPane.rowIndex="13">
+            <Button onAction="#draw" text="Draw" />
+            <Button onAction="#clear" text="Clear" />
+        </HBox>
+    </GridPane>
+
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="168.0" layoutY="25.0"
+               stroke="BLACK" strokeType="INSIDE" width="550.0" />
+
+    <Canvas fx:id="canvas" height="450.0" layoutX="168.0" layoutY="25.0" onDragDone="#lineCornering"
+            onMouseClicked="#putDot" width="550.0" />
+</Pane>
