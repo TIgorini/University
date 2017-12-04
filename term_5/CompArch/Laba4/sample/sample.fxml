@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+
+    <Line fx:id="out01" endX="45.0" layoutX="411.0" layoutY="170.0" strokeWidth="2.0" />
+    <Line fx:id="ready" endX="145.0" layoutX="411.0" layoutY="128.0" strokeWidth="2.0" />
+    <Text layoutX="463.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready" />
+    <Text layoutX="547.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control" />
+
+    <Pane layoutX="28.0" layoutY="74.0" prefHeight="168.0" prefWidth="102.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="168.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
+        <Text layoutX="39.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU" />
+    </Pane>
+
+    <Pane layoutX="555.0" layoutY="70.0" prefHeight="168.0" prefWidth="118.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="168.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
+        <Circle fx:id="lamp" fill="WHITE" layoutX="58.0" layoutY="81.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
+        <Line endX="95.0" endY="-6.0" layoutX="-22.0" layoutY="71.0" startX="65.0" startY="30.0" />
+        <Button layoutX="5.0" layoutY="134.0" mnemonicParsing="false" onAction="#startSignal" prefHeight="26.0" prefWidth="51.0" text="Start" />
+        <Button layoutX="62.0" layoutY="134.0" mnemonicParsing="false" onAction="#stopSignal" prefHeight="26.0" prefWidth="51.0" text="Stop" />
+        <Line endX="95.0" endY="-6.0" layoutX="-23.0" layoutY="69.0" rotate="97.6" startX="65.0" startY="30.0" />
+        <Text layoutX="46.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OBJ" />
+    </Pane>
+
+    <Pane layoutX="286.0" layoutY="74.0" prefHeight="191.0" prefWidth="126.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="191.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+        <Text layoutX="53.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPI" />
+        <Text layoutX="45.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I8255" />
+        <Text layoutX="9.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
+        <Text layoutX="85.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC(0)" />
+        <Text layoutX="87.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC(5)" />
+        <Text layoutX="4.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WR" />
+        <Text layoutX="5.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RD" />
+        <Text layoutX="5.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A1" />
+        <Text layoutX="5.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A0" />
+        <Text layoutX="5.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CS1" />
+        <Line endX="-78.0" layoutX="105.0" layoutY="170.0" startX="-100.0" strokeWidth="2.0" />
+        <Line endX="-82.0" layoutX="105.0" layoutY="75.0" startX="-100.0" strokeWidth="2.0" />
+        <Line endX="-82.0" layoutX="105.0" layoutY="46.0" startX="-100.0" strokeWidth="2.0" />
+        <Text layoutX="87.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC(4)" />
+        <Text layoutX="85.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC(1)" />
+      <Text layoutX="85.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC(2)" />
+    </Pane>
+
+    <Pane layoutX="190.0" layoutY="213.0" prefHeight="97.0" prefWidth="37.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="37.0" />
+        <Text layoutX="9.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DC" />
+    </Pane>
+
+    <Line endX="55.0" layoutX="231.0" layoutY="98.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="55.0" layoutX="231.0" layoutY="131.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="55.0" layoutX="231.0" layoutY="184.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-75.0" layoutX="362.0" layoutY="155.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-65.0" layoutX="350.0" layoutY="209.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="304.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="269.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="288.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="216.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="251.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="247.0" layoutY="234.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="218.0" layoutX="79.0" layoutY="335.0" rotate="90.0" startX="-85.0" strokeWidth="2.0" />
+    <Line endX="-335.0" layoutX="479.0" layoutY="249.0" rotate="90.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-335.0" layoutX="467.0" layoutY="302.0" rotate="90.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-45.0" layoutX="332.0" layoutY="253.0" startX="-105.0" strokeWidth="2.0" />
+    <Text layoutX="199.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DB" />
+    <Text layoutX="200.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CB" />
+    <Text layoutX="200.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AB" />
+    <Text layoutX="160.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A2" />
+    <Text layoutX="160.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A3" />
+    <Text layoutX="160.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A4" />
+    <Text layoutX="160.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A5" />
+    <Text layoutX="160.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A6" />
+    <Text layoutX="160.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A7" />
+    <Pane layoutX="286.0" layoutY="287.0" prefHeight="191.0" prefWidth="126.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="191.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+        <Text layoutX="53.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PT" />
+        <Text layoutX="45.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I8253" />
+        <Text layoutX="9.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
+        <Text layoutX="61.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gate Сч0" />
+        <Text layoutX="65.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Out Сч0" />
+        <Text layoutX="4.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WR" />
+        <Text layoutX="5.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RD" />
+        <Text layoutX="5.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A1" />
+        <Text layoutX="5.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A0" />
+        <Text layoutX="5.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CS2" />
+        <Line endX="-78.0" layoutX="105.0" layoutY="170.0" startX="-100.0" strokeWidth="2.0" />
+        <Line endX="-82.0" layoutX="105.0" layoutY="75.0" startX="-100.0" strokeWidth="2.0" />
+        <Line endX="-82.0" layoutX="105.0" layoutY="46.0" startX="-100.0" strokeWidth="2.0" />
+        <Text layoutX="61.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gate Сч1" />
+        <Text layoutX="65.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Out Сч1" />
+    </Pane>
+    <Pane layoutX="189.0" layoutY="396.0" prefHeight="97.0" prefWidth="37.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="37.0" />
+        <Text layoutX="9.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DC" />
+    </Pane>
+    <Line endX="-57.0" layoutX="246.0" layoutY="487.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="246.0" layoutY="452.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="246.0" layoutY="471.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="246.0" layoutY="399.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="246.0" layoutY="434.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-57.0" layoutX="246.0" layoutY="417.0" startX="-100.0" strokeWidth="2.0" />
+    <Text layoutX="159.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A2" />
+    <Text layoutX="159.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A3" />
+    <Text layoutX="159.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A4" />
+    <Text layoutX="159.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A5" />
+    <Text layoutX="159.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A6" />
+    <Text layoutX="159.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A7" />
+    <Line endX="-45.0" layoutX="332.0" layoutY="467.0" startX="-105.0" strokeWidth="2.0" />
+    <Line endX="-75.0" layoutX="361.0" layoutY="343.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-75.0" layoutX="361.0" layoutY="368.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-65.0" layoutX="350.0" layoutY="396.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-65.0" layoutX="350.0" layoutY="420.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-315.0" layoutX="443.0" layoutY="206.0" rotate="90.0" startX="-100.0" strokeWidth="2.0" />
+    <Line endX="-55.0" layoutX="341.0" layoutY="314.0" startX="-105.0" strokeWidth="2.0" />
+    <Line fx:id="gate01" endX="-80.0" layoutX="513.0" layoutY="240.0" startX="-100.0" strokeWidth="2.0" />
+    <Line fx:id="gate03" endX="-80.0" layoutX="512.0" layoutY="353.0" startX="-100.0" strokeWidth="2.0" />
+    <Line fx:id="gate11" endX="32.0" layoutX="412.0" layoutY="216.0" strokeWidth="2.0" />
+    <Line fx:id="gate02" endX="112.0" layoutX="377.0" layoutY="296.0" rotate="90.0" strokeWidth="2.0" />
+    <Line fx:id="gate12" endX="155.0" layoutX="367.0" layoutY="293.0" rotate="90.0" strokeWidth="2.0" />
+    <Circle layoutX="249.0" layoutY="395.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="262.0" layoutY="131.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="235.0" layoutY="99.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="146.0" layoutY="185.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="249.0" layoutY="184.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="262.0" layoutY="155.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="262.0" layoutY="343.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+    <Circle layoutX="249.0" layoutY="209.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="492.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="561.0" layoutY="410.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+   <Line fx:id="gate13" endX="32.0" layoutX="411.0" layoutY="371.0" strokeWidth="2.0" />
+   <Line fx:id="out03" endX="80.0" layoutX="411.0" layoutY="427.0" strokeWidth="2.0" />
+   <Line fx:id="out13" endX="150.0" layoutX="411.0" layoutY="451.0" strokeWidth="2.0" />
+   <Line fx:id="neout0" endX="32.0" layoutX="528.0" layoutY="426.0" strokeWidth="2.0" />
+   <Line fx:id="out11" endX="60.0" layoutX="412.0" layoutY="150.0" strokeWidth="2.0" />
+   <Line fx:id="out02" endX="173.0" layoutX="412.0" layoutY="299.0" rotate="90.0" startX="-85.0" strokeWidth="2.0" />
+   <Line fx:id="out12" endX="215.0" layoutX="407.0" layoutY="301.0" rotate="90.0" startX="-85.0" strokeWidth="2.0" />
+   <Circle fx:id="outp0" layoutX="456.0" layoutY="427.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+   <Circle fx:id="outp1" layoutX="472.0" layoutY="451.0" radius="2.5" stroke="BLACK" strokeType="INSIDE" />
+   <Circle fill="WHITE" layoutX="526.0" layoutY="426.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+   <Text layoutX="510.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+   <Text layoutX="579.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+   <Line fx:id="control1" endX="45.0" layoutX="596.0" layoutY="438.0" strokeWidth="2.0" />
+   <Line fx:id="control2" endX="75.0" layoutX="604.0" layoutY="400.0" rotate="90.0" strokeWidth="2.0" />
+   <Line fx:id="control3" endX="130.0" layoutX="511.0" layoutY="362.0" strokeWidth="2.0" />
+   <Line fx:id="control4" endX="-200.0" layoutX="611.0" layoutY="262.0" rotate="90.0" strokeWidth="2.0" />
+   <Line fx:id="control5" endX="45.0" layoutX="511.0" layoutY="161.0" strokeWidth="2.0" />
+
+</Pane>
