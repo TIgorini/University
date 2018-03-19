@@ -21,7 +21,7 @@ class Symbol:
 		self.col = 0
 
 	def get(self, file):
-		self.val = file.read(1)
+		self.val = file.read(1).upper()
 		if self.val:
 			self.attr = attributes[ord(self.val)]
 			self.col += 1
@@ -96,11 +96,17 @@ def scan(fname):
 					config.identifires[buf] = lex_code
 			# numbers
 			elif symbol.attr == 2:
-				while symbol.val and symbol.attr == 2:
+				err_idn = False
+				while symbol.val and symbol.attr != 0:
+					if (symbol.attr != 2):
+						err_idn = True 
 					buf += symbol.val
 					symbol.get(f)
 
-				if buf in config.consts:
+				if err_idn:
+					skiping = True
+					print("Lexer: Error (line: {}, column: {}): invalid identifier '{}'".format(lex_line, lex_col, buf))
+				elif buf in config.consts:
 					lex_code = config.consts[buf]
 				elif config.consts:
 					lex_code = max(config.consts.values()) + 1
@@ -129,7 +135,7 @@ def scan(fname):
 				symbol.get(f)
 				skiping = True
 				if symbol.val == '' or symbol.val != '*':
-					print("Lexer: Error (line: {}, column: {}): invalid character '('".format(lex_line, lex_col))
+					print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(lex_line, lex_col, symbol.val))
 				else:
 					symbol.get(f)
 					if symbol.val == '':

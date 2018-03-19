@@ -1,11 +1,10 @@
-PROGRAM TT1;
+PROGRAM FT1;
 
 VAR REAL: FLOAT;
     NATURAL: INTEGER;
 
 BEGIN
     WHILE NATURAL <= 10 DO
-        (***do somthing large
-			  large****)
+        (***do somthing...
     ENDWHILE;
 END.
