@@ -55,6 +55,8 @@ def fill_attributes(attr):
 	# 5 - character '('
 	attr[40] = 5
 
+def witespace(symbol):
+	
 
 def scan(fname):
 	fill_attributes(attributes)
