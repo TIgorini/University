@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vincent van Gogh porfolio</title>
+	<link type="text/css" rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body>
+	<div class="header">
+		<div class="author-name">Vincent van Gogh</div>
+		<div class="header-subj">& his portfolio</div>
+	</div>
+
+	<div id="menu" class="menu">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Gallery</a></li>
+			<li><a href="#">About</a></li>
+		</ul>
+	</div>
+	
+	<script>
+		window.onscroll = function() {scrolling_down()};
+
+		function scrolling_down() {
+    		if (document.body.scrollTop > 75 || document.documentElement.scrollTop > 75) {
+        		document.getElementById("menu").className = "menu-fixed";
+    		} else {
+        		document.getElementById("menu").className = "menu";
+    		}
+		}
+	</script>
+
+	<div class="primary">
+		<div class="content">
+			<div></div>
+			<div class="gallery">
+				<div class="picture-block">
+					<div class="image">					
+						<img src="img/Starry_Night.jpg"></img>
+						<div class="black-back"></div>
+						<a href="img/Starry_Night.jpg"></a>				
+					</div>
+					<h4>Starry Night</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">
+						<img src="img/Starry_Night_over_the_Rhone.jpg"/>
+						<a href="img/Starry_Night_over_the_Rhone.jpg"></a>
+					</div>
+					<h4>Starry Night over the Rhone</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">				
+						<img src="img/Sunflowers.jpg"/>
+						<a href="img/Sunflowers.jpg"></a>
+					</div>					
+					<h4>Sunflowers</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">					
+						<img src="img/Self_Portrait.jpg"></img>
+						<a href="img/Self_Portrait.jpg"></a>				
+					</div>
+					<h4>Self Portrait</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">
+						<img src="img/Wheatfield_with_crows.jpg"/>
+						<a href="img/Wheatfield_with_crows.jpg"></a>
+					</div>
+					<h4>Wheatfield with crows</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">					
+						<img src="img/The_Church_at_Auvers.jpg"></img>
+						<a href="img/The_Church_at_Auvers.jpg"></a>				
+					</div>
+					<h4>The Church at Auvers</h4>
+				</div>
+				<div class="picture-block">
+					<div class="image">					
+						<img src="img/Fishing_Boats_on_the_Beach_at_Saintes-Maries.jpg"></img>
+						<a href="img/Fishing_Boats_on_the_Beach_at_Saintes-Maries.jpg"></a>				
+					</div>
+					<h4>Fishing Boats on the Beach at Saintes-Maries</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="left-panel">
+			<div class="links">
+				<h3>Useful links:</h3>
+				<a href="https://www.vangoghgallery.com/">Van Gogh Gallery</a>
+				<a href="https://www.biography.com/people/vincent-van-gogh-9515695">Biography</a>
+				<a href="http://www.imdb.com/title/tt3262342/">Film</a>
+				<a href="https://www.facebook.com/vincentwillemvangogh/">Facebook</a>
+				<a href="http://kpi.ua/en">KPI</a>
+			</div>
+		</div>
+	</div>
+
+	<footer class="site-footer">
+		<div class="footer-text">Made by: Tymoshenko Igor, KV-51</div>
+		<div class="contacts">Contacts: mr7igrik@gmail.com</div>
+	</footer>		
+</body>
+</html>

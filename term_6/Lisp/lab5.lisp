@@ -5,5 +5,5 @@
 	) 
 )
 
-(print (f8 `(a b c d e f g h) 8))
+(print (f8 `(a b c d e f g h) 2))
 (terpri)

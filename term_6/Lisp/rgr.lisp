@@ -11,7 +11,10 @@
 )
 
 (defun f(i)
-	(cond ((< i 1) nil)
+	(cond
+		((not (numberp i)) nil)
+		((/= (mod i 1) 0) nil)
+		((< i 1) nil)
 		((< i 10) (f1 i))
 		((< i 21) (f2 i))
 		(T nil)
@@ -19,11 +22,13 @@
 )
 
 ;tests
-(print (f -5))
+(print (f `(a b c 1)))
+(print (f 5.5))
 (print (f 1))
 (print (f 3))
 ;(print (- 3 (sin (+ (- 2 (sin (+ 1 2))) 3))))	
 (print (f 10))
 (print (f 12))
+;(print (* 4 (cos (* 4 (cos (log 11)) (log 12)))))
 (print (f 21))
 (terpri)
