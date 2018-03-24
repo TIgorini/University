@@ -55,12 +55,126 @@ def fill_attributes(attr):
 	# 5 - character '('
 	attr[40] = 5
 
-def witespace(symbol):
-	
+
+def whitespace(symbol, file):
+	while symbol.val and symbol.attr == 0:
+		symbol.get(file)
+	return {'skip':True}
+
+def ident(symbol, file):
+	line = symbol.line
+	col = symbol.col
+	buf = ''
+	while symbol.val and (symbol.attr == 1 or symbol.attr == 2):
+		buf += symbol.val
+		symbol.get(file)
+
+	if buf in config.keywords:
+		code = config.keywords[buf]
+	elif buf in config.identifires:
+		code = config.identifires[buf]
+	elif config.identifires:
+		code = max(config.identifires.values()) + 1
+		config.identifires[buf] = code
+	else:
+		code = 1001
+		config.identifires[buf] = code
+
+	return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':False}
+
+def number(symbol, file):
+	err_idn = False
+	line = symbol.line
+	col = symbol.col
+	buf = ''
+	skiping = False
+	while symbol.val and symbol.attr != 0:
+		if (symbol.attr != 2):
+			err_idn = True 
+		buf += symbol.val
+		symbol.get(file)
+	if err_idn:
+		skiping = True
+		print("Lexer: Error (line: {}, column: {}): invalid identifier '{}'".format(line, col, buf))
+	elif buf in config.consts:
+		code = config.consts[buf]
+	elif config.consts:
+		code = max(config.consts.values()) + 1
+		config.consts[buf] = code
+	else:
+		code = 501
+		config.consts[buf] = code
+
+	return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':skiping}
+
+def mult_delim(symbol, file):
+	line = symbol.line
+	col = symbol.col
+	buf = symbol.val
+	symbol.get(file)
+	buf += symbol.val
+	if buf in config.mult_delims:
+		code = config.mult_delims[buf]
+		symbol.get(file)
+	else:
+		buf = buf[0]
+		code = ord(buf)
+
+	return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':False}
+
+def delim(symbol, file):
+	line = symbol.line
+	col = symbol.col
+	buf = symbol.val
+	code = ord(buf)
+	symbol.get(file)
+	return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':False}
+
+def comment(symbol, file):
+	line = symbol.line
+	col = symbol.col
+	symbol.get(file)
+	skiping = True
+	if symbol.val == '' or symbol.val != '*':
+		print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(line, col, symbol.val))
+	else:
+		symbol.get(file)
+		if symbol.val == '':
+			print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
+		else:
+			symbol.get(file)
+			while True:
+				while symbol.val and symbol.val != '*':
+					symbol.get(file)
+				if symbol.val == '':
+					print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
+					break
+				else:
+					symbol.get(file)
+				if symbol.val == ')':
+					symbol.get(file)
+					break
+	return {'skip':True}
+
+def illegal(symbol, file):
+	print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(symbol.line, symbol.col, symbol.val))	
+	symbol.get(file)
+	return {'skip':True}
+
+lexeme_type = {
+	0: whitespace,
+	1: ident,
+	2: number,
+	3: mult_delim,
+	4: delim,
+	5: comment,
+	6: illegal,
+} 
+
 
 def scan(fname):
 	fill_attributes(attributes)
-	
+
 	try:
 		f = open(fname, 'r')
 	except OSError:
@@ -69,98 +183,7 @@ def scan(fname):
 		symbol = Symbol()
 		symbol.get(f)
 		while symbol.val:
-			lex_code = 0
-			lex_line = symbol.line
-			lex_col = symbol.col
-			buf = ''
-			skiping = False
-			
-			# whitespace
-			if symbol.attr == 0:
-				while symbol.val and symbol.attr == 0:
-					symbol.get(f)
-				skiping = True
-			# identifiers
-			elif symbol.attr == 1:
-				while symbol.val and (symbol.attr == 1 or symbol.attr == 2):
-					buf += symbol.val
-					symbol.get(f)
-
-				if buf in config.keywords:
-					lex_code = config.keywords[buf]
-				elif buf in config.identifires:
-					lex_code = config.identifires[buf]
-				elif config.identifires:
-					lex_code = max(config.identifires.values()) + 1
-					config.identifires[buf] = lex_code
-				else:
-					lex_code = 1001
-					config.identifires[buf] = lex_code
-			# numbers
-			elif symbol.attr == 2:
-				err_idn = False
-				while symbol.val and symbol.attr != 0:
-					if (symbol.attr != 2):
-						err_idn = True 
-					buf += symbol.val
-					symbol.get(f)
-
-				if err_idn:
-					skiping = True
-					print("Lexer: Error (line: {}, column: {}): invalid identifier '{}'".format(lex_line, lex_col, buf))
-				elif buf in config.consts:
-					lex_code = config.consts[buf]
-				elif config.consts:
-					lex_code = max(config.consts.values()) + 1
-					config.consts[buf] = lex_code
-				else:
-					lex_code = 501
-					config.consts[buf] = lex_code
-			# multi-character delimiters
-			elif symbol.attr == 3:
-				buf += symbol.val
-				symbol.get(f)
-				buf += symbol.val
-				if buf in config.mult_delims:
-					lex_code = config.mult_delims[buf]
-					symbol.get(f)
-				else:
-					buf = buf[0]
-					lex_code = ord(buf)
-			# delimiters
-			elif symbol.attr == 4:
-				buf = symbol.val
-				lex_code = ord(buf)
-				symbol.get(f)
-			# comment
-			elif symbol.attr == 5:
-				symbol.get(f)
-				skiping = True
-				if symbol.val == '' or symbol.val != '*':
-					print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(lex_line, lex_col, symbol.val))
-				else:
-					symbol.get(f)
-					if symbol.val == '':
-						print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(lex_line, lex_col))
-					else:
-						symbol.get(f)
-						while True:
-							while symbol.val and symbol.val != '*':
-								symbol.get(f)
-							if symbol.val == '':
-								print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(lex_line, lex_col))
-								break
-							else:
-								symbol.get(f)
-							if symbol.val == ')':
-								symbol.get(f)
-								break
-			# illegal character
-			else:
-				print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(lex_line, lex_col, symbol.val))	
-				symbol.get(f)
-				skiping = True
-
-			if not skiping:
-				config.lexemes.append(Lexeme(lex_code, lex_line, lex_col, buf))	
+			lex = lexeme_type[symbol.attr](symbol, f)
+			if not lex['skip']:
+				config.lexemes.append(Lexeme(lex['code'], lex['line'], lex['col'], lex['val']))	
 		f.close()
