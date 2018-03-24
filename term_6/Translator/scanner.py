@@ -20,7 +20,7 @@ class Symbol:
 		self.line = 1
 		self.col = 0
 
-	def get(self, file):
+	def read(self, file):
 		self.val = file.read(1).upper()
 		if self.val:
 			self.attr = attributes[ord(self.val)]
@@ -58,7 +58,7 @@ def fill_attributes(attr):
 
 def whitespace(symbol, file):
 	while symbol.val and symbol.attr == 0:
-		symbol.get(file)
+		symbol.read(file)
 	return {'skip':True}
 
 def ident(symbol, file):
@@ -67,7 +67,7 @@ def ident(symbol, file):
 	buf = ''
 	while symbol.val and (symbol.attr == 1 or symbol.attr == 2):
 		buf += symbol.val
-		symbol.get(file)
+		symbol.read(file)
 
 	if buf in config.keywords:
 		code = config.keywords[buf]
@@ -92,10 +92,10 @@ def number(symbol, file):
 		if (symbol.attr != 2):
 			err_idn = True 
 		buf += symbol.val
-		symbol.get(file)
+		symbol.read(file)
 	if err_idn:
-		skiping = True
 		print("Lexer: Error (line: {}, column: {}): invalid identifier '{}'".format(line, col, buf))
+		return {'skip':True}
 	elif buf in config.consts:
 		code = config.consts[buf]
 	elif config.consts:
@@ -111,11 +111,11 @@ def mult_delim(symbol, file):
 	line = symbol.line
 	col = symbol.col
 	buf = symbol.val
-	symbol.get(file)
+	symbol.read(file)
 	buf += symbol.val
 	if buf in config.mult_delims:
 		code = config.mult_delims[buf]
-		symbol.get(file)
+		symbol.read(file)
 	else:
 		buf = buf[0]
 		code = ord(buf)
@@ -127,38 +127,37 @@ def delim(symbol, file):
 	col = symbol.col
 	buf = symbol.val
 	code = ord(buf)
-	symbol.get(file)
+	symbol.read(file)
 	return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':False}
 
 def comment(symbol, file):
 	line = symbol.line
 	col = symbol.col
-	symbol.get(file)
+	symbol.read(file)
 	skiping = True
 	if symbol.val == '' or symbol.val != '*':
 		print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(line, col, symbol.val))
 	else:
-		symbol.get(file)
+		symbol.read(file)
 		if symbol.val == '':
 			print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
 		else:
-			symbol.get(file)
 			while True:
 				while symbol.val and symbol.val != '*':
-					symbol.get(file)
+					symbol.read(file)
 				if symbol.val == '':
 					print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
 					break
 				else:
-					symbol.get(file)
+					symbol.read(file)
 				if symbol.val == ')':
-					symbol.get(file)
+					symbol.read(file)
 					break
 	return {'skip':True}
 
 def illegal(symbol, file):
 	print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(symbol.line, symbol.col, symbol.val))	
-	symbol.get(file)
+	symbol.read(file)
 	return {'skip':True}
 
 lexeme_type = {
@@ -181,7 +180,7 @@ def scan(fname):
 		print('Couldn`t open this file')
 	else:
 		symbol = Symbol()
-		symbol.get(f)
+		symbol.read(f)
 		while symbol.val:
 			lex = lexeme_type[symbol.attr](symbol, f)
 			if not lex['skip']:
