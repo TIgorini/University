@@ -94,7 +94,7 @@ def number(symbol, file):
 		buf += symbol.val
 		symbol.read(file)
 	if err_idn:
-		print("Lexer: Error (line: {}, column: {}): invalid identifier '{}'".format(line, col, buf))
+		config.err_stack.append(config.errors['lexical']['invalid_ident'].format(line, col, buf))
 		return {'skip':True}
 	elif buf in config.consts:
 		code = config.consts[buf]
@@ -136,17 +136,17 @@ def comment(symbol, file):
 	symbol.read(file)
 	skiping = True
 	if symbol.val == '' or symbol.val != '*':
-		print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(line, col, symbol.val))
+		config.err_stack.append(config.errors['lexical']['invalid_char'].format(line, col, symbol.val))
 	else:
 		symbol.read(file)
 		if symbol.val == '':
-			print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
+			config.err_stack.append(config.errors['lexical']['unclosed_comment'].format(line, col))
 		else:
 			while True:
 				while symbol.val and symbol.val != '*':
 					symbol.read(file)
 				if symbol.val == '':
-					print("Lexer: Error (line: {}, column: {}): *) expected, but end of file found".format(line, col))
+					config.err_stack.append(config.errors['lexical']['unclosed_comment'].format(line, col))
 					break
 				else:
 					symbol.read(file)
@@ -156,7 +156,7 @@ def comment(symbol, file):
 	return {'skip':True}
 
 def illegal(symbol, file):
-	print("Lexer: Error (line: {}, column: {}): invalid character '{}'".format(symbol.line, symbol.col, symbol.val))	
+	config.err_stack.append(config.errors['lexical']['invalid_char'].format(symbol.line, symbol.col, symbol.val))	
 	symbol.read(file)
 	return {'skip':True}
 
