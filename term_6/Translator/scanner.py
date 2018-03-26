@@ -88,7 +88,7 @@ def number(symbol, file):
 	col = symbol.col
 	buf = ''
 	skiping = False
-	while symbol.val and symbol.attr != 0:
+	while symbol.val and (symbol.attr == 1 or symbol.attr == 2):
 		if (symbol.attr != 2):
 			err_idn = True 
 		buf += symbol.val
