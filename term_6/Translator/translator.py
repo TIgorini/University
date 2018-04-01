@@ -8,7 +8,7 @@ from scanner import scan
 if len(sys.argv) > 1:
 	scan(sys.argv[1])
 else:
-	scan('true_test1.sig')
+	scan('tests/true_test1.sig')
 
 print(' line  col   code  value')
 print('-----------------------------')
