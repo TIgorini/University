@@ -1,2 +1,2 @@
-# KPI-Labs
-Repository with my good for nothing labs 
+# My university labs
+Repository stores my labs from university  
