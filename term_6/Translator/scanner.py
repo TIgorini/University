@@ -6,7 +6,7 @@ attributes = []
 
 
 class Lexeme:
-	def __init__(self, code, line, col, value):
+	def __init__(self, code=0, line=0, col=0, value=''):
 		self.value = value
 		self.code = code
 		self.line = line

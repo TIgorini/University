@@ -37,13 +37,16 @@ consts = {}
 # Table of identifires
 identifires = {}
 
-
-
 errors = {
 	'lexical': {
 		'invalid_ident': "Lexer: Error (line: {}, column: {}): invalid identifier '{}'",
 		'invalid_char': "Lexer: Error (line: {}, column: {}): invalid character '{}'",
 		'unclosed_comment': "Lexer: Error (line: {}, column: {}): *) expected, but end of file found",
+	},
+	'syntax': {
+		'keyword_expected': "Parser: Error (line: {}, column: {}): keyword '{}' expected, but '{}' found",
+		'delim_expected': "Parser: Error (line: {}, column: {}): '{}' expected",
+		'something_expected': "Parser: Error (line: {}, column: {}): {} expected",
 	},
 }
 

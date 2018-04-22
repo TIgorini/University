@@ -1,11 +1,12 @@
-PROGRAM TT1;
+program 0tt1;
 
-VAR REAL: FLOAT;
-    NATURAL: INTEGER;
+var real: float;
+    natural: integer;
 
-BEGIN
-    WHILE NATURAL <= 10 DO
-        (***do somthing large
-			  large****)
-    ENDWHILE;
-END.
+begin
+    while natural <= 10 do
+    	while 1500 > 30 do
+        	(*do somthing*)
+        endwhile;
+    endwhile;
+end.

@@ -3,6 +3,7 @@
 import sys
 import config
 from scanner import scan
+from parser import parse
 
 
 if len(sys.argv) > 1:
@@ -10,11 +11,12 @@ if len(sys.argv) > 1:
 else:
 	scan('tests/true_test1.sig')
 
-print(' line  col   code  value')
-print('-----------------------------')
-for lexeme in config.lexemes:
-	print('   {:<4}{:<6}{:<6}{}'.format(lexeme.line, lexeme.col, lexeme.code, lexeme.value))
+# print(' line  col   code  value')
+# print('-----------------------------')
+# for lexeme in config.lexemes:
+# 	print('   {:<4}{:<6}{:<6}{}'.format(lexeme.line, lexeme.col, lexeme.code, lexeme.value))
 
+parse()
 for err in config.err_stack:
 	print(err)
 
