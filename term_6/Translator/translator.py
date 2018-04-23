@@ -14,9 +14,12 @@ else:
 # print(' line  col   code  value')
 # print('-----------------------------')
 # for lexeme in config.lexemes:
-# 	print('   {:<4}{:<6}{:<6}{}'.format(lexeme.line, lexeme.col, lexeme.code, lexeme.value))
+# 	print('   {:<4}{:<6}{:<6}{}'\
+#		.format(lexeme.line, lexeme.col, lexeme.code, lexeme.value))
 
 parse()
+
+config.parse_tree.beautiful_print()
 for err in config.err_stack:
 	print(err)
 

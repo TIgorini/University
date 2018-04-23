@@ -20,6 +20,7 @@ class Symbol:
 		self.line = 1
 		self.col = 0
 
+
 	def read(self, file):
 		self.val = file.read(1).upper()
 		if self.val:

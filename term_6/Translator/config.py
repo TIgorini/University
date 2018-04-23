@@ -1,6 +1,9 @@
 # Table of lexemes
 lexemes = []
 
+# Parse tree
+parse_tree = None
+
 # Table of delimiters
 delims = {
 	'.': 46, 
