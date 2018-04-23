@@ -1,10 +1,10 @@
 program tt1;
 
-var real: float;
+var real: float
     natural: integer;
 
 begin
-    while natural <= 10 do
+    while natural < 10 do
        	(*do somthing*)
     endwhile;
 end.

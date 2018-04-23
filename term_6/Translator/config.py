@@ -47,9 +47,10 @@ errors = {
 		'unclosed_comment': "Lexer: Error (line: {}, column: {}): *) expected, but end of file found",
 	},
 	'syntax': {
-		'keyword_expected': "Parser: Error (line: {}, column: {}): keyword '{}' expected, but '{}' found",
+		'keyword_expected': "Parser: Error (line: {}, column: {}): '{}' expected",
 		'delim_expected': "Parser: Error (line: {}, column: {}): '{}' expected",
 		'something_expected': "Parser: Error (line: {}, column: {}): {} expected",
+		'syntax_err': "Parser: Error (line: {}, column: {}): invalid syntax",
 	},
 }
 

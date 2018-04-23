@@ -178,7 +178,7 @@ def scan(fname):
 	try:
 		f = open(fname, 'r')
 	except OSError:
-		print('Couldn`t open this file')
+		print("Couldn`t open file '{}'".format(fname))
 	else:
 		symbol = Symbol()
 		symbol.read(f)
