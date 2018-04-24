@@ -15,6 +15,7 @@ class Node:
 
     def add_child(self, node):
         self.children.append(node)
+        node.parent = self
 
     def beautiful_print(self, depth=0):
         if self.code == 0:
@@ -98,7 +99,7 @@ def var_declaration(parent):
 def declaration_list(parent):
     empty = True
     while lexeme.code > 1000:
-        empty = True
+        empty = False
         node = Node('<declaration>'); parent.add_child(node)
         if declaration(node):
             return True
