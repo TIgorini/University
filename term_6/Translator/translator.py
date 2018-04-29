@@ -5,6 +5,7 @@ import config
 import re
 from scanner import scan
 from parser import parse
+from semantic import semantic
 
 
 def lexemes_print(lexemes):
@@ -33,16 +34,38 @@ def err_print(fname, err):
         print(err)
 
 
-if len(sys.argv) > 1:
-    fname = sys.argv[1]
-else:
+listing = False
+if len(sys.argv) < 2:
     fname = 'tests/tt1.sig'
+elif len(sys.argv) == 2:
+    arg = sys.argv[1]
+    if arg == '-l':
+        listing = True
+        fname = 'tests/tt1.sig'
+    else:
+        fname = arg
+elif len(sys.argv) == 3:
+    if sys.argv[1] == '-l' or sys.argv[1] == '--listing':
+        fname = sys.argv[2]
+        listing = True
+    elif sys.argv[2] == '-l' or sys.argv[2] == '--listing':
+        fname = sys.argv[1]
+        listing = True
+    else:
+        print(' Invalid arguments')
+else:
+    print(' Wrong arguments number')
+    
 
 scan(fname)
 parse()
+semantic()
+
 config.parse_tree.beautiful_print()
 for err in config.err_stack:
     err_print(fname, err)
 
-print('\nConstants: {}'.format(config.consts))
-print('Identifires: {}'.format(config.identifires))
+if listing:
+    print('\nListing saved')
+    print('Constants: {}'.format(config.consts))
+    print('Identifires: {}'.format(config.identifires))
