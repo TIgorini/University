@@ -19,7 +19,7 @@ class Node:
 
     def beautiful_print(self, depth=0):
         if self.code == 0:
-            print('{:{fill}>{depth}}{}'.format('', self.value, depth=depth, fill='.'))
+            print('{:{fill}>{depth}}{}'.format('', config.grammar[self.value], depth=depth, fill='.'))
         else:
             print('{:{fill}>{depth}}{}  {}'.format('', self.code, self.value, depth=depth, fill='.'))
         for child in self.children:
@@ -38,9 +38,10 @@ def program(parent):
     if lexeme.code != 401:
         config.err_stack.append(config.errors['syntax']['keyword_expected']\
             .format(lexeme.line, lexeme.col, 'PROGRAM', lexeme.value))
+        return True
     else:
         parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-        node = Node('<procedure-identifier>'); parent.add_child(node)
+        node = Node(14); parent.add_child(node)
         next_lexem()
         if proc_identifier(node):
             return True
@@ -50,7 +51,7 @@ def program(parent):
             return True
         else:
             parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-            node = Node('<block>'); parent.add_child(node)
+            node = Node(3); parent.add_child(node)
             next_lexem()
             if block(node):
                 return True
@@ -63,7 +64,7 @@ def program(parent):
 
 
 def block(parent):
-    node = Node('<variable-declaration>'); parent.add_child(node)
+    node = Node(4); parent.add_child(node)
     if var_declaration(node):
         return True
     if lexeme.code != 402:
@@ -72,7 +73,7 @@ def block(parent):
         return True
     else:
         parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-        node = Node('<statement-list>'); parent.add_child(node)
+        node = Node(8); parent.add_child(node)
         next_lexem()
         if statements_list(node):
             return True
@@ -88,35 +89,36 @@ def block(parent):
 def var_declaration(parent):
     if lexeme.code == 404:
         parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-        node = Node('<declaration-list>'); parent.add_child(node)
+        node = Node(5); parent.add_child(node)
         next_lexem()
         if declaration_list(node):
             return True
     else:
-        node = Node('<empty>'); parent.add_child(node)
+        node = Node(0); parent.add_child(node)
 
 
 def declaration_list(parent):
     empty = True
     while lexeme.code > 1000:
         empty = False
-        node = Node('<declaration>'); parent.add_child(node)
+        node = Node(6); parent.add_child(node)
         if declaration(node):
             return True
     if empty:
-        node = Node('<empty>'); parent.add_child(node)
+        node = Node(0); parent.add_child(node)
 
 
 def declaration(parent):
-    parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-    next_lexem()
+    node = Node(13); parent.add_child(node)
+    if var_identifier(node):
+        return True
     if lexeme.code != 58:
         config.err_stack.append(config.errors['syntax']['delim_expected']\
             .format(lexeme.line, lexeme.col, ':'))
         return True
     else:
         parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-        node = Node('<attribute>'); parent.add_child(node)
+        node = Node(7); parent.add_child(node)
         next_lexem()
         if attribute(node):
             return True
@@ -143,16 +145,16 @@ def statements_list(parent):
     empty = True
     while lexeme.code == 407:
         empty = True
-        node = Node('<statement>'); parent.add_child(node)
+        node = Node(9); parent.add_child(node)
         if statement(node):
             return True
     if empty:
-        node = Node('<empty>'); parent.add_child(node)
+        node = Node(0); parent.add_child(node)
 
 
 def statement(parent):
     parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-    node = Node('<condition-expression>'); parent.add_child(node)
+    node = Node(10); parent.add_child(node)
     next_lexem()
     if cond_expression(node):
         return True
@@ -162,7 +164,7 @@ def statement(parent):
         return True
     else:
         parent.add_child(Node(lexeme.value, lexeme.code, lexeme.line, lexeme.col))
-        node = Node('<statement-list>'); parent.add_child(node)
+        node = Node(8); parent.add_child(node)
         next_lexem()
         if statements_list(node):
             return True
@@ -183,13 +185,13 @@ def statement(parent):
 
 
 def cond_expression(parent):
-    node = Node('<expression>'); parent.add_child(node)
+    node = Node(12); parent.add_child(node)
     if expression(node): 
         return True
-    node = Node('<comparison-operator>'); parent.add_child(node)
+    node = Node(11); parent.add_child(node)
     if comparison_operator(node):
         return True
-    node = Node('<expression>'); parent.add_child(node)
+    node = Node(12); parent.add_child(node)
     if expression(node):
         return True
 
@@ -206,23 +208,23 @@ def comparison_operator(parent):
 
 def expression(parent):
     if lexeme.code > 1000:
-        node = Node('<variable-identifier>'); parent.add_child(node)
+        node = Node(13); parent.add_child(node)
         if var_identifier(node):
             return True
     else:
-        node = Node('<unsigned-integer>'); parent.add_child(node)
+        node = Node(17); parent.add_child(node)
         if unsigned_integer(node):
             return True
 
 
 def var_identifier(parent):
-    node = Node('<identifier>'); parent.add_child(node)
+    node = Node(15); parent.add_child(node)
     if identifier(node):
         return True
 
 
 def proc_identifier(parent):
-    node = Node('<identifier>'); parent.add_child(node)
+    node = Node(15); parent.add_child(node)
     if identifier(node):
         return True
 
@@ -247,8 +249,10 @@ def unsigned_integer(parent):
         next_lexem()
 
 
+# returning True if syntax error found
 def parse():
-    config.parse_tree = Node('<signal-program>')
-    node = Node('<program>'); config.parse_tree.add_child(node)
+    config.parse_tree = Node(1)
+    node = Node(2); config.parse_tree.add_child(node)
     next_lexem()
-    program(node)
+    if program(node):
+        return True 

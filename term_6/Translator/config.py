@@ -55,3 +55,23 @@ errors = {
 }
 
 err_stack = []
+
+grammar = {
+    1:  '<signal-program>',
+    2:  '<program>',
+    3:  '<block>',
+    4:  '<variable-declarations>',
+    5:  '<declaration-list>',
+    6:  '<declaration>',
+    7:  '<attribute>',
+    8:  '<statements-list>',
+    9:  'statement',
+    10: 'conditional-expression',
+    11: '<compresion-operator>',
+    12: '<expression>',
+    13: 'variable-identifier',
+    14: 'procedure-identifier',
+    15: 'identifier',
+    17: '<unsigned-integer>',
+    0:  '<empty>'
+}

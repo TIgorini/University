@@ -5,7 +5,7 @@ import config
 import re
 from scanner import scan
 from parser import parse
-from semantic import semantic
+from code_generator import cg
 
 
 def lexemes_print(lexemes):
@@ -58,10 +58,10 @@ else:
     
 
 scan(fname)
-parse()
-semantic()
+if not parse():
+    cg()
 
-config.parse_tree.beautiful_print()
+#config.parse_tree.beautiful_print()
 for err in config.err_stack:
     err_print(fname, err)
 
