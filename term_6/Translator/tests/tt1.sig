@@ -1,12 +1,10 @@
 program tt1;
 
 var v1: float;
-	v2: integer;
+    v2: integer;
 
 begin
-	while v1 < 45 do
-		while 15 <> 35 do
-			(*nop*)
-		endwhile;
-	endwhile;
+    while v1 = 42 do
+    	(*nop*)
+    endwhile;
 end.

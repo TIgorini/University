@@ -32,40 +32,25 @@ def err_print(fname, err):
         print('\n   ' + line, end='')
         print('   {:>{col}}'.format('^', col=col))
         print(err)
+        
 
-
-listing = False
 if len(sys.argv) < 2:
     fname = 'tests/tt1.sig'
 elif len(sys.argv) == 2:
-    arg = sys.argv[1]
-    if arg == '-l':
-        listing = True
-        fname = 'tests/tt1.sig'
-    else:
-        fname = arg
-elif len(sys.argv) == 3:
-    if sys.argv[1] == '-l' or sys.argv[1] == '--listing':
-        fname = sys.argv[2]
-        listing = True
-    elif sys.argv[2] == '-l' or sys.argv[2] == '--listing':
-        fname = sys.argv[1]
-        listing = True
-    else:
-        print(' Invalid arguments')
+    fname = sys.argv[1]
 else:
     print(' Wrong arguments number')
     
 
 scan(fname)
 if not parse():
-    cg()
+    out_fname = fname[:-4] + '.asm'
+    if cg(out_fname):
+        print('Program translated successful --> ' + out_fname)
 
 #config.parse_tree.beautiful_print()
 for err in config.err_stack:
     err_print(fname, err)
 
-if listing:
-    print('\nListing saved')
-    print('Constants: {}'.format(config.consts))
-    print('Identifires: {}'.format(config.identifires))
+#print('Constants: {}'.format(config.consts))
+#print('Identifiers: {}'.format(config.identifires))

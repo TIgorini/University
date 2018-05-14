@@ -72,14 +72,14 @@ def ident(symbol, file):
 
     if buf in config.keywords:
         code = config.keywords[buf]
-    elif buf in config.identifires:
-        code = config.identifires[buf]
-    elif config.identifires:
-        code = max(config.identifires.values()) + 1
-        config.identifires[buf] = code
+    elif buf in config.identifiers:
+        code = config.identifiers[buf]
+    elif config.identifiers:
+        code = max(config.identifiers.values()) + 1
+        config.identifiers[buf] = code
     else:
         code = 1001
-        config.identifires[buf] = code
+        config.identifiers[buf] = code
 
     return {'code':code, 'line':line, 'col':col, 'val':buf, 'skip':False}
 

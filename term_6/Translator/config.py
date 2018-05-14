@@ -38,7 +38,7 @@ keywords = {
 consts = {}
 
 # Table of identifires
-identifires = {}
+identifiers = {}
 
 errors = {
     'lexical': {
@@ -51,6 +51,10 @@ errors = {
         'delim_expected': "Parser: Error (line: {}, column: {}): '{}' expected",
         'something_expected': "Parser: Error (line: {}, column: {}): {} expected",
         'syntax_err': "Parser: Error (line: {}, column: {}): invalid syntax",
+    },
+    'cg': {
+        'ident_repeated': "Code Generator: Error (line: {}, column: {}): '{}' is already defined in this scope",
+        'not_defined': "Code Generator: Error (line: {}, column: {}): variable '{}' is not defined",
     },
 }
 
@@ -65,13 +69,13 @@ grammar = {
     6:  '<declaration>',
     7:  '<attribute>',
     8:  '<statements-list>',
-    9:  'statement',
-    10: 'conditional-expression',
+    9:  '<statement>',
+    10: '<conditional-expression>',
     11: '<compresion-operator>',
     12: '<expression>',
-    13: 'variable-identifier',
-    14: 'procedure-identifier',
-    15: 'identifier',
+    13: '<variable-identifier>',
+    14: '<procedure-identifier>',
+    15: '<identifier>',
     17: '<unsigned-integer>',
     0:  '<empty>'
 }
