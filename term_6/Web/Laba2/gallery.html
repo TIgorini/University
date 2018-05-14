@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="css/gallery.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/gallery.js"></script>
+</head>
+
+<body>
+    <div class="art">
+        <img class="pic" src="img/Starry_Night.jpg">
+        <img class="pic" src="img/Starry_Night_over_the_Rhone.jpg">
+        <img src="img/Sunflowers.jpg">
+        <img src="img/Self_Portrait.jpg">
+        <img src="img/Wheatfield_with_crows.jpg">
+        <img src="img/The_Church_at_Auvers.jpg">
+        <img src="img/Fishing_Boats_on_the_Beach_at_Saintes-Maries.jpg">
+    </div> 
+    <div class="fixed-panel">   
+        <div class="control-panel">
+            <span class="glyphicon repeat-icon glyphicon-retweet"></span>
+            <span class="glyphicon icons glyphicon-step-backward" onclick="nextPicture(-1)"></span>
+            <span class="glyphicon icons glyphicon-play" onclick="play()"></span>
+            <span class="glyphicon icons glyphicon-step-forward" onclick="nextPicture(1)"></span>
+            <span class="glyphicon icons setting-icon glyphicon-option-horizontal"></span>
+        </div>
+    <div>
+</body>
+</html>
