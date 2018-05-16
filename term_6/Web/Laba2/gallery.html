@@ -6,26 +6,39 @@
     <title>Art Gallery</title>
     <link rel="stylesheet" href="css/gallery.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/gallery.js"></script>
 </head>
 
 <body>
     <div class="art">
-        <img class="pic" src="img/Starry_Night.jpg">
-        <img class="pic" src="img/Starry_Night_over_the_Rhone.jpg">
-        <img src="img/Sunflowers.jpg">
-        <img src="img/Self_Portrait.jpg">
-        <img src="img/Wheatfield_with_crows.jpg">
-        <img src="img/The_Church_at_Auvers.jpg">
-        <img src="img/Fishing_Boats_on_the_Beach_at_Saintes-Maries.jpg">
+        <img class="fade" src="img/Starry_Night.jpg">
+        <img class="fade" src="img/Starry_Night_over_the_Rhone.jpg">
+        <img class="fade" src="img/Sunflowers.jpg">
+        <img class="fade" src="img/Self_Portrait.jpg">
+        <img class="fade" src="img/Wheatfield_with_crows.jpg">
+        <img class="fade" src="img/The_Church_at_Auvers.jpg">
+        <img class="fade" src="img/Fishing_Boats_on_the_Beach_at_Saintes-Maries.jpg">
     </div> 
     <div class="fixed-panel">   
         <div class="control-panel">
-            <span class="glyphicon repeat-icon glyphicon-retweet"></span>
+            <span class="glyphicon glyphicon-retweet no-repeat-icon" id="repeat-icon" onclick="setRepeat()"></span>
             <span class="glyphicon icons glyphicon-step-backward" onclick="nextPicture(-1)"></span>
-            <span class="glyphicon icons glyphicon-play" onclick="play()"></span>
+            <span class="glyphicon icons glyphicon-play" id="play" onclick="slideshow(true)"></span>
+            <span class="glyphicon icons glyphicon-pause" id="pause" onclick="slideshow(false)"></span>
             <span class="glyphicon icons glyphicon-step-forward" onclick="nextPicture(1)"></span>
-            <span class="glyphicon icons setting-icon glyphicon-option-horizontal"></span>
+            <div class="dropup">
+                <span data-toggle="dropdown" class="glyphicon icons glyphicon-option-horizontal" id="setting-icon"></span>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Set delay  (ms)</li>
+                    <li>
+                        <div class="set-number">
+                            <input type="number" id="num-field" defaultValue="3000">
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     <div>
 </body>

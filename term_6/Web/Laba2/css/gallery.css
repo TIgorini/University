@@ -2,9 +2,7 @@ body {
 	background-image: url("chrome://global/skin/media/imagedoc-darknoise.png");
 }
 
-div {
-	display: flex;
-}
+div {display: flex;}
 
 .art {
 	position: absolute;
@@ -19,6 +17,14 @@ div {
 	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
+	animation-name: fade;
+  	animation-duration: 2s;
+  	animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+  	from {opacity: 0.4} 
+  	to {opacity: 1}
 }
 
 
@@ -38,28 +44,43 @@ div {
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
+
 .icons {
 	margin: 5px, 0px, 5px, 0px;
 	font-size: 23px;
 	color: #fff;
 	margin-left: 5px;
-	margin-right: 5px;  
+	margin-right: 5px;
 }
 
-.icons:hover {
-	color: #595959;
+.icons:hover {color: #595959;}
+
+.icons:active {
+	animation-name: click;
+	animation-duration: 2s;
 }
 
-.setting-icon {
-	margin-left: 50px; 
-}
+#play {display: block;}
 
-.repeat-icon {
+#pause {display: none;}
+
+#setting-icon {margin-left: 50px;}
+
+#repeat-icon {
 	margin-right: 50px; 
 	font-size: 23px;
-	color: #333333;
 }
 
-.repeat-icon:hover {
-	color: #595959;
+#repeat-icon:hover {color: #595959;}
+
+.no-repeat-icon {color: #333;}
+
+.repeat-icon {color: #fff;}
+
+
+.set-number {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;  
 }
