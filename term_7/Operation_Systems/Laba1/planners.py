@@ -7,7 +7,13 @@ class fcfs:
 		self.processes.append(process)
 
 	def get_next(self):
-		return self.process.popleft()
+		return self.processes.pop(0)
+
+	def __str__(self):
+		res = 'FCFS processes (executing time):'
+		for p in self.processes:
+			res += ' ' + str(p)
+		return res
 
 
 class rr:
@@ -15,12 +21,22 @@ class rr:
 		self.quantum = quantum
 		self.processes = processes
 		self.length = len(processes)
-		self.i = 0
+		self.curr_proc = 0
 
 	def add_process(self, process):
 		self.processes.append(process)
 		self.length += 1
 
+	def process_done(self):
+		self.processes.pop(self.curr_proc)
+		self.length -= 1
+
 	def get_next(self):
-		self.i = (self.i + 1) % self.length
-		return self.processes[i]
+		self.curr_proc = (self.curr_proc + 1) % self.length
+		return self.processes[self.curr_proc]
+
+	def __str__(self):
+		res = 'RR processes (executing time):'
+		for p in self.processes:
+			res += ' ' + str(p)
+		return res
