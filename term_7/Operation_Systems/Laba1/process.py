@@ -13,7 +13,7 @@ class process:
 		return str(self.exec_time)
 
 
-class generator:
+class generator():
 	def __init__(self, min, max):
 		self.min = min
 		self.max = max
