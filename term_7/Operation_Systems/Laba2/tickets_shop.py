@@ -9,7 +9,7 @@ import random
 
 
 class terminal(threading.Thread):
-    """Grands interface to user who wants to buy ticket"""
+    """Provides interface to users who want buy tickets"""
 
     def __init__(self, name, semaphore):
         threading.Thread.__init__(self)
@@ -44,9 +44,7 @@ class terminal(threading.Thread):
 
 
 class server:
-    """Takes requests from terminals to give them change and
-    does if it possible
-    """
+    """Takes requests from terminals to give change"""
 
     def __init__(self, bank):
         self.bank = bank
