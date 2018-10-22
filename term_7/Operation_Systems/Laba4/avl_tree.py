@@ -137,6 +137,65 @@ class avl_tree:
             self._add_to_node(val, self._root)
         return True
 
+    def _search_near_node(self, val, node, cond):
+        """Algorithm to search near by value node in branch.
+        Returns node.
+        """
+        if node.right is not None:
+            res = self._search_near_node(val, node.right, 'less')
+        elif node.left is not None:
+            res = self._search_near_node(val, node.left, 'greater')
+        else:
+            res = node
+
+        if cond == 'less':
+            if node.val < res.val:
+                return node
+            else:
+                return res
+        else:
+            if node.val > res.val:
+                return node
+            else:
+                return res
+
+    def _remove_at_node(self, val, node):
+        """Recursive function to remove element"""
+        if val == node.val:
+            if node.right is None and node.left is None:
+                parent = node.parent
+                node.parent = None
+                if parent.left is node:
+                    parent.hl -= 1
+                    parent.left = None
+                    if parent.hr - parent.hl == 2:
+                        node = self._turn_left(parent)
+                else:
+                    parent.hr -= 1
+                    parent.right = None
+                    if parent.hl - parent.hr == 2:
+                        node = self._turn_right(parent)
+            else:
+                if node.hl > node.hr:
+                    buf = self._search_near_node(val, node.left, 'greater')
+                else:
+                    buf = self._search_near_node(val, node.right, 'less')
+                node.val = buf.val
+                self._remove_at_node(buf.val, buf)
+
+        elif val < node.val:
+            self._remove_at_node(val, node.left)
+        else:
+            self._remove_at_node(val, node.right)
+
+    def remove(self, val):
+        """Removes element from tree"""
+        if not self.search(val):
+            return False
+
+        self._remove_at_node(val, self._root)
+        return True
+
     def _compare_to_node(self, val, node):
         """Recursive function of search"""
         if node is None:
@@ -166,7 +225,7 @@ class avl_tree:
 
 
 if __name__ == '__main__':
-    tree = avl_tree(['a8', 'b7', 'a1'])
+    tree = avl_tree(['b8', 'a8', 'c4', 'b4', 'd7', 'b2'])
     print('Initial tree:')
     print(tree)
     print('\nCommands:\n \
@@ -191,7 +250,11 @@ exit')
         elif args[0] == 'search':
             print(tree.search(args[1]))
         elif args[0] == 'remove':
-            print('Not found')
+            if not tree.remove(args[1]):
+                print('Element not exist')
+            else:
+                print('Success.\n')
+                print(tree)
         elif args[0] == 'exit':
             break
         else:
