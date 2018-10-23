@@ -16,13 +16,26 @@ class terminal(threading.Thread):
         self.name = name
         self.semaphore = semaphore
 
+    def _ticket_random(self):
+        num = random.randint(1, 6)
+        if num == 1:
+            return {'dst': 'Kyiv', 'price': 28}
+        elif num == 2:
+            return {'dst': 'Moscow', 'price': 37}
+        elif num == 3:
+            return {'dst': 'London', 'price': 50}
+        elif num == 4:
+            return {'dst': 'Berlin', 'price': 77}
+        else:
+            return {'dst': 'Paris', 'price': 91}
+
     def run(self):
         print(f'Terminal {self.name} has started work')
 
         while True:
-            ticket_cost = random.randint(30, 100)
-            change = 100 - ticket_cost
-            print(f'Terminal {self.name}. Ticket order on {ticket_cost} cent')
+            ticket = self._ticket_random()
+            change = 100 - ticket['price']
+            print(f'Terminal {self.name}. Ticket order to {ticket["dst"]} ({ticket["price"]})')
 
             while not self.semaphore.acquire(blocking=False):
                 print(f'Terminal {self.name}. Waiting for server')
