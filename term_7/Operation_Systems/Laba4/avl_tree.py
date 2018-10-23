@@ -1,3 +1,6 @@
+import re
+
+
 class tree_node:
     """Node for AVL tree"""
 
@@ -97,7 +100,7 @@ class avl_tree:
             buf.parent = parent
         return buf
 
-    def _add_to_node(self, val, node):
+    def _add(self, val, node):
         """Recursive function that search place to put element val,
         adds element after finding a place and provides rebalancing
         if necessary.
@@ -111,7 +114,7 @@ class avl_tree:
                 node.left = new_node
                 node.hl += 1
             else:
-                node.hl = self._add_to_node(val, node.left)
+                node.hl = self._add(val, node.left)
                 if node.hl - node.hr == 2:
                     node = self._turn_right(node)
         else:
@@ -121,95 +124,107 @@ class avl_tree:
                 node.right = new_node
                 node.hr += 1
             else:
-                node.hr = self._add_to_node(val, node.right)
+                node.hr = self._add(val, node.right)
                 if node.hr - node.hl == 2:
                     node = self._turn_left(node)
         return max(node.hr, node.hl) + 1
 
     def add(self, val):
         """Adds element val to tree if it's not already in tree"""
-        if self.search(val):
+        if self._search(val, self._root) is not None:
             return False
 
         if self._root is None:
             self._root = tree_node(val)
         else:
-            self._add_to_node(val, self._root)
+            self._add(val, self._root)
         return True
 
-    def _search_near_node(self, val, node, cond):
+    def _search_near_node(self, node, search_cond):
         """Algorithm to search near by value node in branch.
         Returns node.
         """
-        if node.right is not None:
-            res = self._search_near_node(val, node.right, 'less')
-        elif node.left is not None:
-            res = self._search_near_node(val, node.left, 'greater')
-        else:
-            res = node
-
-        if cond == 'less':
-            if node.val < res.val:
+        if search_cond == 'b':
+            if node.right is not None:
                 return node
-            else:
-                return res
         else:
-            if node.val > res.val:
+            if node.left is not None:
                 return node
-            else:
-                return res
+        return self._search_near_node(node.left, search_cond)
 
-    def _remove_at_node(self, val, node):
+    def _remove(self, val, node):
         """Recursive function to remove element"""
         if val == node.val:
             if node.right is None and node.left is None:
                 parent = node.parent
                 node.parent = None
                 if parent.left is node:
-                    parent.hl -= 1
                     parent.left = None
-                    if parent.hr - parent.hl == 2:
-                        node = self._turn_left(parent)
                 else:
-                    parent.hr -= 1
                     parent.right = None
-                    if parent.hl - parent.hr == 2:
-                        node = self._turn_right(parent)
+                return 0
             else:
                 if node.hl > node.hr:
-                    buf = self._search_near_node(val, node.left, 'greater')
+                    buf = self._search_near_node(node.left, 'b')
+                    node.val = buf.val
+                    node.hl = self._remove(node.val, node.left)
+                    if node.hr - node.hl == 2:
+                        node = self._turn_left(node)
                 else:
-                    buf = self._search_near_node(val, node.right, 'less')
-                node.val = buf.val
-                self._remove_at_node(buf.val, buf)
+                    buf = self._search_near_node(node.right, 's')
+                    node.val = buf.val
+                    node.hr = self._remove(node.val, node.right)
+                    if node.hl - node.hr == 2:
+                        node = self._turn_right(node)
 
         elif val < node.val:
-            self._remove_at_node(val, node.left)
+            node.hl = self._remove(val, node.left)
+            if node.hr - node.hl == 2:
+                node = self._turn_left(node)
         else:
-            self._remove_at_node(val, node.right)
+            node.hr = self._remove(val, node.right)
+            if node.hl - node.hr == 2:
+                node = self._turn_right(node)
+        return max(node.hl, node.hr) + 1
 
     def remove(self, val):
         """Removes element from tree"""
-        if not self.search(val):
+        if self._search(val, self._root) is None:
             return False
 
-        self._remove_at_node(val, self._root)
+        self._remove(val, self._root)
         return True
 
-    def _compare_to_node(self, val, node):
-        """Recursive function of search"""
+    def _search(self, val, node):
+        """Recursive function for search"""
         if node is None:
-            return False
+            return None
         elif val == node.val:
-            return True
+            return node
         elif val <= node.val:
-            return self._compare_to_node(val, node.left)
+            return self._search(val, node.left)
         else:
-            return self._compare_to_node(val, node.right)
+            return self._search(val, node.right)
 
     def search(self, val):
-        """Returns True if element val founded, otherwise returns False"""
-        return self._compare_to_node(val, self._root)
+        """Returns str with search path if val founded,
+        otherwise returns str 'Not founded'
+        """
+        node = self._search(val, self._root)
+        if node is None:
+            return 'Not found'
+
+        res = []
+        node = node.parent
+        while node is not None:
+            res.append(node)
+            node = node.parent
+        res.reverse()
+
+        res_str = ''
+        for el in res:
+            res_str += '{} -> '.format(el)
+        return res_str + val
 
     def _make_str(self, node, tab):
         """Recursive function to collect readable representation of tree"""
@@ -225,37 +240,48 @@ class avl_tree:
 
 
 if __name__ == '__main__':
-    tree = avl_tree(['b8', 'a8', 'c4', 'b4', 'd7', 'b2'])
+    tree = avl_tree(['b0', 'a2', 'c0', 'b1', 'd0', 'a1', 'b2'])
     print('Initial tree:')
     print(tree)
     print('\nCommands:\n \
 show\n \
-add [element]\n \
-remove [element]\n \
-search [element]\n \
+add [id]\n \
+remove [id]\n \
+search [id]\n \
 exit')
 
     while True:
         com = input('\n> ')
         print('')
         args = com.split(' ')
-        if args[0] == 'show':
-            print(tree)
-        elif args[0] == 'add':
-            if not tree.add(args[1]):
-                print('Element already exist')
+        if len(args) > 2:
+            print('One argument expected\n')
+            continue
+        elif len(args) == 2:
+            if not re.fullmatch('[a-z][0-9]', args[1]):
+                print('ID must be [a-z][0-9].')
+                continue
             else:
-                print('Success.\n')
-                print(tree)
-        elif args[0] == 'search':
-            print(tree.search(args[1]))
-        elif args[0] == 'remove':
-            if not tree.remove(args[1]):
-                print('Element not exist')
-            else:
-                print('Success.\n')
-                print(tree)
-        elif args[0] == 'exit':
-            break
+                if args[0] == 'add':
+                    if not tree.add(args[1]):
+                        print('Element is already exist')
+                    else:
+                        print('Success.\n')
+                        print(tree)
+                elif args[0] == 'search':
+                    print(tree.search(args[1]))
+                elif args[0] == 'remove':
+                    if not tree.remove(args[1]):
+                        print('Element is not exist')
+                    else:
+                        print('Success.\n')
+                        print(tree)
+                else:
+                    print('Try harder.')
         else:
-            print('\nCommands:\n add [element]\n show\n exit')
+            if args[0] == 'show':
+                print(tree)
+            elif args[0] == 'exit':
+                break
+            else:
+                print('Try harder.')
