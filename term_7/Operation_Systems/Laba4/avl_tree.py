@@ -230,8 +230,7 @@ class avl_tree:
         """Recursive function to collect readable representation of tree"""
         if node is None:
             return '{:{fill}<{tab}}None\n'.format('', fill='.', tab=tab)
-        return '{:{fill}<{tab}}{}({}, {})\n'.format(
-            '', node.val, node.hl, node.hr, fill='.', tab=tab) +\
+        return '{:{fill}<{tab}}{}\n'.format('', node.val, fill='.', tab=tab) +\
             self._make_str(node.left, tab + 2) +\
             self._make_str(node.right, tab + 2)
 
@@ -240,7 +239,7 @@ class avl_tree:
 
 
 if __name__ == '__main__':
-    tree = avl_tree(['b0', 'a2', 'c0', 'b1', 'd0', 'a1', 'b2'])
+    tree = avl_tree()
     print('Initial tree:')
     print(tree)
     print('\nCommands:\n \

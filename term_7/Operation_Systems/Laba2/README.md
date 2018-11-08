@@ -1,4 +1,4 @@
-# Process synchronization
+## Process synchronization
 
 ## Task
   __Об’єкт моделювання__: Автомат для продажу авіабілетів.
