@@ -75,29 +75,38 @@ class Memory:
             self.upload([segments[-1]], segments[-1]['size'], pid)
         else:
             # Searching for free partiotion
+            free_parts = []
             for part in suits_by_size:
                 if part['proc'] is None:
-                    for seg in segments:
-                        seg['addr'] = part['addr'] + part['nfree']
-                        seg['in_mem'] = 1
-                        seg['partition'] = part['id']
-                        part['proc'] = pid
-                        part['nfree'] += seg['size']
-                        part['free'] -= seg['size']
-                    return
-            # If there aren't free partitions
-            for part in suits_by_size:
-                old_pid = part['proc']
-                if old_pid != pid:
-                    self.unload_part(part)
-                    for seg in segments:
-                        seg['addr'] = part['addr'] + part['nfree']
-                        seg['in_mem'] = 1
-                        seg['partition'] = part['id']
-                        part['proc'] = pid
-                        part['nfree'] += seg['size']
-                        part['free'] -= seg['size']
-                    return
+                    free_parts.append(part)
+
+            if free_parts == []:
+                # If there aren't free partitions
+                min_part = suits_by_size[0]
+                # Searching for partition with min size
+                for part in suits_by_size:
+                    if part['proc'] == pid:
+                        continue
+                    if part['size'] < min_part['size']:
+                        min_part = part
+                # Unloading old proccess from partition
+                self.unload_part(min_part)
+            else:
+                min_part = free_parts[0]
+                for part in free_parts:
+                    if part['proc'] == pid:
+                        continue
+                    if part['size'] < min_part['size']:
+                        min_part = part
+
+            for seg in segments:
+                seg['addr'] = min_part['addr'] + min_part['nfree']
+                seg['in_mem'] = 1
+                seg['partition'] = min_part['id']
+                min_part['proc'] = pid
+                min_part['nfree'] += seg['size']
+                min_part['free'] -= seg['size']
+            return
 
     def unload(self, segments):
         """Unloads proccess segments from memory"""
