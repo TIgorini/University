@@ -61,7 +61,7 @@ errors = {
 err_stack = []
 
 grammar = {
-    1:  '<signal-program>',
+    1:  '<signal-program>', 
     2:  '<program>',
     3:  '<block>',
     4:  '<variable-declarations>',

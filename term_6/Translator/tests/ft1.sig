@@ -1,14 +1,14 @@
-program tt1;
+program ft1;
 
 var v1: float;
     v1: integer;
 
 begin
     while v2 = 42 do
-    	(*nop*)
+        (*nop*)
     endwhile;
 
-    while tt1 > v1 do
+    while ft1 > v1 do
 
     endwhile;
 end.
