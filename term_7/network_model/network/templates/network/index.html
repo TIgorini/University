@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Network processes simulation</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'network/css/main.css'%}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'network/js/jquery.cookie.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div class="primary">
+		<div id="mynetwork"></div>
+
+		<div id="info">
+			<div class="side-info">
+				<div class="node_inf" v-if="show_node">
+					<div>Id: ${id}</div>
+					<div v-if="node_type">With station</div>
+					<div>Fast routes:</div>
+
+					<table>
+						<thead>
+				            <tr>
+				                <th>To</th>
+				                <th>Length</th>
+				                <th>Route</th>
+				                <th>Transit</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr v-for="route in routes" v-if="route.length <= 10">
+				               <td>${route.to}</td>
+				               <td>${route.length}</td>
+				               <td>${route.route}</td>
+				               <td>${route.route.length}</td>
+				            </tr>
+				        </tbody>
+					</table>
+
+					<div class="buttons">
+						<button type="button" v-on:click="show_all = !show_all">Toggle all routes</button>
+						<button type="button" v-if="node_type" v-on:click="show_send = !show_send">Send Message</button>
+					</div>
+				</div>
+
+				<div class="chan_inf" v-if="show_chan">
+					<div>Id ${id}</div>
+					<div>Weight: ${weight}</div>
+					<div>Nodes: ${nodes}</div>
+					<div>Type: ${type}</div>
+				</div>
+
+				<div v-if="show_send">
+					<form class="send-menu" action="#" v-on:submit="send" method="post">
+						<div class="input-group">
+							Message size (bytes)
+							<input type="number" v-model.number="msg_size" min="1000">
+						</div>
+						<div class="input-group">
+							Data packet size (bytes)
+							<input type="number" v-model.number="pack_size" min="200">
+						</div>
+						<div class="input-group">
+							Control packet size (bytes)
+							<input type="number" v-model.number="ctrl_size" min="48">
+						</div>
+						<button type="submit">Send</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="bottom-info">
+				<div class="node_inf" v-if="show_node && show_all">
+					<div>Routes</div>
+					<table>
+						<thead>
+				            <tr>
+				                <th>To</th>
+				                <th>Length</th>
+				                <th>Route</th>
+				                <th>Transit</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr v-for="route in routes">
+				               	<td>${route.to}</td>
+				               	<td>${route.length}</td>
+				               	<td>${route.route}</td>
+				               	<td>${route.route.length}</td>
+				            </tr>
+				        </tbody>
+					</table>
+				</div>
+
+				<div v-if="show_res">
+					<div>Time comprasion</div>
+					<table>
+						<thead>
+				            <tr>
+				                <th rowspan="2">To</th>
+				                <th colspan="3">Time</th>
+				            </tr>
+				            <tr>
+				            	<th>Datagram</th>
+				            	<th>Logical connection</th>
+				            	<th>Virtual channel</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr v-for="res in results.times">
+				               	<td>${res.dst}</td>
+				               	<td>${res.datagram}</td>
+				               	<td>${res.log}</td>
+				            	<td>${res.virtual}</td>
+				            </tr>
+				        </tbody>
+					</table>
+				</div>
+
+				<div v-for="(value, key) in results.results" v-if="show_res">
+					<div>${key}</div>
+					<table>
+						<thead>
+				            <tr>
+				                <th>To</th>
+				                <th>Time</th>
+				                <th>Route</th>
+				                <th>Transit</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr v-for="res in value">
+				               	<td>${res.dst}</td>
+				               	<td>${res.time}</td>
+				               	<td><dl>
+				               			<dt v-for="route in res.routes">${route}</li>
+				               		</dl>
+				               	</td>
+				               	<td><dl>
+				               			<dt v-for="route in res.routes">${route.length}</li>
+				               		</dl>
+				               	</td>
+				            </tr>
+				        </tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+	<script type="text/javascript" src="{% static 'network/js/main.js'%}"></script>
+</body>
+</html>

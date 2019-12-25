@@ -1,0 +1,99 @@
+body {
+	background-color: #e1e1d0;
+}
+
+.primary {
+	display: flex;
+	margin-left: 20px;
+	margin-top: 15px;
+	flex-direction: column;
+	align-items: center;
+}
+
+#mynetwork {
+	width: 80%;
+	height: 600px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+
+.side-info {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 25px;
+	right: 20px;
+}
+.side-info > div {
+	padding: 12px;
+	margin-bottom: 10px;
+	box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+    background-color: #222;
+    color: #e1e1d0;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+button {
+	margin-top: 5px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border: none;
+	color: #e1e1d0;
+}
+@keyframes lighter {
+	from {background-color: rgba(0, 0, 0, 0.05);}
+	to {background-color: rgba(0, 0, 0, 0.1);}
+}
+button:hover {
+	animation-name: lighter;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+
+
+.send-menu {
+	display: flex;
+	flex-direction: column;
+}
+.input-group {
+	display: flex;
+	margin-bottom: 10px;
+	justify-content: space-between;
+	align-items: center;
+}
+.send-menu input {
+	width: 80px;
+	margin-left: 20px;
+}
+
+
+.bottom-info {
+	display: flex;
+	flex-direction: column;
+}
+.bottom-info > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 550px;
+	padding: 12px;
+	margin-bottom: 10px;
+	box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+    background-color: #222;
+    color: #e1e1d0;
+}
+
+td, th{
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+dl{
+	margin: 2px;
+}
